@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--관리자인지 검사해서 보여주는 메뉴 페이지에 차이를 줌 --%>
 <c:choose>
 <c:when test="${sessionScope.aid eq null}">
 <div id="headerMenu">
@@ -37,7 +38,7 @@
 </div>
 <div id="headerLoginMenu">
 	<ul>
-		<li><a href="">Logout</a></li>
+		<li><a href="<%=request.getContextPath()%>/logout">Logout</a></li>
 		<li><a href="">관리자페이지</a></li>
 
 	</ul>

@@ -66,15 +66,17 @@
 
 <div id="inputform">
 	<div id="userlogin">
-		<form method="post" action="">
-			아이디<input type="text" name="id"><br> 로그인<input type="password" name="pwd">
+		<form method="post" action="<%=request.getContextPath()%>/admin/login">
+		    유저로그인<br>
+			아이디<input type="text" name="mid"><br> 로그인<input type="password" name="mpwd">
 			<input type="submit" value="로그인">
 		</form>
 				
 	</div>
 	<div id="adminlogin">
 		<form method="post" action="<%=request.getContextPath()%>/admin/login">
-		아이디<input type="text" name="id"> <br> 로그인<input type="password" name="pwd">
+		관리자로그인<br>
+		아이디<input type="text" name="aid"> <br> 로그인<input type="password" name="apwd">
 		<input type="submit" value="로그인">
 		</form>
 		
