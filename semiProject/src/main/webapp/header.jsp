@@ -13,7 +13,7 @@
 </div>
 <div id="headerLoginMenu">
 	<ul>
-		<li><a href=""><img src="images/3.png" width="25" height="25"></li>
+		<li><a href="cart"><img src="images/3.png" width="25" height="25"></li>
 		<li><a href="">Login</a></li>
 		<li><a href="">마이페이지</a></li>
 		<li><a href="">회원가입</a></li>
