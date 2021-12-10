@@ -54,17 +54,17 @@ a {
 }
 /* menu영역 소분류카테고리 설정*/
 #menu #mainmenu>ul>li>ul {
-	display:none;
+	display: none;
 	position: inherit;
-	padding-top:5px;
+	padding-top: 5px;
 }
 /* menu영역 대분류카테고리 hover 설정*/
 #menu #mainmenu>ul>li:hover>ul {
-display:block;
+	display: block;
 }
 /* menu영역 소분류카테고리 hover 설정*/
 #menu #mainmenu>ul>li>ul>li:hover {
-background-color:#EAEAEA;
+	background-color: #EAEAEA;
 }
 /* menu영역 a태그 설정 */
 #menu a {
