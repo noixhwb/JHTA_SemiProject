@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:choose>
+<c:when test="${sessionScope.aid eq null}">
 <div id="headerMenu">
 	<ul>
 		<li><a href="">NEW</a></li>
@@ -19,3 +22,26 @@
 		<li><a href="">회원가입</a></li>
 	</ul>
 </div>
+</c:when>
+<c:otherwise>
+<div id="headerMenu">
+	<ul>
+		<li><a href="">NEW</a></li>
+		<li><a href="">BEST</a></li>
+		<li><a href="">SALE</a></li>
+		<li><a href="">COMMUNITY</a></li>
+	</ul>
+</div>
+<div id="siteName">
+	<h1>SEMI PROJECT</h1>
+</div>
+<div id="headerLoginMenu">
+	<ul>
+		<li><a href="">Logout</a></li>
+		<li><a href="">관리자페이지</a></li>
+
+	</ul>
+</div>
+
+</c:otherwise>
+</c:choose>
