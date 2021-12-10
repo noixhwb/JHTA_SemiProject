@@ -15,6 +15,5 @@ public class CartController extends HttpServlet{
 		req.setAttribute("header", "header.jsp");
 		req.setAttribute("footer", "footer.jsp");
 		req.getRequestDispatcher("cart.jsp").forward(req, resp);
-	
 	}
 }
