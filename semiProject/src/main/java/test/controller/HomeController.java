@@ -25,3 +25,5 @@ public class HomeController extends HttpServlet {
 		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
 	}
 }
+//post form으로 받을때
+//get
