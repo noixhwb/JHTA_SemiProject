@@ -2,20 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-    <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/common.css">
 
 
-<div id="wrap">
-
-	<div id="header">
-			<jsp:include page="../header.jsp" />
-	</div>
-	
-	<div id="menu">
-			<jsp:include page="../menu.jsp" />
-	</div>
-	
 	<form method="post" action="<%=request.getContextPath() %>/join">
    		 <h1>회원가입</h1>
     <table>
@@ -63,7 +51,3 @@
     </table>
 </form>
 
-		<div id="footer">
-			<jsp:include page="../footer.jsp" />
-		</div>
-</div>
