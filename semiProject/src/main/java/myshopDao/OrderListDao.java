@@ -93,7 +93,7 @@ public class OrderListDao {
 				int dprice=rs.getInt("dprice");
 				int dstate=rs.getInt("dstate");
 				OrderListVo vo =new OrderListVo(onum, odnum, pdnum, dcount, dprice, dstate, mid, totalsales, delocation, odate);
-				System.out.println(onum);
+				
 				list.add(vo);
 			}
 			return list;
