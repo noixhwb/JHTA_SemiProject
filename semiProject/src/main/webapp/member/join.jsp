@@ -8,6 +8,34 @@
 <meta charset="UTF-8">
 <title>BeanJoin</title>
 <script type="text/javascript">
+		
+var xhr=null;
+function idCheck(){
+	xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=success; 
+	let mid=document.getElementById("mid").value;
+	if(mid==""){
+		document.getElementById("idcheck").innerHTML="";
+		return;
+	}
+	xhr.open('get','idcheck.jsp?mid='+ mid,true);
+	xhr.send();
+}
+function success(){
+	if(xhr.readyState==4 && xhr.status==200){
+		let xml=xhr.responseXML;
+		let exist=xml.getElementsByTagName("exist")[0].textContent;
+		let span=document.getElementById("idcheck");
+		if(exist=='true'){
+			span.innerHTML="사용중인 아이디입니다.";
+		}else{
+			span.innerHTML="사용가능한 아이디입니다.";
+		}	
+	}
+}
+	
+	
+	
 	function sendIt() {
     if (f.mid.value == "") {
         alert("아이디를 입력하지 않았습니다.")
@@ -102,8 +130,8 @@
             <th>
                 <p align="right">아이디</p>
             </th>
-            <td><input type="text" name="mid" id="mid" maxlength="12" ></td>
-            <td><input type="button" value="중복확인"></td>
+            <td><input type="text" name="mid" id="mid" maxlength="12" onkeyup="idCheck()"></td>
+            <td><span id="idcheck"></span></td>
         </tr>
         
         <tr>

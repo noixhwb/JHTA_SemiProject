@@ -10,10 +10,34 @@
 <body>
 <c:choose>
 	<c:when test="${requestScope.result=='success' }">
-		<h1>회원가입 성공!</h1>
+		<h1>회원가입 완료</h1><br>
+		<h2>회원가입이 완료 되었습니다.</h2>
+		
+	<table style="width:40%">
+		<tr>
+			<th colspan="3" align="left">저희 쇼핑몰을 이용해 주셔서 감사합니다.</th>	
+		</tr>
+		<tr>
+			<td rowspan="3"><img src="images/1000.png"></td>
+			<td align="left">아이디</td>		
+			<td align="left">${param.mid }</td>
+		</tr>
+		<tr>
+			<td>이름</td>		
+			<td>${param.mname }</td>
+		</tr>
+      	<tr>
+			<td>휴대폰</td>		
+			<td>${param.mphone }</td>
+		</tr>
+	</table>
+	
 	</c:when>
 	<c:otherwise>
-		<h1>회원가입 실패!</h1>
+		<h1>회원가입 실패</h1><br><br>
+		<h2>다시 회원가입을 진행해 주세요.</h2>
+		
+		
 	</c:otherwise>
 </c:choose>
 <a href="<%=request.getContextPath()%>/Home">메인페이지로 돌아가기</a>

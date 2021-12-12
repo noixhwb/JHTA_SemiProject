@@ -34,6 +34,7 @@ public class JoinController extends HttpServlet{
 		// 결과응답하기
 		if(n>0) {
 			req.setAttribute("result","success");
+
 		}else {
 			req.setAttribute("result","fail");
 		}
