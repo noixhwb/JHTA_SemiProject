@@ -2,42 +2,134 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BeanJoin</title>
+<script type="text/javascript">
+	function sendIt() {
+    if (f.mid.value == "") {
+        alert("아이디를 입력하지 않았습니다.")
+        f.mid.focus();
+        return false;
+    }
 
+    for (var i = 0; i < document.f.mid.value.length; i++) {
+               ch = document.f.mid.value.charAt(i)
+               if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
+                   alert("아이디는 영문 대소문자, 숫자만 입력가능합니다.")
+                   document.f.mid.focus();
+                   document.f.mid.select();
+                   return false;
+               }
+           }
+    if (document.f.mid.value.indexOf(" ") >= 0) {
+        alert("아이디에 공백을 사용할 수 없습니다.")
+        document.f.mid.focus();
+        document.f.mid.select()
+        return false;
+    }
+	if (document.f.mid.value.length<4 || document.f.mid.value.length>12) {
+	        alert("아이디를 4~12자까지 입력해주세요.")
+	        document.f.mid.focus();
+	        document.f.mid.select();
+	        return false;
+	    }
+	
+	if (document.f.mpwd.value == "") {
+	        alert("비밀번호를 입력하지 않았습니다.")
+	        document.f.mpwd.focus();
+	        return false;
+	    }
+	    if (f.mpwd.value == f.mid.value) {
+	        alert("아이디와 비밀번호가 같습니다.")
+	        document.f.mpwd.focus();
+	        return false;
+	    }
+	if (document.f.mname.value == "") {
+	        alert("이름을 입력하지 않았습니다.")
+	        document.f.mname.focus();
+	        return false;
+	    }
 
-	<form method="post" action="<%=request.getContextPath() %>/join">
-   		 <h1>회원가입</h1>
-    <table>
-        <tr>
+	if(document.f.mname.value.length<2){
+	        alert("이름을 2자 이상 입력해주십시오.")
+	        document.f.mname.focus();
+	        return false;
+	  	  }
+	if (document.f.mphone.value == "") {
+        alert("전화번호를 입력하지 않았습니다.")
+        document.f.mphone.focus();
+        return false;
+    }
+
+    for (var i = 0; i < document.f.mphone.value.length; i++) {
+        ch = document.f.mphone.value.charAt(i)
+        if (! (ch >= '0' && ch <= '9') ) {
+            alert("연락처에 번호만 입력해주세요")
+            document.f.mid.focus();
+            document.f.mid.select();
+            return false;
+        }
+    }
+    if (document.f.mphone.value.indexOf(" ") >= 0) {
+        alert("휴대전화에 공백을 사용할 수 없습니다.")
+        document.f.mphone.focus();
+        document.f.mphone.select()
+        return false;
+    }
+	
+	if (document.f.mphone.value.length<11 || document.f.mphone.value.length>12) {
+        alert("휴대전화 11자리를 입력해주세요")
+        document.f.mphone.focus();
+        document.f.mphone.select();
+        return false;
+    }
+	
+	
+   		 
+	} 
+</script>
+<body>
+        <h2 align="center">회원 가입</h2>     
+         &nbsp;
+        <hr width = 100% size=1 color=black>
+        
+<form name="f" method="post" action="<%=request.getContextPath() %>/join" onsubmit="return sendIt();">
+     <table  style="border: 1px solid while" >
+		<tr>
             <th>
                 <p align="right">아이디</p>
             </th>
-            <td><input type="text" name="mid"></td>
+            <td><input type="text" name="mid" id="mid" maxlength="12" ></td>
+            <td><input type="button" value="중복확인"></td>
         </tr>
         
         <tr>
             <th>
                 <p align="right">비밀번호</p>
             </th>
-            <td><input type="password" name="mpwd"></td>
+            <td><input type="password" name="mpwd" id="mpwd" maxlength="20"></td>
         </tr>
         
         <tr>
             <th>
                 <p align="right">이름</p>
             </th>
-            <td><input type="text" name="mname"></td>
+            <td><input type="text" name="mname" id="mname" maxlength="4"></td>
         </tr>
         <tr>
             <th>
                 <p align="right">주소</p>
             </th>
-            <td><input type="text" name="maddr"></td>
+            <td><input type="text" name="maddr" id="maddr"></td>
         </tr>
         <tr>
             <th>
                 <p align="right">연락처</p>
             </th>
-            <td><input type="text" name="mphone"></td>
+            <td><input type="text" name="mphone" id="mphone"maxlength="11"></td>
         </tr>
         <tr>
             <th>
@@ -50,4 +142,9 @@
         </tr>
     </table>
 </form>
+
+
+
+</body>
+</html>
 
