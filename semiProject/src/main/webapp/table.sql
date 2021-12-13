@@ -186,6 +186,5 @@ START WITH 1
 CACHE 20
 NOORDER
 NOCYCLE ;
--------------추가 시퀀스--------------------------------
-create sequence seq_admin
+
 

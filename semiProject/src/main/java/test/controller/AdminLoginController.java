@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import test.dao.AdminDao;
+import test.vo.AdminVo;
 @WebServlet("/admin/login")
 public class AdminLoginController extends HttpServlet{
 
@@ -27,11 +28,12 @@ public class AdminLoginController extends HttpServlet{
 			System.out.println(apwd);
 			AdminDao dao=AdminDao.getInstance();
 			boolean loginOk=dao.loginAdmin(aid, apwd);
-			System.out.println(loginOk);
+			AdminVo vo=dao.selectDetail(aid);
 			if(loginOk==true)
 			{
 				HttpSession session= req.getSession();
 				session.setAttribute("aid", aid);
+				session.setAttribute("alevel", vo.getAlevel());
 				System.out.println("로그인성공");
 				resp.sendRedirect(req.getContextPath()+"/Home");
 			}else
