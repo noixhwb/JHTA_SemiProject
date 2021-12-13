@@ -12,6 +12,8 @@ import db.JdbcUtil;
 import test.vo.MemberVo;
 
 public class MemberDao {
+	
+	public MemberDao() {}
 
 	public int insert(MemberVo vo) {
 		Connection con=null;
@@ -63,6 +65,38 @@ public class MemberDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	
+	public boolean loginMember(String mid,String mpwd)
+	{
+	   Connection con=null;
+	   PreparedStatement pstmt=null;
+	   ResultSet rs=null;
+	   boolean n=false;
+	   String sql="select * from member_s where mid=?";
+	   try
+	   {
+		   con=JdbcUtil.getCon();
+		   pstmt=con.prepareStatement(sql);
+		   pstmt.setString(1, mid);
+		   rs=pstmt.executeQuery();
+		   if(rs.next())
+			{   String id1=rs.getString("mid");
+			    String pwd1=rs.getString("mpwd");
+				if(mid.equals(id1)&&mpwd.equals(pwd1))
+				{
+					n=true;
+				}
+			}	
+		   return n;
+	   }catch(SQLException se)
+		{
+			se.printStackTrace();
+			return n;
+		}finally
+		{
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 
 
 	public boolean isMember(HashMap<String,String> map) {
@@ -88,5 +122,61 @@ public class MemberDao {
 		}finally {
 			JdbcUtil.close(con, pstmt, rs);
 		}
+	}
+	
+	
+	public String idselect(String mphone) {
+		Connection con=null;
+		PreparedStatement pstmt =null;
+		ResultSet rs=null;
+		
+		String mid="아이디가 존재하지 않아요";
+		
+		try {
+			con=JdbcUtil.getCon();
+			String sql="select mid from member_s where mphone=? ";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,mphone);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				mid=rs.getString("mid");
+				return mid;
+			}
+			return mid;
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+		
+	}
+	public String pwdselect(String mid ,String mphone) {
+		Connection con=null;
+		PreparedStatement pstmt =null;
+		ResultSet rs=null;
+		
+		String mpwd="";
+		
+		try {
+			con=JdbcUtil.getCon();
+			String sql="select mpwd from member_s where mid=? and mphone=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,mid);
+			pstmt.setString(2,mphone);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				mpwd=rs.getString("mpwd");
+				System.out.println("db 리턴값 : "+mpwd);
+				return mpwd;
+			}
+			return "일치하는정보가 없습니다";
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+		
 	}
 }

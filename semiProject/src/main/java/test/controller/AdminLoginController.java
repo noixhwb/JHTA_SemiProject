@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import test.dao.AdminDao;
+import test.vo.AdminVo;
+import test.dao.MemberDao;
+
 @WebServlet("/admin/login")
 public class AdminLoginController extends HttpServlet{
 
@@ -27,11 +30,12 @@ public class AdminLoginController extends HttpServlet{
 			System.out.println(apwd);
 			AdminDao dao=AdminDao.getInstance();
 			boolean loginOk=dao.loginAdmin(aid, apwd);
-			System.out.println(loginOk);
+			AdminVo vo=dao.selectDetail(aid);
 			if(loginOk==true)
 			{
 				HttpSession session= req.getSession();
 				session.setAttribute("aid", aid);
+				session.setAttribute("alevel", vo.getAlevel());
 				System.out.println("로그인성공");
 				resp.sendRedirect(req.getContextPath()+"/Home");
 			}else
@@ -48,7 +52,25 @@ public class AdminLoginController extends HttpServlet{
 			System.out.println("유저로그인 중..");
 			System.out.println(mid);
 			System.out.println(mpwd);
-			resp.sendRedirect(req.getContextPath()+"/Home");
+			
+			MemberDao dao=new MemberDao();
+			boolean loginOk=dao.loginMember(mid, mpwd);
+			System.out.println(loginOk);
+			
+			if(loginOk==true)
+			{
+				HttpSession session= req.getSession();
+				session.setAttribute("mid", mid);
+				System.out.println("로그인성공");
+				resp.sendRedirect(req.getContextPath()+"/Home");
+			}else
+			{
+				System.out.println("로그인실패");
+				req.setAttribute("errMsg", "아이디가 잘못되었습니다.");
+				req.getRequestDispatcher("/Home?spage=loginForm.jsp").forward(req, resp);
+				
+			}
+			
 		}
 		
 	}
