@@ -18,7 +18,7 @@ function idCheck(){
 		document.getElementById("idcheck").innerHTML="";
 		return;
 	}
-	xhr.open('get','idcheck.jsp?mid='+ mid,true);
+	xhr.open('get','${pageContext.request.contextPath}/member/idcheck.jsp?mid='+ mid,true);
 	xhr.send();
 }
 function success(){

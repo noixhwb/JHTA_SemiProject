@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>리뷰작성하기.html</title>
+	<link rel="stylesheet" href="REVIEW_STYLE.css">
+</head>
+<body>
+	<h1 style="text-align: center">리뷰 작성</h1>
+	<form action="Review.jsp" method="post">
+		<div id="product">
+			<div id="product_pic">
+				<img src="images/hoddy.PNG">
+			</div>
+			<div id="product_detail">
+				<ul>
+					<li>제품명</li>
+					<li>사이즈</li>
+				</ul>
+			</div>
+		</div>
+		<div id="cust_estm">
+			<table>
+				<tr>
+					<th>평점</th>
+					<td>
+						<input type="radio" name="cScore" value="★★★★★">★★★★★
+						<input type="radio" name="cScore" value="★★★★">★★★★
+						<input type="radio" name="cScore" value="★★★">★★★
+						<input type="radio" name="cScore" value="★★">★★
+						<input type="radio" name="cScore" value="★">★
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td>
+						<span>*200자 미만으로 작성해주세요</span> <br>
+						<input type="text" name="content" 
+							   style="width: 400px; height: 200px; text-align: left;">
+					</td>
+				</tr>
+			</table>
+			<input type="submit" value="리뷰등록" id="review_submit">
+		</div>
+	</form>
+</body>
+</html>
