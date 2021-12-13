@@ -10,21 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import myshopDao.OrderListDao;
-
 import myshopVo.OrderListVo;
 import myshopVo.OrdersVo;
-
-@WebServlet("/myshop/orderList")
-public class OrderListController extends HttpServlet{
+@WebServlet("/myshop/index")
+public class MyshopIndexController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		OrderListDao dao = new OrderListDao();
 		
-		ArrayList<OrderListVo> list=dao.orderlist();
+		ArrayList<OrdersVo> list =dao.recentList();
 		req.setAttribute("list", list);
 		
-		req.getRequestDispatcher("/Home?spage=/myshop/orderList.jsp").forward(req, resp);
 		
+		req.getRequestDispatcher("/Home?spage=/myshop/index.jsp").forward(req, resp);
 		
 		
 	}

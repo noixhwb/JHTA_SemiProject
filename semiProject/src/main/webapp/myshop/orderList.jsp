@@ -5,10 +5,25 @@
  #box4 img{
  	width:30px; height: 30px;
  }
- 
+ #box4 days li{
+ 	list-style:none; display: inline-block;
+ }
+ #box4 table{
+ 	text-align: center;
+ }
  </style>
 <div id= "box4">
 	<h3>최근주문내역</h3>
+	<div id="days">
+		<form action="/myshop/dayList">
+			<input type="submit" value="오늘" name="today">
+			
+			<input type="submit" value="3개월" name="3m">
+			<input type="submit" value="6개월" name="6m">
+		</form>
+	</div>
+	
+	
 	<table border="1" width="1000">
 		
 		<colgroup>
@@ -30,6 +45,7 @@
 		  	<th scope="col">주문처리상태</th>
 		  	
 		 </tr>
+		
 		<c:forEach var="vo" items="${requestScope.list }">
 		 	<tr>
 			 	<th scope="col">${vo.onum }</th>
@@ -54,6 +70,9 @@
 		 	</tr>
 		 
 		 </c:forEach>
+		 
 		</thead>
 	</table>
-</div>
+	
+	</div>
+
