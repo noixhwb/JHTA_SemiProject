@@ -68,8 +68,15 @@
 	<div id="userlogin">
 		<form method="post" action="<%=request.getContextPath()%>/admin/login">
 		    유저로그인<br>
-			아이디<input type="text" name="mid"><br> 로그인<input type="password" name="mpwd">
-			<input type="submit" value="로그인">
+			아이디<input type="text" name="mid"><br> 
+			비밀번호<input type="password" name="mpwd">
+			<input type="submit" value="로그인"><br>
+			<a href="<%=request.getContextPath()%>/id/findid.jsp">
+			아이디찾기
+			</a>
+			<a href="<%=request.getContextPath()%>/id/findpw.jsp">
+			비밀번호찾기
+			</a>
 		</form>
 				
 	</div>
