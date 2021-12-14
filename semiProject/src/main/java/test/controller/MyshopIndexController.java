@@ -16,7 +16,7 @@ import myshopVo.OrdersVo;
 public class MyshopIndexController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		OrderListDao dao = new OrderListDao();
+		OrderListDao dao = new	OrderListDao();
 		
 		ArrayList<OrdersVo> list =dao.recentList();
 		req.setAttribute("list", list);
