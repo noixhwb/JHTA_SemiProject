@@ -13,7 +13,7 @@ public class CartDao {
 
 	// 장바구니 조회
 	public ArrayList<CartVo> selectCartList(String mId) {
-		//System.out.println(mId +" "+ mId.length());
+		//System.out.println(mId +"1111 ");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -27,8 +27,8 @@ public class CartDao {
 			while (rs.next()) {
 				//System.out.println("나오니");
 				int cCartNum = rs.getInt("cCartNum");
-				int pPrice = rs.getInt("pPrice");
 				String pName = rs.getString("pName");
+				int pPrice = rs.getInt("pPrice");
 				String piFilename = rs.getString("piFilename");
 				CartVo vo = new CartVo(cCartNum, pName, pPrice, piFilename);
 				list.add(vo);
@@ -48,7 +48,7 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getCon();
-			String sql="delete from cart where mId=?";
+			String sql="delete from cart where cCartNum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, mId);
 			return pstmt.executeUpdate();
