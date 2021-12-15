@@ -33,7 +33,7 @@
         <td><input type="checkbox" name="chk" ></td>
         <td>${vo.aId }</td>
           <td>${vo.regdate }</td>
-                  <td><a href="">수정</a></td>
+                  <td><a href="${cp }/admin/update?aid=${vo.aId }">수정</a></td>
             </tr>
   </c:forEach>
   

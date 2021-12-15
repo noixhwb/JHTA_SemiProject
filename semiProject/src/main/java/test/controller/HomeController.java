@@ -27,5 +27,3 @@ public class HomeController extends HttpServlet {
 	
 	
 }
-//post form으로 받을때
-//get
