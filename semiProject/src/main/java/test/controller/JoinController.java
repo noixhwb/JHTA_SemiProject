@@ -34,10 +34,11 @@ public class JoinController extends HttpServlet{
 		// 결과응답하기
 		if(n>0) {
 			req.setAttribute("result","success");
+			
 
 		}else {
 			req.setAttribute("result","fail");
 		}
-		req.getRequestDispatcher("/member/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Home?spage=/member/result.jsp").forward(req, resp);
 	}
 }
