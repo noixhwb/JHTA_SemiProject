@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<div id="header">
+		<div id="header"> 
 			<jsp:include page="${requestScope.header }" />
 		</div>
 		<div id="menu">
@@ -20,7 +20,7 @@
 			<jsp:include page="${requestScope.main }" />
 		</div>
 		<div id="footer">
-			<jsp:include page="${requestScope.footer}" />
+			<jsp:include page="${requestScope.footer }" />
 		</div>
 	</div>
 </body>

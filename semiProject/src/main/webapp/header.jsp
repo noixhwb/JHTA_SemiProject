@@ -13,7 +13,7 @@
 	</ul>
 </div>
 <div id="siteName">
-	<h1>SEMI PROJECT</h1>
+	<h1><a href="<%=request.getContextPath()%>/Home">SEMI PROJECT</h1>
 </div>
 <div id="headerLoginMenu">
 	<ul>

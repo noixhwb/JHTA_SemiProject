@@ -53,7 +53,7 @@
 			<li><a href="${cp}/myshop/orderList"><img src="${cp}/images/order.png"><br>주문조회</a></li>
 			<li><a href=""><img src="${cp}/images/member.png"><br>회원정보수정</a></li>
 			<li><a href=""><img src="${cp}/images/shopping.png"><br>장바구니</a></li>
-			<li><a href=""><img src="${cp}/images/board.png"><br>리뷰관리</a></li>
+			<li><a href="${cp}/review"><img src="${cp}/images/board.png"><br>리뷰관리</a></li>
 		</ul>
 	</div>
 	<div id="title">

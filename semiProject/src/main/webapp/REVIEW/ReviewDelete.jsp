@@ -1,9 +1,12 @@
+<%@page import="test.dao.ReviewDao"%>
+<%@page import="test.vo.ReviewVo"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="db.JdbcUtil"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,29 +14,23 @@
 	<title>리뷰삭제하기.jsp</title>
 </head>
 <body>
+	<c:set var="cp" value="${ pageContext.request.contextPath }"/>
 	<%
+		request.setCharacterEncoding("UTF-8");
 		int coNum = Integer.parseInt(request.getParameter("coNum"));
-	
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		int n=0;
-		String sql = "DELETE FROM COMMENTS_S WHERE CONUM=?";
 		
-		try {
-			con = JdbcUtil.getCon();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, coNum);
-			n = pstmt.executeUpdate();
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			JdbcUtil.close(con, pstmt, null);
-		}
+		int n =new ReviewDao().delete(coNum);
 		
 		if (n > 0) {
-			response.sendRedirect("ReviewList.jsp");
+			out.print("<h1>삭제 완료!</h1>");
+			//RequestDispatcher rd = request.getRequestDispatcher("/review");
+			//rd.forward(request, response);
+			response.sendRedirect("/review");
 		} else {
-			out.print("<h2>삭제 실패!</h2>");
+			out.print("<h1>삭제 실패!</h1>");
+		%>
+	<a href="${ cp }/review">마이리뷰목록 돌아가기</a>
+		<%
 		}
 	%>
 </body>

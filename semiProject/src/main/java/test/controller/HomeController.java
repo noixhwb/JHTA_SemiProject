@@ -16,12 +16,12 @@ public class HomeController extends HttpServlet {
 		String spage=req.getParameter("spage");
 		if(spage==null)
 		{
-			spage="home.jsp";
+			spage="/home.jsp";
 		}
-		req.setAttribute("header", "header.jsp");
-		req.setAttribute("menu", "menu.jsp");
+		req.setAttribute("header", "/header.jsp");
+		req.setAttribute("menu", "/menu.jsp");
 		req.setAttribute("main", spage);
-		req.setAttribute("footer", "footer.jsp");
+		req.setAttribute("footer", "/footer.jsp");
 		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
 	}
 	

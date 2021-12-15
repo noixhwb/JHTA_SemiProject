@@ -1,3 +1,6 @@
+<%@page import="test.vo.ReviewVo"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="test.dao.ReviewDao"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="db.JdbcUtil"%>
@@ -6,66 +9,71 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>리뷰목록.jsp</title>
-	<link rel="stylesheet" href="REVIEWLIST_STYLE.css">
+	<title>마이리뷰목록.jsp</title>
+	<style>
+		* { margin:auto; }
+		h1 {
+		    font-size: 30px;
+		 	text-align: center;
+		    border-bottom: 2px solid gray;
+		    padding: 20px;
+		}
+		table {
+			border-top: 2px solid #444444;
+			border-bottom: 2px solid #444444;
+		    border-collapse: collapse;
+		    margin-top: 50px;
+		}
+		th, td {
+		    border-bottom: 1px solid #444444;
+		    padding: 10px;
+		}
+	</style>
 </head>
 <body>
-	<h1>리뷰 목록</h1>
+	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
+	
+	<h1>마이 리뷰 목록</h1>
 	<table border="1">
 		<tr>
 			<th>리뷰글번호</th>
 			<th>주문번호</th>
-			<th>상품명</th>
+			<!-- <th>상품명</th> -->
 			<th>평점</th>
 			<th>내용</th>
-			<th>작성자(아이디)</th>
+			<!-- <th>작성자(아이디)</th> -->
 			<th>작성일</th>
 			<th>상세보기</th>
 			<th>수정</th>
 			<th>삭제</th>
 		</tr>
 		<%
-			Connection con=null;
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			String sql = "SELECT * FROM COMMENTS_S";
+			ReviewDao dao=new ReviewDao();
+			ArrayList<ReviewVo> list = dao.selectAll();
 			
-			try {
-				con = JdbcUtil.getCon();
-				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					int coNum = rs.getInt("coNum");
-					int odNum = rs.getInt("odNum");
-					String sangpoom = rs.getString("sangpoom"); //상품명???!
-					String cScore = rs.getString("cScore");
-					String content = rs.getString("content");
-					String mid = rs.getString("mid");
-					Date cDate = rs.getDate("cDate");
-				%>
+			for (int i=0; i<list.size(); i++) {
+				ReviewVo vo = list.get(i);
+		%>
 		<tr>
-			<td><%=coNum %></td>
-			<td><%=odNum %></td>
-			<td><%=sangpoom %></td>
-			<td><%=cScore %></td>
-			<td><%=content %></td>
-			<td><%=mid %></td>
-			<td><%=cDate %></td>
-			<td><a href="ReviewDetail.jsp?coNum=<%=coNum %>">상세보기</a></td>
-			<td><a href="ReviewUpdateForm.jsp?coNum=<%=coNum %>">수정</a></td>
-			<td><a href="ReviewDelete.jsp?coNum=<%=coNum %>">삭제</a></td>
+			<td><%=vo.getCoNum() %></td>
+			<td><%=vo.getOdNum() %></td>
+			<%-- 상품명없음 --%>
+			<td><%=vo.getcScore() %></td>
+			<td><%=vo.getContent() %></td>
+			<%-- 아이디안보임 --%>
+			<td><%=vo.getcDate() %></td>
+			<td><a href="${ cp }/reviewDetail?coNum=<%=vo.getCoNum() %>">상세보기</a></td>
+			<td><a href="${ cp }/reviewUpdate?coNum=<%=vo.getCoNum() %>">수정</a></td>
+			<td><a href="${ cp }/reviewDelete?coNum=<%=vo.getCoNum() %> %>">삭제</a></td>
 		</tr>
 				<%	
-				}
-			} catch (SQLException se) {
-				se.printStackTrace();
-			} finally {
-				JdbcUtil.close(con, pstmt, rs);
 			}
+			
 		%>
 	</table>
 </body>

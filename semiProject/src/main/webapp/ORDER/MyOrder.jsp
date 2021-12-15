@@ -5,7 +5,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>MyOrder.jsp</title>
-	<link rel="stylesheet" href="MYORDER_STYLE.css">
+	<style>
+		* { margin: auto; text-align: center; }
+		h1 {
+		    font-size: 30px;
+		 	text-align: center;
+		    border-bottom: 2px solid gray;
+		    padding: 20px;
+		}
+				
+		h2 {
+			font-size: 25px;
+			text-align: center;
+			padding: 20px;
+			background-color: 8b8378;
+		}
+		#table1, #table2, #table3 {
+			border-top: 2px solid #444444;
+			border-bottom: 2px solid #444444;
+		    border-collapse: collapse;
+		    margin-top: 10px;
+		    margin-bottom: 10px;
+		}
+		/*#table1 tr:hover {background-color: #ddd;}*/
+		tr, td, th {
+		    border-bottom: 1px solid #444444;
+		    padding: 10px;
+		}
+		#table1 th {
+		  	background-color: ababab;
+		}
+		#tak {
+			background-color: #4f4f4f;
+		 	color: white;
+		 }
+		#table2 td { text-align: left;}
+		fieldset { width: 80%; }
+		#purcharse { margin-top: 10px; display: block; }
+	</style>
 </head>
 <body>
 	<h1>주문 / 결제</h1>
@@ -13,7 +50,7 @@
 		<legend><h2>주문하실 상품</h2></legend>
 		<table id="table1">
 			<tr>
-				<th colspan="5" id="tak">택배배송(@@총상품갯수넣는곳@@)</th>
+				<th colspan="5" id="tak">택배배송</th>
 			</tr>
 			<tr>
 				<th style="bgcolor: #dddddd;">상품명/선택사항</th>
@@ -48,7 +85,7 @@
 		<legend><h2>배송 정보</h2></legend>
 		<table id="table2">
 			<tr>
-				<th>주문하시는 분</th>
+				<th>받으시는 분</th>
 				<td>이름 <br> 번호 </td>
 			</tr>
 			<tr>
@@ -63,10 +100,6 @@
 				<td>
 					<input type="text" name="whereto" style="width: 400px; text-align: left;"> <br>
 				</td>
-			</tr>
-			<tr>
-				<th>받으시는 분</th>
-				<td>이름 <br> 번호 </td>
 			</tr>
 			<tr>
 				<th>배송메세지</th>
