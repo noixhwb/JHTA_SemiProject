@@ -1,7 +1,6 @@
 package test.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,22 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import myshopDao.OrderListDao;
-
-import myshopVo.OrderListVo;
-import myshopVo.OrdersVo;
-
-@WebServlet("/myshop/orderList")
-public class OrderListController extends HttpServlet{
+@WebServlet("/myshop/refund")
+public class OrderRefundController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		OrderListDao dao = new	OrderListDao();
-		
-		ArrayList<OrderListVo> list=dao.orderlist();
-		req.setAttribute("list", list);
-		
-		req.getRequestDispatcher("/Home?spage=/myshop/orderList.jsp").forward(req, resp);
-		
-		
-		
+		int odnum=Integer.parseInt(req.getParameter("odnum"));
+		int n=dao.refund(odnum);
+		if(n>0) {
+			req.getRequestDispatcher("/myshop/orderList").forward(req, resp);
+		}else {
+			resp.sendRedirect(req.getContextPath()+"/myshop/result.jsp");
+		}
 	}
+	
 }

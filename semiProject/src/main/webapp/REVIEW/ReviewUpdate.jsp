@@ -1,3 +1,5 @@
+<%@page import="test.vo.ReviewVo"%>
+<%@page import="test.dao.ReviewDao"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="db.JdbcUtil"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -21,29 +23,16 @@
 		String content = request.getParameter("content");
 		String mid = request.getParameter("mid");
 		
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		int n=0;
-		String sql = "UPDATE COMMENTS_S SET CSCORE=?, CONTENT=? WHERE CONUM=?";
+		ReviewDao dao=new ReviewDao();
+		ReviewVo vo=new ReviewVo(coNum, odNum, cScore, content, mid, null);
+		int n = dao.update(vo);
 		
-		try {
-			con = JdbcUtil.getCon();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, cScore);
-			pstmt.setString(2, content);
-			pstmt.setInt(3, coNum);
-			n = pstmt.executeUpdate();
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			JdbcUtil.close(con, pstmt, null);
-		}
-		
-		if (n > 0) {
-			out.print("<h3>리뷰 수정 성공!");
+		if (n>0) {
+			out.print("<h1>리뷰 수정 성공!</h1>");
 		} else {
-			out.print("<h3>리뷰 수정 실패!");
+			out.print("<h1>리뷰 수정 실패!</h1>");
 		}
 	%>
+	<a href="${ cp }/review">마이리뷰목록으로 돌아가기</a>
 </body>
 </html>

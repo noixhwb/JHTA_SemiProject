@@ -23,6 +23,9 @@ public class FindIDController extends HttpServlet{
 			mid=dao.idselect(mphone);
 		System.out.println("mid : "+mid);
 		
+		req.getRequestDispatcher("/Home?spage=/id/findid.jsp").forward(req, resp);
+		
+		
 		//응답을 xml로 하기
 		resp.setContentType("text/xml;charset=utf-8");
 		PrintWriter pw=resp.getWriter();
@@ -35,6 +38,5 @@ public class FindIDController extends HttpServlet{
 			pw.print("<mid>"+ mid +"</mid>");
 		}
 		pw.print("</result>");
-		//http://localhost:8081/ajax01/findid?email=test@test.com
 	}
 }

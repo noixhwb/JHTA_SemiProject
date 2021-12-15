@@ -71,10 +71,10 @@
 			아이디<input type="text" name="mid"><br> 
 			비밀번호<input type="password" name="mpwd">
 			<input type="submit" value="로그인"><br>
-			<a href="<%=request.getContextPath()%>/id/findid.jsp">
+			<a href="<%=request.getContextPath()%>/findidform">
 			아이디찾기
 			</a>
-			<a href="<%=request.getContextPath()%>/id/findpw.jsp">
+			<a href="<%=request.getContextPath()%>/findpwdform">
 			비밀번호찾기
 			</a>
 		</form>

@@ -1,3 +1,5 @@
+<%@page import="test.vo.ReviewVo"%>
+<%@page import="test.dao.ReviewDao"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="db.JdbcUtil"%>
 <%@page import="java.sql.ResultSet"%>
@@ -10,35 +12,48 @@
 <head>
 	<meta charset="UTF-8">
 	<title>리뷰수정하기폼.jsp</title>
-	<link rel="stylesheet" href="REVIEW_STYLE.css">
+	<style>
+		* { margin: auto; }
+		h1 {
+		    font-size: 30px;
+		 	text-align: center;
+			border-bottom: 2px solid gray;
+		    padding: 20px;
+		}
+		#product_pic, #product_detail { text-align: center; }
+		table {
+			border-top: 2px solid #444444;
+			border-bottom: 2px solid #444444;
+		    border-collapse: collapse;
+		}
+		th, td {
+		    border-bottom: 1px solid #444444;
+		    padding: 10px;
+		}
+		#review_content { border: 2px solid grey; padding: 5px;}
+		#review_submit { margin-top: 5px; display:block; }
+		ul{ list-style:none; }
+		span { font-size: 12px; }
+		div { text-align: center; }
+	</style>
 </head>
 <body>
-	<h1 style="text-align: center">리뷰 수정</h1>
 	<%
+		request.setCharacterEncoding("UTF-8");	
 		int coNum = Integer.parseInt(request.getParameter("coNum"));
 	
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		String sql = "SELECT * FROM COMMENTS_S WHERE CONUM=?";
-		
-		try {
-			con = JdbcUtil.getCon();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, coNum);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				String cScore = rs.getString("cScore");
-				String content = rs.getString("content");
-			
-			%>
-	<form action="ReviewUpdate.jsp" method="post">
+		ReviewDao dao=new ReviewDao();
+		ReviewVo vo = dao.select(coNum);
+	%>
+	<h1 style="text-align: center">리뷰 수정</h1>
+	<form action="${ pageContext.request.contextPath }/reviewUpdateTrue" method="post">
 		<div id="product">
 			<div id="product_pic">
-				<img src="images/hoddy.PNG">
+				<img src="images/hoddy.PNG" style="width: 150px; height: 150px;">
 			</div>
 			<div id="product_detail">
 				<ul>
+					<li>주문상세번호 : <%=vo.getOdNum() %></li>
 					<li>제품명</li>
 					<li>사이즈</li>
 				</ul>
@@ -59,24 +74,14 @@
 				<tr>
 					<th>내용</th>
 					<td>
-						<span>*200자 미만으로 작성해주세요</span> <br>
+						<span>*30자 이내로 작성해주세요</span> <br>
 						<input type="text" name="content" 
-							   style="width: 400px; height: 200px; text-align: left;">
+							   style="width: 400px; height: 20px; text-align: left;">
 					</td>
 				</tr>
 			</table>
 			<input type="submit" value="리뷰수정">
 		</div>
 	</form>
-			<%
-			} else {
-				out.print("수정 실패!");
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			JdbcUtil.close(con, pstmt, rs);
-		}
-	%>
 </body>
 </html>

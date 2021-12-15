@@ -14,7 +14,9 @@ import myshopVo.OrdersVo;
 
 public class OrderListDao {
 	
+	
 	public OrderListDao() {}
+	
 	public ArrayList<OrdersVo> orders(){
 		Connection con =null;
 		ResultSet rs=null;
@@ -145,13 +147,7 @@ public class OrderListDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getCon();
-			pstmt=con.prepareStatement("SELECT * "
-					
-					+ "FROM orders o ,orderdetail d"
-					
-					+ "WHERE o.onum=d.onum and odate BETWEEN TRUNC(ADD_MONTHS(sysdate,-2)+1) - TO_CHAR(sysdate,'DD')"
-					
-					+ "AND TRUNC(LAST_DAY(sysdate)) +0.99999421");
+			pstmt=con.prepareStatement("SELECT * FROM orders o ,orderdetail d WHERE o.onum=d.onum and odate BETWEEN TRUNC(ADD_MONTHS(sysdate,-2)+1) - TO_CHAR(sysdate,'DD') AND TRUNC(LAST_DAY(sysdate)) +0.99999421");
 			rs=pstmt.executeQuery();
 			ArrayList<OrderListVo> list =new ArrayList<OrderListVo>();
 			while(rs.next()) {
@@ -185,13 +181,7 @@ public class OrderListDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getCon();
-			pstmt=con.prepareStatement("SELECT * "
-					
-					+ "FROM orders o ,orderdetail d"
-					
-					+ "WHERE o.onum=d.onum and odate BETWEEN TRUNC(ADD_MONTHS(sysdate,-5)+1) - TO_CHAR(sysdate,'DD')"
-					
-					+ "AND TRUNC(LAST_DAY(sysdate)) +0.99999421");
+			pstmt=con.prepareStatement("SELECT * FROM orders o ,orderdetail d WHERE o.onum=d.onum and odate BETWEEN TRUNC(ADD_MONTHS(sysdate,-5)+1) - TO_CHAR(sysdate,'DD') AND TRUNC(LAST_DAY(sysdate)) +0.99999421");
 			rs=pstmt.executeQuery();
 			ArrayList<OrderListVo> list =new ArrayList<OrderListVo>();
 			while(rs.next()) {
@@ -250,4 +240,50 @@ public class OrderListDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	public int cancel(int odnum) {
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement("update orderdetail set dstate=5  where odnum=?");
+			pstmt.setInt(1, odnum);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	public int refund(int odnum) {
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement("update orderdetail set dstate=6  where odnum=?");
+			pstmt.setInt(1, odnum);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	public int refundCompleted(int odnum) {
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement("update orderdetail set dstate=4  where odnum=?");
+			pstmt.setInt(1, odnum);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
 }
