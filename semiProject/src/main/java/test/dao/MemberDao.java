@@ -14,7 +14,9 @@ import test.vo.MemberVo;
 public class MemberDao {
 	
 	public MemberDao() {}
-
+	
+	
+	//회원추가
 	public int insert(MemberVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -35,37 +37,9 @@ public class MemberDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public ArrayList<MemberVo> selectAll(){
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try {
-			con=JdbcUtil.getCon();
-			String sql="select * from member_s";
-			pstmt=con.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			ArrayList<MemberVo> list=new ArrayList<MemberVo>();
-			while(rs.next()) {
-				String mid=rs.getString("mid");
-				String mpwd=rs.getString("mpwd");
-				String mname=rs.getString("mname");
-				String maddr=rs.getString("maddr");
-				String mphone=rs.getString("mphone");
-				int mstate=rs.getInt("mstate");
-				Date regdate=rs.getDate("regdate");
-
-				MemberVo member=new MemberVo(mid, mpwd, mname, maddr,mphone,mstate,regdate);
-				list.add(member);
-			}
-			return list;
-		}catch(SQLException s) {
-			s.printStackTrace();
-			return null;
-		}finally {
-			JdbcUtil.close(con, pstmt, rs);
-		}
-	}
 	
+	
+	//아디 패스워드 체크
 	public boolean loginMember(String mid,String mpwd)
 	{
 	   Connection con=null;
@@ -124,7 +98,7 @@ public class MemberDao {
 		}
 	}
 	
-	
+	//아이디 찾기
 	public String idselect(String mphone) {
 		Connection con=null;
 		PreparedStatement pstmt =null;
@@ -151,6 +125,8 @@ public class MemberDao {
 		}
 		
 	}
+	
+	//비번찾기
 	public String pwdselect(String mid ,String mphone) {
 		Connection con=null;
 		PreparedStatement pstmt =null;
@@ -178,5 +154,36 @@ public class MemberDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 		
+	}
+	
+	
+	
+	public MemberVo select(String mid){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getCon();
+			String sql="select * from member_s where mid=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				String mpwd=rs.getString("mpwd");
+				String mname=rs.getString("mname");
+				String maddr=rs.getString("maddr");
+				String mphone=rs.getString("mphone");
+				int mstate=rs.getInt("mstate");
+				Date regdate=rs.getDate("regdate");
+				MemberVo vo=new MemberVo(mid, mpwd, mname, maddr,mphone,mstate,regdate);
+				return vo;
+			}
+			return null;
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
 	}
 }

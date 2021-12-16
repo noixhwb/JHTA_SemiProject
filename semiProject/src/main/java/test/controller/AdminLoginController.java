@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import test.dao.AdminDao;
 import test.vo.AdminVo;
+import test.vo.MemberVo;
 import test.dao.MemberDao;
 
 @WebServlet("/admin/login")
@@ -55,12 +56,23 @@ public class AdminLoginController extends HttpServlet{
 			
 			MemberDao dao=new MemberDao();
 			boolean loginOk=dao.loginMember(mid, mpwd);
+			MemberVo mvo=dao.select(mid);
+			
 			System.out.println(loginOk);
+			System.out.println("유저아디:" +mid);
+			System.out.println("회원상태:" +mvo.getMstate());
 			
 			if(loginOk==true)
 			{
 				HttpSession session= req.getSession();
 				session.setAttribute("mid", mid);
+				session.setAttribute("mpwd", mvo.getMpwd());
+				session.setAttribute("mname", mvo.getMname());
+				session.setAttribute("maddr", mvo.getMaddr());
+				session.setAttribute("mphone", mvo.getMphone());
+				session.setAttribute("mstate", mvo.getMstate());
+				session.setAttribute("regdate", mvo.getRegdate());
+				
 				System.out.println("로그인성공");
 				resp.sendRedirect(req.getContextPath()+"/Home");
 			}else
