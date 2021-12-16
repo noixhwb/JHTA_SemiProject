@@ -4,7 +4,7 @@
 
 <c:set var="cp" value="${ pageContext.request.contextPath}"/>
 <h1>관리자 정보 수정</h1>
-<form method="post" action="">
+<form method="post" action="${ pageContext.request.contextPath}/admin/update">
 <table border="1" width="400">
 
 
@@ -14,14 +14,14 @@
 <tr>
 <!-- 아이디 검사 -->
 <td>아이디</td>
-<td><input type="text" name="id" id="id" value="${requestScope.vo.aId }">
+<td><input type="text" name="aid" id="id" value="${requestScope.vo.aId }">
 <input type="button" value="아이디중복체크" onclick="idchkopen()">
-<input type="hidden" value="">
+<input type="hidden"  name="id" value="${requestScope.vo.aId }">
 </td>
 </tr>
 <tr>
 <td>비밀번호</td>
-<td><input type="text" name="pwd" value="${requestScope.vo.aPwd }"></td>
+<td><input type="text" name="apwd" value="${requestScope.vo.aPwd }"></td>
 </tr>
 <tr>
 <td>레벨</td>
@@ -36,7 +36,7 @@
 </tr>
 <tr>
 <td>생성일</td>
-<td><input type="text" name="date" value="${requestScope.vo.regdate }"></td>
+<td><input type="text" value="${requestScope.vo.regdate }"></td>
 </tr>
 </table>
 <input type="submit" value="수정">

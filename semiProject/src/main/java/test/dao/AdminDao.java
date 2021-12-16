@@ -195,4 +195,26 @@ public class AdminDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	//삭제기능 
+	public int deleteAdmin(String aid)
+	{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="delete from admin where aid=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,aid);
+			int n=pstmt.executeUpdate();
+			return n;	
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally
+		{
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
