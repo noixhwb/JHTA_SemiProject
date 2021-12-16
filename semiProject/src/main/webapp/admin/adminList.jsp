@@ -20,20 +20,23 @@
 <!-- 리스트 -->
  <div>
  <form name="check">
- <input type="button" value="전체선택" onclick="checkAll()"><br>
+ <input type="button" value="전체선택" onclick="checkAll()">
+  <input type="button" value="전체삭제" onclick=><br>
  <table border="1" width="500" >
    <tr>
      <th>check</th>
   <th>아이디</th>
     <th>생성일</th>  
         <th>수정</th>  
+            <th>삭제</th>  
   </tr>
   <c:forEach var="vo" items="${list }">
      <tr>
         <td><input type="checkbox" name="chk" ></td>
         <td>${vo.aId }</td>
           <td>${vo.regdate }</td>
-                  <td><a href="">수정</a></td>
+                  <td><a href="<%=request.getContextPath()%>/admin/update?aid=${vo.aId }">수정</a></td>
+              <td><a href="<%=request.getContextPath()%>/admin/delete?aid=${vo.aId }">삭제</a></td>
             </tr>
   </c:forEach>
   
@@ -63,7 +66,7 @@
  </c:otherwise>
 </c:choose>
 
- <a href="${cp }/Home">메인으로가기</a>
+
  <!-- 전체선택 기능구현(오류해결중) -->
  <script type="text/javascript">
 
@@ -80,5 +83,6 @@ function checkAll() {
 		}
 	
 }
+
 
 </script>

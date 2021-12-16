@@ -170,4 +170,51 @@ public class AdminDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	//수정기능 
+	public int updateAdmin(AdminVo vo,String id)
+	{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="update admin set aid=?,apwd=?,alevel=? where aid=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getaId());
+			pstmt.setString(2,vo.getaPwd());
+			pstmt.setInt(3,vo.getAlevel());
+			pstmt.setString(4,id);
+			int n=pstmt.executeUpdate();
+			return n;	
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally
+		{
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	//삭제기능 
+	public int deleteAdmin(String aid)
+	{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="delete from admin where aid=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,aid);
+			int n=pstmt.executeUpdate();
+			return n;	
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally
+		{
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }

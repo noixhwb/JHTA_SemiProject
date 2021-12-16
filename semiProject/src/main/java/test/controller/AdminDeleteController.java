@@ -8,22 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Home")
-public class HomeController extends HttpServlet {
+import test.dao.AdminDao;
+
+@WebServlet("/admin/delete")
+public class AdminDeleteController extends HttpServlet {
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String spage=req.getParameter("spage");
-		if(spage==null)
-		{
-			spage="/home.jsp";
+		String aid = req.getParameter("aid");
+		AdminDao dao = AdminDao.getInstance();
+		int n = dao.deleteAdmin(aid);
+		if (n > 0) {
+			System.out.println("성공");
+			resp.sendRedirect(req.getContextPath() + "/Home?spage=/admin/list");
+		} else {
+			System.out.println("실패");
 		}
-		req.setAttribute("header", "/header.jsp");
-		req.setAttribute("menu", "/menu.jsp");
-		req.setAttribute("main", spage);
-		req.setAttribute("footer", "/footer.jsp");
-		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
 	}
-	
-	
 }
