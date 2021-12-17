@@ -38,12 +38,12 @@ public class AdminProductInsertController extends HttpServlet {
 		ProductDao dao=ProductDao.getInstance();
 		String pName=mr.getParameter("pName");
 		String pContent=mr.getParameter("pContent");
-		//int pPrice=Integer.parseInt(mr.getParameter("pPrice"));
-		String cName=mr.getParameter("selectCg_d");
+		int pPrice=Integer.parseInt(mr.getParameter("pPrice"));
+		String cName=mr.getParameter("cName");
 		System.out.println(pName);
 		System.out.println(pContent);
 		System.out.println(cName);
-		ProductVo vo=new ProductVo(0, pName, pContent, 2000,0, "니트");
+		ProductVo vo=new ProductVo(0, pName, pContent, pPrice,0, "니트");
 		int n=dao.insertProduct(vo);
 		int pnum=dao.getpNum(pName);
 		//product pk번호 불러오기

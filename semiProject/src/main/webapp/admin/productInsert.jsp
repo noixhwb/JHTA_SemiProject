@@ -4,7 +4,7 @@
 request.setCharacterEncoding("utf-8");
 String pName=request.getParameter("pName");
 String pContent=request.getParameter("pContent");
-String cName=request.getParameter("selectCg_d");
+String cName=request.getParameter("cName");
 String pPrice=request.getParameter("pPrice");
 String snum=request.getParameter("num");
 int num=0;
@@ -19,6 +19,7 @@ if(snum!=null)
 {
 	num=Integer.parseInt(snum);
 }
+
 %>
 <form method="post" action="productInsert.jsp">
 <h1>제품 등록</h1>
@@ -30,27 +31,27 @@ if(snum!=null)
 </select><br>
 <!-- 상세 -->
 <div>
-<select name="selectCg_d">
+<select name="cName">
 	<option value="니트">니트</option>
-	<option value="1_2">티셔츠</option>
+	<option value="티셔츠">티셔츠</option>
 </select>
 </div>
 <!-- 제품명 -->
 
 제품명:<input type="text" name="pName" value="<%=pName%>"><br>
 <!-- 제품가격 -->
-제품가격<input type="text" id="pPrice" value="<%=pPrice%>"><br>
+제품가격<input type="text" name="pPrice" value="<%=pPrice%>"><br>
 <!-- 제품상세 -->
-제품상세내용<textarea cols="50" rows="10" name="pContent"><%=pContent%></textarea><br>
+제품상세내용<textarea rows="10" cols="50" name="pContent"><%=pContent%></textarea><br>
 <input type="number" name="num" value="<%=snum%>">
 <input type="submit" value="확인">
 </form>
 <form method="post" action="${ pageContext.request.contextPath}/admin/productInsert" enctype="multipart/form-data">
 <!-- 상세이미지 -->
 <input type="hidden" name="pName" value="<%=pName%>">
- <input type="hidden" name="pPrice" value="<%=pPrice%>">
-  <input type="hidden" name="pContent" value="<%=pContent%>">
-
+<input type="hidden" name="pPrice" value="<%=pPrice%>">
+<input type="hidden" name="pContent" value="<%=pContent%>">
+<input type="hidden" name="cName" value="<%=cName%>">
 
 
 <%
