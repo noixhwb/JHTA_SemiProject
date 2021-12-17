@@ -6,18 +6,28 @@ public class ProimageVo {
 	private int pNum;
 	private String piFilename;
 	private long piFilesize;
+	private int imgtype;
 	public ProimageVo()
 	{
 		
 	}
 	
-	public ProimageVo(int piNum, int pNum, String piFilename, long piFilesize) {
+	public ProimageVo(int piNum, int pNum, String piFilename, long piFilesize,int imgtype) {
 		super();
 		this.piNum = piNum;
 		this.pNum = pNum;
 		this.piFilename = piFilename;
 		this.piFilesize = piFilesize;
+		this.imgtype=imgtype;
 	}
+	public int getImgtype() {
+		return imgtype;
+	}
+
+	public void setImgtype(int imgtype) {
+		this.imgtype = imgtype;
+	}
+
 	public int getPiNum() {
 		return piNum;
 	}

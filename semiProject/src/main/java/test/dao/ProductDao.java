@@ -42,18 +42,17 @@ public class ProductDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	//상품 번호 가져오기
-	public int getpNum(String pName)
+	//마지막 pk값 가져오기
+	public int getpNum()
 	{
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select pNum from product where pname=?";
+		String sql="select pnum from( select * from product order by pnum desc) where rownum=1";
 		try
 		{
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, pName);
 			rs=pstmt.executeQuery();
 			rs.next();
 			int n=rs.getInt("pNum");

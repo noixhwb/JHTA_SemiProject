@@ -181,6 +181,8 @@ NOORDER
 NOCYCLE ;
 
 
+--<추가사항>
+
 create sequence seq_prodetail
 MINVALUE 1
 MAXVALUE 9999999999999999999999999999
@@ -189,3 +191,5 @@ START WITH 1
 CACHE 20
 NOORDER
 NOCYCLE ;
+--proimage 컬럼추가
+alter table proimage add imgtype number(3);

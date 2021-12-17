@@ -19,14 +19,14 @@ public class ProimageDao {
 	{
 		Connection con= null;
 		PreparedStatement pstmt=null;
-		String sql="insert into proimage values(fileinfo_seq.nextval,?,?,?)";
+		String sql="insert into proimage values(fileinfo_seq.nextval,?,?,?,?)";
 		try {
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getpNum());;
 			pstmt.setString(2, vo.getPiFilename());
 			pstmt.setLong(3, vo.getPiFilesize());
-		
+			pstmt.setInt(4, vo.getImgtype());
 			int n=pstmt.executeUpdate();
 			return n;
 		}catch(SQLException se)
