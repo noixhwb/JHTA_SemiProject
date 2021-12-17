@@ -104,7 +104,7 @@ public class AdminProductInsertController extends HttpServlet {
 				 if(n3>0)
 				 {
 						System.out.println("상세등록 성공");
-						resp.sendRedirect(req.getContextPath()+"/Home");
+						
 				
 				 }
 				 else
@@ -113,6 +113,7 @@ public class AdminProductInsertController extends HttpServlet {
 			 }
 			 
 			 }
+			
 		} else {
 			System.out.println("product등록 실패");
 		}

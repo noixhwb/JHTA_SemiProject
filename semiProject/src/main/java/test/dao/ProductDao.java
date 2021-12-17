@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import db.JdbcUtil;
 import test.vo.ProductVo;
@@ -65,6 +66,40 @@ public class ProductDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	//상품 전체 리스트 가져오기
+	public ArrayList<ProductVo> selectAll()
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from product";
+		ArrayList<ProductVo> list=new ArrayList<ProductVo>();
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				int pnum=rs.getInt("pnum");
+				String pname=rs.getString("pname");
+				String pconten=rs.getString("pcontent");
+				int pprice=rs.getInt("pprice");
+				int pbuycount= rs.getInt("pbuycount");
+				String cname=rs.getString("cname");
+				ProductVo vo=new ProductVo(pnum, pname, pconten, pprice, pbuycount, cname);
+			    list.add(vo);
+			}
 	
+			return list;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	
 }

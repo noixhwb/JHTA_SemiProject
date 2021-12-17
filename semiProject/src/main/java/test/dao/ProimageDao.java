@@ -37,6 +37,8 @@ public class ProimageDao {
 			JdbcUtil.close(con,pstmt,null);
 		}
 	}
+	//이미지 가져오기
+
 	
 	
 }

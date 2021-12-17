@@ -3,11 +3,9 @@
 .num {
 	width: 50px;
 }
-
-.sel {
+.sel{
 	display: none;
 }
-
 </style>
 
 <form method="post" action="${ pageContext.request.contextPath}/Home?spage=/admin/productInsert" enctype="multipart/form-data">
@@ -21,15 +19,15 @@
 	<br>
 	<!-- 하위카테고리 -->
 	<div id="select_c">
-		<select name="cName" id="1" >
+		<select  id="1" class="sel">
 			<option value="니트">니트</option>
 			<option value="티셔츠">티셔츠</option>
 		</select>
-		<select name="cName" id="2" class="sel">
+		<select  id="2" class="sel">
 			<option value="슬랙스">슬랙스</option>
 			<option value="트레이닝">트레이닝</option>
 		</select>
-		<select name="cName" id="3" class="sel">
+		<select  id="3" class="sel">
 			<option value="코트">코트</option>
 			<option value="가디건">가디건</option>
 		</select>
@@ -96,15 +94,17 @@
 	function sel_category(e)
 	{
 		var category=e.value;
-		let cName=document.getElementsByName("cName");
+		let cName=document.getElementsByClassName("sel");
 		for(var i=0;i<cName.length;i++)
 			{
 
 			if(category==cName[i].id){
 				cName[i].style.display="block";
+				cName[i].setAttribute("name", "cName")
 			}else
 			{
 				cName[i].style.display="none";
+				cName[i].setAttribute("name", "")
 			}
 			
 			}
