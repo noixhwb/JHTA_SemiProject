@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 
 <style type="text/css">
 	#wrap #mypage_category li{
@@ -38,6 +39,20 @@
 	#wrap #box3 li{
 		list-style:none; display: inline-block; 
 	}
+		.btn {
+			background-color: black;
+			padding: 15px 30px;
+			margin: 2px;
+			border: none;
+			background-color: #black;
+			color: white;
+			text-align: right;
+			text-decoration: none;
+			font-size: 16px;
+			display: inline-block;
+			cursor: pointer;
+		}
+
 </style>
 <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 
@@ -49,16 +64,36 @@
 	String mphone=(String)session.getAttribute("mphone");
 	int mstate=(int)session.getAttribute("mstate");
 	
+	
 	String a="";
 	if(mstate == 1){
 		a="일반회원";
 	}else if(mstate == 0){
 		a="탈퇴회원";
 	}
+	
+	String mphone1 = mphone.substring(0, 3);
+	String mphone2 = mphone.substring(3, 7);
+	String mphone3 = mphone.substring(7, 11);
+	
+	System.out.println(mphone1 + mphone2 + mphone3);
+	
 %>
 
 <script type="text/javascript">
-
+	function by() {
+		
+		var res = confirm("회원탈퇴시 제품 환불이 불가능합니다");
+		
+		if(res){
+			alert("탈퇴처리되었습니다. 그동안 이용해주셔서 감사합니다.");
+			
+			location.href="<%=request.getContextPath() %>/member/delete?mid=<%=mid%>";	
+			
+		}else{
+		}
+		
+	}
 
 </script>
 
@@ -93,39 +128,42 @@
 	
 	
 	<div id="box3">
+	<form action="<%=request.getContextPath() %>/member/updateOk" method="post" name="f">
+		<input type="hidden" name="mstate" value="<%=mstate %>" >
+
 		<table border="1" width="500">
 			<tr>
 				<th>아이디</th>
-				<th><%=mid %></th>
+				<th><input type="text" name="mid" value="<%=mid %>" readonly></th>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<th><input type="password" name="mpwd" id="mpwd" maxlength="12" > </th>
+				<th><input type="password" name="mpwd" id="mpwd" maxlength="12" value="<%=mpwd %>"> </th>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<th><input type="password" name="mpwd" id="mpwd" maxlength="12" > </th>
+				<th><input type="password" name="mpwd1" id="mpwd1" maxlength="12" value="<%=mpwd %>" > </th>
 			</tr>
 			<tr>
 				<th>이름</th>
-				<th><%=mname %></th>
+				<th><input type="text" name="mname" value="<%=mname %>" readonly><br></th>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<th><input type="text" name="maddr" id="maddr"></th>
+				<th><input type="text" name="maddr" id="maddr" value="<%=maddr %>" maxlength="6"></th>
 			</tr>
 			<tr>
 				<th>휴대전화</th>
 				            <td>
-            	   <select name="mphone1">
+            	   <select name="mphone1" >
 				        <option value="010">010</option>
 				        <option value="011">011</option>
 				        <option value="016">016</option>
 				        <option value="017">017</option>
 				    </select> -
-            	<input type="text" name="mphone2" id="mphone1"maxlength="4" size="2">
+            	<input type="text" name="mphone2" id="mphone1"maxlength="4" size="2" value="<%=mphone2 %>">
             	-
-            	<input type="text" name="mphone3" id="mphone1"maxlength="4" size="2">
+            	<input type="text" name="mphone3" id="mphone1"maxlength="4" size="2" value="<%=mphone3 %>">
             </td>
 			</tr>
 		   <tr>
@@ -134,11 +172,11 @@
 	            </th>
 	           	<td>
 		            <input type="submit" value="회원정보수정">
-		            <input type="reset" value="취소">
 	            </td>
        		</tr>
 		</table>	
-
+		<input type="button" value="회원탈퇴" class="btn" onclick="by()">
+	</form>
 		
 	</div>
 	

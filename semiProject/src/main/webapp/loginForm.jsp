@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 #loginform
 {
@@ -56,6 +57,23 @@
 		margin:50px;
 }
 </style>
+
+
+<c:choose>
+	<c:when test="${ms1 != null }">
+		<script type="text/javascript">
+			alert('아이디 또는 비밀번호가 잘못되었습니다.');
+		</script>
+	</c:when>
+	
+	<c:when test="${ms2 != null }">
+		<script type="text/javascript">
+			alert('이미 탈퇴한 계정입니다.');
+		</script>
+	</c:when>
+</c:choose>
+
+
 
 <div id="loginform">
 	<ul>
