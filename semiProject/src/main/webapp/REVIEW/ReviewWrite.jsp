@@ -32,22 +32,15 @@
 	</style>
 </head>
 <body>
-	<%
-		request.setCharacterEncoding("UTF-8");	
-		int coNum = Integer.parseInt(request.getParameter("coNum"));
-	
-		ReviewDao dao=new ReviewDao();
-		ReviewVo vo = dao.select(coNum);
-	%>
 	<h1 style="text-align: center">리뷰 작성</h1>
-	<form action="Review.jsp" method="post">
+	<form action="<%=request.getContextPath() %>/reviewWrite" method="post">
 		<div id="product">
 			<div id="product_pic">
 				<img src="images/hoddy.PNG" style="width: 150px; height: 150px;">
 			</div>
 			<div id="product_detail">
 				<ul>
-					<li>주문상세번호 : <%=vo.getOdNum() %></li>
+					<li>주문상세번호</li>
 					<li>제품명</li>
 					<li>사이즈</li>
 				</ul>

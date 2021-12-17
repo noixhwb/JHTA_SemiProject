@@ -80,6 +80,7 @@
 	
 %>
 
+<<<<<<< HEAD
 <script type="text/javascript">
 	function by() {
 		
@@ -95,6 +96,11 @@
 		
 	}
 
+=======
+<script type="text/javascript">
+
+
+>>>>>>> branch 'master' of https://github.com/Eunjung0404/semiProject.git
 </script>
 
 

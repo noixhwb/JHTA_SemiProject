@@ -24,6 +24,4 @@ public class HomeController extends HttpServlet {
 		req.setAttribute("footer", "/footer.jsp");
 		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
 	}
-	
-	
 }
