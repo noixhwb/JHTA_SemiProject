@@ -119,7 +119,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>평점</th>
+					<th>평점</th> 
 					<td>
 						<input type="radio" name="cScore" value="★★★★★">★★★★★
 						<input type="radio" name="cScore" value="★★★★">★★★★
