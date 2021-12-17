@@ -14,7 +14,7 @@ public class ReviewDao {
 	public int insert(ReviewVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		String sql = "INSERT INTO COMMENTSSS VALUES(SEQ_COMMENTS.nextval,?,?,?,?,SYSDATE)";
+		String sql = "INSERT INTO COMMENTS_S VALUES(SEQ_COMMENTS.nextval,?,?,?,?,SYSDATE)";
 		
 		try {
 			con = JdbcUtil.getCon();
@@ -37,7 +37,7 @@ public class ReviewDao {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql = "SELECT * FROM COMMENTSSS";
+		String sql = "SELECT * FROM COMMENTS_S";
 		
 		try {
 			con = JdbcUtil.getCon();
@@ -64,11 +64,41 @@ public class ReviewDao {
 		}
 	}
 	
+	public ArrayList<ReviewVo> selectMyReview(String mid) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql = "SELECT * FROM COMMENTS_S WHERE MID=?";
+		
+		try {
+			con = JdbcUtil.getCon();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			ArrayList<ReviewVo> list=new ArrayList<ReviewVo>();
+			while (rs.next()) {
+				int coNum = rs.getInt("coNum");
+				int odNum = rs.getInt("odNum");
+				String cScore = rs.getString("cScore");
+				String content = rs.getString("content");
+				Date cDate = rs.getDate("cDate");
+				ReviewVo vo=new ReviewVo(coNum, odNum, cScore, content, mid, cDate);
+				list.add(vo);
+			}
+			return list;
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return null;
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
 	public ReviewVo select(int coNum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql = "SELECT * FROM COMMENTSSS WHERE coNum=?";
+		String sql = "SELECT * FROM COMMENTS_S WHERE coNum=?";
 		
 		try {
 			con = JdbcUtil.getCon();
@@ -97,7 +127,7 @@ public class ReviewDao {
 	public int delete(int coNum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		String sql = "DELETE FROM COMMENTSSS WHERE coNum=?";
+		String sql = "DELETE FROM COMMENTS_S WHERE coNum=?";
 		
 		try {
 			con = JdbcUtil.getCon();
@@ -115,7 +145,7 @@ public class ReviewDao {
 	public int update(ReviewVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		String sql = "UPDATE COMMENTSSS SET CSCORE=?, CONTENT=? WHERE coNum=?";
+		String sql = "UPDATE COMMENTS_S SET CSCORE=?, CONTENT=? WHERE coNum=?";
 		
 		try {
 			con = JdbcUtil.getCon();
