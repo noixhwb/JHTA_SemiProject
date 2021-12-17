@@ -33,11 +33,41 @@
 		    border-bottom: 1px solid #444444;
 		    padding: 10px;
 		}
+		#wrap #mypage_category li{
+			list-style:none; display: inline-block;
+		}
+		#wrap #box1 li{
+			list-style:none; display: inline-block;
+		}
+		#wrap #box1 img{
+			width:50px; height: 50px; 
+		}
+		#wrap #box1{
+			 width:500px; text-align: center;display: inline-block; padding-bottom: 20px;
+		}
+		#wrap{
+			margin:0px	; padding: 0px; text-align: center;
+		}
 	</style>
 </head>
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
-	
+	<div id="wrap">
+		<div id="mypage_category">
+			<ul>
+				<li>
+				<a href="${cp}/Home">home</a>></li>
+				<li><strong>마이페이지</strong></li>
+			</ul>
+		</div>
+		<div id ="box1">
+			<ul>
+				<li><a href="${cp}/myshop/orderList"><img src="${cp}/images/order.png"><br>주문조회</a></li>
+				<li><a href=""><img src="${cp}/images/member.png"><br>회원정보수정</a></li>
+				<li><a href=""><img src="${cp}/images/shopping.png"><br>장바구니</a></li>
+				<li><a href="${cp}/review"><img src="${cp}/images/board.png"><br>리뷰관리</a></li>
+			</ul>
+		</div>
 	<h1>마이 리뷰 목록</h1>
 	<table border="1">
 		<tr>
@@ -52,29 +82,21 @@
 			<th>수정</th>
 			<th>삭제</th>
 		</tr>
-		<%
-			ReviewDao dao=new ReviewDao();
-			ArrayList<ReviewVo> list = dao.selectAll();
-			
-			for (int i=0; i<list.size(); i++) {
-				ReviewVo vo = list.get(i);
-		%>
-		<tr>
-			<td><%=vo.getCoNum() %></td>
-			<td><%=vo.getOdNum() %></td>
-			<%-- 상품명없음 --%>
-			<td><%=vo.getcScore() %></td>
-			<td><%=vo.getContent() %></td>
-			<%-- 아이디안보임 --%>
-			<td><%=vo.getcDate() %></td>
-			<td><a href="${ cp }/reviewDetail?coNum=<%=vo.getCoNum() %>">상세보기</a></td>
-			<td><a href="${ cp }/reviewUpdate?coNum=<%=vo.getCoNum() %>">수정</a></td>
-			<td><a href="${ cp }/reviewDelete?coNum=<%=vo.getCoNum() %> %>">삭제</a></td>
-		</tr>
-				<%	
-			}
-			
-		%>
+		<c:forEach var="vo" items="${ list }">
+			<tr>
+				<td>${ vo.coNum }</td>
+				<td>${ vo.odNum }</td>
+				<%-- 상품명없음 --%>
+				<td>${ vo.cScore }</td>
+				<td>${ vo.content }</td>
+				<%-- 아이디안보임 --%>
+				<td>${ vo.cDate }</td>
+				<td><a href="${ cp }/reviewDetail?coNum=${ vo.coNum }">상세보기</a></td>
+				<td><a href="${ cp }/reviewUpdate?coNum=${ vo.coNum }">수정</a></td>
+				<td><a href="${ cp }/reviewDelete?coNum=${ vo.coNum }">삭제</a></td>
+			</tr>
+		</c:forEach>
 	</table>
+	</div>
 </body>
 </html>

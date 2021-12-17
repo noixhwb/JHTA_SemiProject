@@ -8,6 +8,7 @@ public class MemberVo {
 	private String mname;
 	private String maddr;
 	private String mphone;
+	private int mstate;
 	private Date regdate;
 	
 	public MemberVo() {}
@@ -18,6 +19,7 @@ public class MemberVo {
 		this.mname = mname;
 		this.maddr = maddr;
 		this.mphone = mphone;
+		this.mstate = mstate;
 		this.regdate = regdate;
 	}
 
@@ -68,6 +70,12 @@ public class MemberVo {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
+	public int getMstate() {
+		return mstate;
+	}
+
+	public void setMstate(int mstate) {
+		this.mstate = mstate;
+	}
 	
 }

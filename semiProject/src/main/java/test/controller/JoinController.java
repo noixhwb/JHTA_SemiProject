@@ -26,7 +26,12 @@ public class JoinController extends HttpServlet{
 		String mname=req.getParameter("mname");
 		String maddr=req.getParameter("maddr");
 		String mphone=req.getParameter("mphone");
-
+		
+		String mphone1=req.getParameter("mphone1");
+		String mphone2=req.getParameter("mphone2");
+		String mphone3=req.getParameter("mphone3");
+		
+		mphone=mphone1+mphone2+mphone3;
 		MemberVo vo=new MemberVo(mid, mpwd, mname, maddr, mphone,1,null);
 		MemberDao dao=new MemberDao();
 		int n=dao.insert(vo);

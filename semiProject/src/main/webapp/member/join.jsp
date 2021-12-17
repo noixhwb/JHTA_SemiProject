@@ -42,7 +42,6 @@ function success(){
         f.mid.focus();
         return false;
     }
-
     for (var i = 0; i < document.f.mid.value.length; i++) {
                ch = document.f.mid.value.charAt(i)
                if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
@@ -70,6 +69,13 @@ function success(){
 	        document.f.mpwd.focus();
 	        return false;
 	    }
+	
+	if(document.f.mpwd.value.length<8){
+        alert("비밀번호를 8자~16자 사이 입력해주십시오.")
+        document.f.mpwd.focus();
+        return false;
+  	  }
+	
 	    if (f.mpwd.value == f.mid.value) {
 	        alert("아이디와 비밀번호가 같습니다.")
 	        document.f.mpwd.focus();
@@ -80,38 +86,62 @@ function success(){
 	        document.f.mname.focus();
 	        return false;
 	    }
-
 	if(document.f.mname.value.length<2){
 	        alert("이름을 2자 이상 입력해주십시오.")
 	        document.f.mname.focus();
 	        return false;
 	  	  }
-	if (document.f.mphone.value == "") {
+	if (document.f.mphone2.value == "") {
         alert("전화번호를 입력하지 않았습니다.")
-        document.f.mphone.focus();
+        document.f.mphone2.focus();
         return false;
     }
-
-    for (var i = 0; i < document.f.mphone.value.length; i++) {
-        ch = document.f.mphone.value.charAt(i)
+	if (document.f.mphone3.value == "") {
+        alert("전화번호를 입력하지 않았습니다.")
+        document.f.mphone3.focus();
+        return false;
+    }
+    for (var i = 0; i < document.f.mphone2.value.length; i++) {
+        ch = document.f.mphone2.value.charAt(i)
         if (! (ch >= '0' && ch <= '9') ) {
             alert("연락처에 번호만 입력해주세요")
-            document.f.mid.focus();
-            document.f.mid.select();
+            document.f.mphone2.focus();
+            document.f.mphone2.select();
             return false;
         }
     }
-    if (document.f.mphone.value.indexOf(" ") >= 0) {
+    for (var i = 0; i < document.f.mphone3.value.length; i++) {
+        ch = document.f.mphone3.value.charAt(i)
+        if (! (ch >= '0' && ch <= '9') ) {
+            alert("연락처에 번호만 입력해주세요")
+            document.f.mphone3.focus();
+            document.f.mphone3.select();
+            return false;
+        }
+    }
+    if (document.f.mphone2.value.indexOf(" ") >= 0) {
         alert("휴대전화에 공백을 사용할 수 없습니다.")
-        document.f.mphone.focus();
-        document.f.mphone.select()
+        document.f.mphone2.focus();
+        document.f.mphone2.select()
+        return false;
+    }
+    if (document.f.mphone3.value.indexOf(" ") >= 0) {
+        alert("휴대전화에 공백을 사용할 수 없습니다.")
+        document.f.mphone3.focus();
+        document.f.mphone3.select()
         return false;
     }
 	
-	if (document.f.mphone.value.length<11 || document.f.mphone.value.length>12) {
-        alert("휴대전화 11자리를 입력해주세요")
-        document.f.mphone.focus();
-        document.f.mphone.select();
+	if (document.f.mphone2.value.length<4 || document.f.mphone2.value.length>5) {
+        alert("휴대전화 4자리를 입력해주세요")
+        document.f.mphone2.focus();
+        document.f.mphone2.select();
+        return false;
+    }
+	if (document.f.mphone3.value.length<4 || document.f.mphone3.value.length>5) {
+        alert("휴대전화 4자리를 입력해주세요")
+        document.f.mphone3.focus();
+        document.f.mphone3.select();
         return false;
     }
 	
@@ -138,7 +168,7 @@ function success(){
             <th>
                 <p align="right">비밀번호</p>
             </th>
-            <td><input type="password" name="mpwd" id="mpwd" maxlength="20"></td>
+            <td><input type="password" name="mpwd" id="mpwd" maxlength="16"></td>
         </tr>
         
         <tr>
@@ -151,13 +181,23 @@ function success(){
             <th>
                 <p align="right">주소</p>
             </th>
-            <td><input type="text" name="maddr" id="maddr"></td>
+            <td><input type="text" name="maddr" id="maddr" maxlength="6"></td>
         </tr>
         <tr>
             <th>
                 <p align="right">연락처</p>
             </th>
-            <td><input type="text" name="mphone" id="mphone"maxlength="11"></td>
+             <td>
+            	   <select name="mphone1">
+				        <option value="010" id="mphone1">010</option>
+				        <option value="011" id="mphone1">011</option>
+				        <option value="016" id="mphone1">016</option>
+				        <option value="017" id="mphone1">017</option>
+				    </select> -
+            	<input type="text" name="mphone2" id="mphone1"maxlength="4" size="2">
+            	-
+            	<input type="text" name="mphone3" id="mphone1"maxlength="4" size="2">
+            </td>
         </tr>
         <tr>
             <th>
@@ -175,4 +215,3 @@ function success(){
 
 </body>
 </html>
-

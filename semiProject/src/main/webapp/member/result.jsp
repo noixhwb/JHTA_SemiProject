@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%	
+	String[] mphone1 = request.getParameterValues("mphone1");
+%>
 <c:choose>
 	<c:when test="${requestScope.result=='success' }">
 		<h1>회원가입 완료</h1><br>
@@ -28,7 +31,7 @@
 		</tr>
       	<tr>
 			<td>휴대폰</td>		
-			<td>${param.mphone }</td>
+			<td>${param.mphone1}-${param.mphone2}-${param.mphone3}</td>
 		</tr>
 	</table>
 	

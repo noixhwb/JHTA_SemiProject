@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import test.dao.AdminDao;
 import test.vo.AdminVo;
+import test.vo.MemberVo;
 import test.dao.MemberDao;
 
 @WebServlet("/admin/login")
@@ -55,18 +56,36 @@ public class AdminLoginController extends HttpServlet{
 			
 			MemberDao dao=new MemberDao();
 			boolean loginOk=dao.loginMember(mid, mpwd);
+			MemberVo mvo=dao.select(mid);
+			
 			System.out.println(loginOk);
+			System.out.println("유저아디:" +mid);
+			//System.out.println("회원상태:" +mvo.getMstate());
+			
 			
 			if(loginOk==true)
 			{
+				
+				if(mvo.getMstate() == 1) {
+				
 				HttpSession session= req.getSession();
 				session.setAttribute("mid", mid);
+				session.setAttribute("mpwd", mvo.getMpwd());
+				session.setAttribute("mstate", mvo.getMstate());
+				
 				System.out.println("로그인성공");
 				resp.sendRedirect(req.getContextPath()+"/Home");
+				
+				}else {
+				System.out.println("탈퇴된 회원 로그인시도중");
+				req.setAttribute("ms2", "이미 탈퇴한 계정입니다.");
+				req.getRequestDispatcher("/Home?spage=loginForm.jsp").forward(req, resp);
+				}
+
 			}else
 			{
 				System.out.println("로그인실패");
-				req.setAttribute("errMsg", "아이디가 잘못되었습니다.");
+				req.setAttribute("ms1", "아이디 또는 비밀번호가 잘못되었습니다.");
 				req.getRequestDispatcher("/Home?spage=loginForm.jsp").forward(req, resp);
 				
 			}
