@@ -52,9 +52,11 @@
 		</div>
 		
 	<h1>리뷰 상세보기</h1>
+		주문한 제품 이름 : ${ vo.pName } <br>
+		사이즈 : ${ vo.proSize } <br>
+		제품상세번호 : ${ vo.pdNum } <br>
 		리뷰글번호 : ${ vo.coNum } <br>
 		주문번호 : ${ vo.odNum } <br>
-		<%-- 상품명 : <%=sangpoom %> <br> --%>
 		평점 : ${ vo.cScore } <br>
 		내용 : ${ vo.content } <br>
 		작성자(아이디) : ${ vo.mid } <br>

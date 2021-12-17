@@ -2,7 +2,10 @@ package test.vo;
 
 import java.sql.Date;
 
-public class ReviewVo {
+public class RevVo {
+	private String pName;
+	private String proSize;
+	private int pdNum;
 	private int coNum;
 	private int odNum;
 	private String cScore;
@@ -10,8 +13,12 @@ public class ReviewVo {
 	private String mid;
 	private Date cDate;
 	
-	public ReviewVo(int coNum, int odNum, String cScore, String content, String mid, Date cDate) {
+	public RevVo(String pName, String proSize, int pdNum, int coNum, int odNum, String cScore, String content,
+			String mid, Date cDate) {
 		super();
+		this.pName = pName;
+		this.proSize = proSize;
+		this.pdNum = pdNum;
 		this.coNum = coNum;
 		this.odNum = odNum;
 		this.cScore = cScore;
@@ -19,7 +26,24 @@ public class ReviewVo {
 		this.mid = mid;
 		this.cDate = cDate;
 	}
-	
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getProSize() {
+		return proSize;
+	}
+	public void setProSize(String proSize) {
+		this.proSize = proSize;
+	}
+	public int getPdNum() {
+		return pdNum;
+	}
+	public void setPdNum(int pdNum) {
+		this.pdNum = pdNum;
+	}
 	public int getCoNum() {
 		return coNum;
 	}
