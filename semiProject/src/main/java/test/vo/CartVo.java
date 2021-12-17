@@ -10,10 +10,10 @@ public class CartVo {
 
 	public CartVo() {}
 
-	public CartVo(int cCartNum, String pNum, int pPrice, String piFilename) {
+	public CartVo(int cCartNum, String pName, int pPrice, String piFilename) {
 		super();
 		this.cCartNum = cCartNum;
-		this.pNum = pNum;
+		this.pName = pName;
 		this.pPrice = pPrice;
 		this.piFilename = piFilename;
 	}
@@ -58,6 +58,12 @@ public class CartVo {
 		this.piFilename = piFilename;
 	}
 
-	
+//	@Override
+//	public String toString() {
+//		return "CartVo [cCartNum=" + cCartNum + ", pPrice=" + pPrice + ", pNum=" + pNum + ", mId=" + mId + ", pName="
+//				+ pName + ", piFilename=" + piFilename + "]\n";
+//	}
+//	
+//	
 	
 }
