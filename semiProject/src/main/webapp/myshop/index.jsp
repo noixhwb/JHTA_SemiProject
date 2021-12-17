@@ -75,9 +75,10 @@
 				<th>주문일자</th>
 			</tr>
 			<c:choose>
-				<c:when test="${requestScope.list==null}">
-					<h3>주문내역이 없습니다.</h3>
-				
+				<c:when test="${list==null}">
+					<tr>
+					<th>최근 주문내역이 없습니다</th>
+					</tr>
 				</c:when>
 				<c:otherwise>
 				

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <link rel="stylesheet" href="/resources/demos/style.css">
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <style>
  #box4 img{
  	width:30px; height: 30px;
@@ -16,22 +20,43 @@
 <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 	<h3>전체주문내역</h3>
 	<div id="days">
-		<form action="<%=request.getContextPath()%>/myshop/dayList">
-			<input type="submit" value="전체조회" name="ALL">
-			<input type="submit" value="오늘" name="today">
-			<input type="submit" value="3개월" name="m3">
-			<input type="submit" value="6개월" name="m6">
+		<form action="<%=request.getContextPath()%>/myshop/dayList" method="post">
+			<script>
+			  $.datepicker.setDefaults({
+			    dateFormat: 'yy-mm-dd',
+			    prevText: '이전 달',
+			    nextText: '다음 달',
+			    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			    showMonthAfterYear: true,
+			    yearSuffix: '년'
+			  });
+			
+			  $(function() {
+			    $("#datepicker1, #datepicker2").datepicker();
+			  });
+			
+		</script>
+			<p>조회기간:
+			  <input type="text" id="datepicker1" name="date1"> ~
+			  <input type="text" id="datepicker2" name="date2">
+			</p>
+			<input type="submit" value="조회" name="day">
 		</form>
 	</div>
 	
 	
-	<table border="1" width="1000">
+	<table border="1" width="800">
 		
 		<colgroup>
 		<col style="width:135px;">
-		<col style="width:93px;">
+		
 		<col style="width:auto;">
 		<col style="width:61px;">
+		<col style="width:111px;">
 		<col style="width:111px;">
 		<col style="width:111px;">
 		
@@ -39,150 +64,37 @@
 		<thead>
 		 <tr>
 		  	<th scope="col">주문번호</th>
-		  	<th scope="col">이미지</th>
-		  	<th scope="col">상품정보</th>
+		  	
+		  	<th scope="col">배송지</th>
 		  	<th scope="col">수량</th>
 		  	<th scope="col">상품구매금액</th>
+		  	<th scope="col">주문일자</th>
 		  	<th scope="col">주문처리상태</th>
 		  	
 		 </tr>
 		<c:choose>
-		<c:when test="${requestScope.listT!=null}">
-			<c:forEach var="voT" items="${requestScope.listT }">
+		<c:when test="${requestScope.list!=null}">
+			<c:forEach var="vo" items="${requestScope.list }">
 		 	<tr>
-			 	<th scope="col">${voT.onum }</th>
-			  	<th scope="col"><img src="../images/1.jpg"></th>
-			  	<th scope="col">${voT.pdnum }</th>
-			  	<th scope="col">${voT.dcount }</th>
-			  	<th scope="col">${voT.totalsales }</th>
-			  	<th scope="col">
-			  	<c:choose>
-				  	<c:when test="${voT.dstate==1}">
-				  		결제완료<br>
-				  		<a href="${cp}/myshop/cancel?odnum=${voT.odnum}" onclick="return confirm('정말 결제취소하시겠습니까?');">결제취소</a>
-				  	</c:when>
-				  	<c:when test="${voT.dstate==2}">
-				  		배송중
-				  	</c:when>
-				    <c:when test="${voT.dstate==3}">
-				  		배송완료<br>
-				  	<a href="${cp}/myshop/refund?odnum=${voT.odnum}" onclick="return confirm('정말 환불신청하시겠습니까?');">환불신청</a>
-				  	
-				  	</c:when>
-				  	 <c:when test="${voT.dstate==4}">
-				  		
-				  		환불완료
-				  	
-				  	</c:when>
-				  	 <c:when test="${voT.dstate==5}">
-				  		취소완료
-				  	</c:when>
-				  	<c:when test="${voT.dstate==6 }">
-				  		환불신청중
-				  	</c:when>
-			  	</c:choose>
-			  	</th>
-			  </tr>
-		 	 </c:forEach>
-		</c:when>
-		<c:when test="${requestScope.list3!=null}">
-			<c:forEach var="vo3" items="${requestScope.list3 }">
-		 	<tr>
-			 	<th scope="col">${vo3.onum }</th>
-			  	<th scope="col"><img src="../images/1.jpg"></th>
-			  	<th scope="col">${vo3.pdnum }</th>
-			  	<th scope="col">${vo3.dcount }</th>
-			  	<th scope="col">${vo3.totalsales }</th>
-			  	<th scope="col">
-			  	<c:choose>
-				  	 <c:when test="${vo3.dstate==1}">
-				  		결제완료<br>
-				  		<a href="${cp}/myshop/cancel?odnum=${vo3.odnum}" onclick="return confirm('정말 결제취소하시겠습니까?');">결제취소</a>
-				  	</c:when>
-				  	<c:when test="${vo3.dstate==2}">
-				  		배송중
-				  	</c:when>
-				    <c:when test="${vo3.dstate==3}">
-				  		배송완료<br>
-				  	<a href="${cp}/myshop/refund?odnum=${vo3.odnum}" onclick="return confirm('정말 환불신청하시겠습니까?');">환불신청</a>
-				  	
-				  	</c:when>
-				  	 <c:when test="${vo3.dstate==4}">
-				  		
-				  		환불완료
-				  	
-				  	</c:when>
-				  	 <c:when test="${vo3.dstate==5}">
-				  		취소완료
-				  	</c:when>
-				  	<c:when test="${vo3.dstate==6 }">
-				  		환불신청중
-				  	</c:when>
-			  	</c:choose>
-			  	</th>
-			  </tr>
-		 	 </c:forEach>
-		</c:when>
-		<c:when test="${requestScope.list6!=null}">
-			<c:forEach var="vo6" items="${requestScope.list6 }">
-		 	<tr>
-			 	<th scope="col">${vo6.onum }</th>
-			  	<th scope="col"><img src="../images/1.jpg"></th>
-			  	<th scope="col">${vo6.pdnum }</th>
-			  	<th scope="col">${vo6.dcount }</th>
-			  	<th scope="col">${vo6.totalsales }</th>
-			  	<th scope="col">
-			  	<c:choose>
-				  	 <c:when test="${vo6.dstate==1}">
-				  		결제완료<br>
-				  	<a href="${cp}/myshop/cancel?odnum=${vo6.odnum}" onclick="return confirm('정말 결제취소하시겠습니까?');">결제취소</a>
-				  	</c:when>
-				  	<c:when test="${vo6.dstate==2}">
-				  		배송중
-				  	</c:when>
-				    <c:when test="${vo6.dstate==3}">
-				  		배송완료<br>
-				  	<a href="${cp}/myshop/refund?odnum=${vo6.odnum}" onclick="return confirm('정말 환불신청하시겠습니까?');">환불신청</a>
-				  	
-				  	</c:when>
-				  	 <c:when test="${vo6.dstate==4}">
-				  		
-				  		환불완료
-				  	
-				  	</c:when>
-				  	 <c:when test="${vo6.dstate==5}">
-				  		취소완료
-				  	</c:when>
-				  	<c:when test="${vo6.dstate==6 }">
-				  		환불신청중
-				  	</c:when>
-				  
-			  	</c:choose>
-			  	</th>
-			  </tr>
-		 	 </c:forEach>
-		</c:when>
-		<c:otherwise>
-		<c:forEach var="vo" items="${requestScope.list }">
-		 	<tr>
-			 	<th scope="col">${vo.onum }</th>
-			  	<th scope="col"><img src="../images/1.jpg"></th>
-			  	<th scope="col">${vo.pdnum }</th>
+			 	<th scope="col">${vo.odnum }</th>
+			  	
+			  	<th scope="col">${vo.delocation }</th>
 			  	<th scope="col">${vo.dcount }</th>
 			  	<th scope="col">${vo.totalsales }</th>
+			  	<th scope="col">${vo.odate }</th>
 			  	<th scope="col">
 			  	<c:choose>
-				  	 <c:when test="${vo.dstate==1}">
+				  	<c:when test="${vo.dstate==1}">
 				  		결제완료<br>
-				  	<a href="${cp}/myshop/cancel?odnum=${vo.odnum}" onclick="return confirm('정말 결제취소하시겠습니까?');">결제취소</a>
+				  		<a href="${cp}/myshop/cancel?odnum=${vo.odnum}" onclick="return confirm('정말 결제취소하시겠습니까?');">결제취소</a>
 				  	</c:when>
 				  	<c:when test="${vo.dstate==2}">
 				  		배송중
 				  	</c:when>
 				    <c:when test="${vo.dstate==3}">
 				  		배송완료<br>
-				  	<a href="${cp}/myshop/refund?odnum=${vo.odnum}" onclick="return confirm('정말 환불신청하시겠습니까?');">환불신청</a>
-				  	
+				  	<a href="${cp}/myshop/refund?odnum=${vo.odnum}" onclick="return confirm('정말 환불신청하시겠습니까?');">환불신청</a><br>
+				  	<a href="${cp}/myshop/decide?odnum=${vo.odnum}" onclick="return confirm('정말 구매확정하시겠습니까? 환불이 불가합니다.');">구매확정</a>
 				  	</c:when>
 				  	 <c:when test="${vo.dstate==4}">
 				  		
@@ -195,16 +107,91 @@
 				  	<c:when test="${vo.dstate==6 }">
 				  		환불신청중
 				  	</c:when>
+				  	<c:when test="${vo.dstate==7 }">
+				  		구매확정
+				  	</c:when>
 			  	</c:choose>
 			  	</th>
+			  </tr>
+		 	 </c:forEach>
+			
+		</c:when>
+		
+		<c:otherwise>
+			
+			
+			<c:forEach var="vo2" items="${requestScope.list2 }">
+		 	<tr>
+			 	<th scope="col">${vo2.odnum }</th>
 			  	
-		 	</tr>
-		 
-		 </c:forEach>
+			  	<th scope="col">${vo2.delocation }</th>
+			  	<th scope="col">${vo2.dcount }</th>
+			  	<th scope="col">${vo2.totalsales }</th>
+			  	<th scope="col">${vo2.odate }</th>
+			  	<th scope="col">
+			  	<c:choose>
+				  	<c:when test="${vo2.dstate==1}">
+				  		결제완료<br>
+				  		<a href="${cp}/myshop/cancel?odnum=${vo2.odnum}" onclick="return confirm('정말 결제취소하시겠습니까?');">결제취소</a>
+				  	</c:when>
+				  	<c:when test="${vo2.dstate==2}">
+				  		배송중
+				  	</c:when>
+				    <c:when test="${vo2.dstate==3}">
+				  		배송완료<br>
+				  	<a href="${cp}/myshop/refund?odnum=${vo2.odnum}" onclick="return confirm('정말 환불신청하시겠습니까?');">환불신청</a><br>
+				  	<a href="${cp}/myshop/decide?odnum=${vo2.odnum}" onclick="return confirm('정말 구매확정하시겠습니까? 환불이 불가합니다.');">구매확정</a>
+				  	</c:when>
+				  	 <c:when test="${vo2.dstate==4}">
+				  		
+				  		환불완료
+				  	
+				  	</c:when>
+				  	 <c:when test="${vo2.dstate==5}">
+				  		취소완료
+				  	</c:when>
+				  	<c:when test="${vo2.dstate==6 }">
+				  		환불신청중
+				  	</c:when>
+				  	<c:when test="${vo2.dstate==7 }">
+				  		구매확정
+				  	</c:when>
+				  	
+			  	</c:choose>
+			  	</th>
+			  </tr>
+		 	 </c:forEach>
+		 	
+		 	 
+			
+		
 		 </c:otherwise>
 		 </c:choose>
 		</thead>
 	</table>
-	
+	<c:choose>
+			<c:when test="${list2!=null}">
+			<div><!-- 페이징 -->
+				
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div><!-- 페이징 -->
+				<c:forEach var="i" begin="${startPage }" end="${endPage}">
+				 	<c:choose>
+				 		<c:when test="${i==pageNum }">
+				 			<a href="${cp}/myshop/orderList?pageNum=${i}">
+				 			<span style="color:red">${i}</span></a>
+				 		</c:when>
+				 		<c:otherwise>
+				 			<a href="${cp}/myshop/orderList?pageNum=${i}">
+				 			<span style="color:red">${i}</span></a>
+				 		</c:otherwise>
+				 	</c:choose>
+				
+				</c:forEach>
+			</div>
+		</c:otherwise>
+	</c:choose>	
 	</div>
 
