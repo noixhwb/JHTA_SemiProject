@@ -157,7 +157,7 @@ public class MemberDao {
 	}
 	
 	
-	
+	//하나 계정의 모든 정보 찾기
 	public MemberVo select(String mid){
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -186,4 +186,53 @@ public class MemberDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	
+	
+	//회원 정보수정
+	public int update(MemberVo vo) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+
+		try {
+		con = JdbcUtil.getCon();
+		String sql="update member_s set mpwd=?,maddr=?,mphone=? where mid =?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, vo.getMpwd());
+		pstmt.setString(2, vo.getMaddr());
+		pstmt.setString(3, vo.getMphone());
+		pstmt.setString(4, vo.getMid());
+		return pstmt.executeUpdate();
+
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}	
+	}
+	
+	
+	//회원탈퇴
+	public int delete(String mid) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String gg="0";
+		try {
+		con = JdbcUtil.getCon();
+		String sql="update member_s set mstate=? where mid =?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, gg);
+		pstmt.setString(2, mid);
+
+		return pstmt.executeUpdate();
+
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}	
+	}
+	
+	
 }

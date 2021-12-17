@@ -181,7 +181,7 @@ function success(){
             <th>
                 <p align="right">주소</p>
             </th>
-            <td><input type="text" name="maddr" id="maddr"></td>
+            <td><input type="text" name="maddr" id="maddr" maxlength="6"></td>
         </tr>
         <tr>
             <th>
