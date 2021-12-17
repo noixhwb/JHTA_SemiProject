@@ -15,13 +15,13 @@
 			</ul></li>
 		<li><a href="">하의</a>
 			<ul class="sub">
-				<li><a href="">니트</a></li>
-				<li><a href="">티셔츠</a></li>
+				<li><a href="">슬랙스</a></li>
+				<li><a href="">트레이닝</a></li>
 			</ul></li>
 		<li><a href="">아우터</a>
 			<ul class="sub">
-				<li><a href="">니트</a></li>
-				<li><a href="">티셔츠</a></li>
+				<li><a href="">가디건</a></li>
+				<li><a href="">코트</a></li>
 			</ul></li>
 	</ul>
 </c:when>
