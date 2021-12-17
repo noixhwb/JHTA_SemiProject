@@ -151,15 +151,14 @@ td {
 						<span title="현재페이지" class="active fontcolor_print">1.장바구니</span> <span>2.결제</span>
 						<span>3.주문완료</span>
 					</div>
-				</div>
-				<table class="box1" cellspacing="0" cellpadding="0">
+				</div>				
 					<c:choose>
 						<c:when test="${fn:length(list) != 0}">
+						<table class="box1" cellspacing="0" cellpadding="0">
 							<thead>
 								<tr class="titlebox">
 									<td class="check"><input type="checkbox" value="전체선택"
 										id="all" onclick="checkAll()"></td>
-									<br>
 									<td class="img">이미지&nbsp;&nbsp;</td>
 									<td class="price">가격&nbsp;&nbsp;</td>
 									<td class="p_name">상품이름&nbsp;&nbsp;</td>
@@ -169,19 +168,18 @@ td {
 							<tbody class="infobox">
 								<c:forEach var="vo" items="${list }">
 									<tr>
-										<td class="check"></td>
+										<td class="check">
 										<input type="checkbox" name="product">
 										</td>
-										<td class="img"></td>
+										<td class="img">
 										<img src="">&nbsp;&nbsp;</td>
-										<td class="price"></td>${vo.pPrice }&nbsp;&nbsp;</td>
-										<td class="p_name"></td>${vo.pName }&nbsp;&nbsp;</td>
-										<td class="bt"><a
-											href="<%=request.getContextPath()%>/delete?id=${vo.cCartNum}">삭제</td>
+										<td class="price">${vo.pPrice }&nbsp;&nbsp;</td>
+										<td class="p_name">${vo.pName }&nbsp;&nbsp;</td>
+										<td class="bt"><a href="<%=request.getContextPath()%>/delete?cCartNum=${vo.cCartNum}">삭제</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
-				</table>
+					</table>
 				</c:when>
 				<c:otherwise>
 					<div class="">
@@ -193,12 +191,12 @@ td {
 				<br>
 				<div class="button_box">
 					<div class="p_all_bt">
-						<a class="aa" href="#" onclick="allbasket" id="a1"
+						<a class="aa" href="${cp }/ORDER/MyOrder.jsp"onclick="allbasket" id="a1"
 							style="margin: 0 auto"> <span>전체상품 주문</span>
 						</a>
 					</div>
 					<div class="p_bt">
-						<a class="aa" href="#" onclick="selectbasket"
+						<a class="aa" href="${cp }/ORDER/MyOrder.jsp" onclick="selectbasket"
 							style="margin: 0 auto"> <span>선택상품 주문</span>
 						</a>
 					</div>
