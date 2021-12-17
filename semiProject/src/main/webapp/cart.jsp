@@ -152,9 +152,9 @@ td {
 						<span>3.주문완료</span>
 					</div>
 				</div>
-				<c:choose>
-					<c:when test="${fn:length(list) != 0}">
-						<table class="box1" cellspacing="0" cellpadding="0">
+				<table class="box1" cellspacing="0" cellpadding="0">
+					<c:choose>
+						<c:when test="${fn:length(list) != 0}">
 							<thead>
 								<tr class="titlebox">
 									<td class="check"><input type="checkbox" value="전체선택"
@@ -173,22 +173,22 @@ td {
 										<input type="checkbox" name="product">
 										</td>
 										<td class="img"></td>
-										<img src="">&nbsp;&nbsp;
-										</td>
+										<img src="">&nbsp;&nbsp;</td>
 										<td class="price"></td>${vo.pPrice }&nbsp;&nbsp;</td>
 										<td class="p_name"></td>${vo.pName }&nbsp;&nbsp;</td>
-										<td class="bt"><a href="delete?id=${vo.cCartNum}">삭제</td>
+										<td class="bt"><a
+											href="<%=request.getContextPath()%>/delete?id=${vo.cCartNum}">삭제</td>
 									</tr>
 								</c:forEach>
 							</tbody>
-						</table>
-					</c:when>
-					<c:otherwise>
-						<div class="">
-							<p>장바구니가 비어 있습니다.</p>
-							<br>
-						</div>
-					</c:otherwise>
+				</table>
+				</c:when>
+				<c:otherwise>
+					<div class="">
+						<p>장바구니가 비어 있습니다.</p>
+						<br>
+					</div>
+				</c:otherwise>
 				</c:choose>
 				<br>
 				<div class="button_box">
