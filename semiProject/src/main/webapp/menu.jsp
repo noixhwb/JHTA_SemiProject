@@ -6,7 +6,7 @@
 <c:when test="${sessionScope.aid eq null}">
 
 	<ul>
-		<li><a href="">best</a></li>
+		<li><a href="<%=request.getContextPath()%>/Home?spage=/product/list">best</a></li>
 
 		<li><a href="">상의</a>
 			<ul class="sub">

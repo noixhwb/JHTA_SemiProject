@@ -2,9 +2,12 @@ package test.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import db.JdbcUtil;
+import test.vo.ProductVo;
 import test.vo.ProimageVo;
 
 public class ProimageDao {
@@ -37,8 +40,33 @@ public class ProimageDao {
 			JdbcUtil.close(con,pstmt,null);
 		}
 	}
-	//이미지 가져오기
+	//상품넘버로 대표이미지 가져오기
+	public String selectimage(int pnum)
+	{
 
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select pifilename from proimage where pnum=? and imgtype=1";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, pnum);
+			rs=pstmt.executeQuery();
+			rs.next();
+			String filename=rs.getString("pifilename");
+	
+			return filename;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
 	
 	
 }

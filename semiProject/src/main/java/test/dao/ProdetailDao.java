@@ -40,4 +40,5 @@ public class ProdetailDao {
 			JdbcUtil.close(con,pstmt,null);
 		}
 	}
+	//셀렉트ALL
 }
