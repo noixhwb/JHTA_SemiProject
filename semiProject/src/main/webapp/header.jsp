@@ -19,14 +19,16 @@
 	<ul>
 		<li><a href="cart"><img src="<%=request.getContextPath()%>/images/3.png" width="25" height="25"></a></li>
 		<li><a href="<%=request.getContextPath()%>/Home?spage=loginForm.jsp">Login</a></li>
-		<li><a href="<%=request.getContextPath()%>/Home?spage=loginForm.jsp">마이페이지</a></li>
+		<li><a href="<%=request.getContextPath()%>/Home?spage=/myshop/index">마이페이지</a></li>
 		<li><a href="<%=request.getContextPath()%>/Home?spage=/member/join.jsp">회원가입</a></li>
 	</ul>
 </div>
 </c:when>
 
 
+
 <c:when test="${sessionScope.mid ne null && sessionScope.aid eq null }">
+
 <div id="headerMenu">
 	<ul>
 		<li><a href="">NEW</a></li>

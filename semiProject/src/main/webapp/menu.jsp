@@ -6,7 +6,7 @@
 <c:when test="${sessionScope.aid eq null}">
 
 	<ul>
-		<li><a href="">best</a></li>
+		<li><a href="<%=request.getContextPath()%>/Home?spage=/product/list">best</a></li>
 
 		<li><a href="">상의</a>
 			<ul class="sub">
@@ -15,13 +15,13 @@
 			</ul></li>
 		<li><a href="">하의</a>
 			<ul class="sub">
-				<li><a href="">니트</a></li>
-				<li><a href="">티셔츠</a></li>
+				<li><a href="">슬랙스</a></li>
+				<li><a href="">트레이닝</a></li>
 			</ul></li>
 		<li><a href="">아우터</a>
 			<ul class="sub">
-				<li><a href="">니트</a></li>
-				<li><a href="">티셔츠</a></li>
+				<li><a href="">가디건</a></li>
+				<li><a href="">코트</a></li>
 			</ul></li>
 	</ul>
 </c:when>
@@ -29,8 +29,9 @@
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/admin/list">관리자 관리</a></li>
         <li><a href="">사용자 관리</a></li>
-        <li><a href="<%=request.getContextPath()%>/admin/order">주문관리</a></li>
-		<li><a href="">상품등록</a></li>
+        <li><a href="">주문관리</a></li>
+		<li><a href="<%=request.getContextPath()%>/Home?spage=/admin/productInsert.jsp">상품 관리</a></li>
+
 	</ul>
 </c:otherwise>
 </c:choose>
