@@ -26,7 +26,8 @@ public class ReviewUpdateController extends HttpServlet{
 		
 		RevDao dao=new RevDao();
 		RevVo vo = dao.selecting(coNum);
-		
+		req.setAttribute("vo", vo);
+		System.out.println("@@@@"+vo);
 		String spage=req.getParameter("spage");
 		if(spage==null)
 		{
@@ -40,7 +41,7 @@ public class ReviewUpdateController extends HttpServlet{
 			req.getRequestDispatcher("/REVIEW/Result.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("vo", vo);
-			req.setAttribute("main", "/REVIEW/ReviewUpdateForm.jsp?coNum="+coNum);
+			req.setAttribute("main", "/REVIEW/ReviewUpdateForm.jsp");
 		}
 		req.setAttribute("footer", "footer.jsp");
 		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
@@ -52,17 +53,19 @@ public class ReviewUpdateController extends HttpServlet{
 		String pName = req.getParameter("pName");
 		String proSize = req.getParameter("proSize");
 		int pdNum = Integer.parseInt(req.getParameter("pdNum"));
+		String piFileName = req.getParameter("piFileName");
 		int coNum = Integer.parseInt(req.getParameter("coNum"));
 		int odNum = Integer.parseInt(req.getParameter("odNum"));
 		String cScore = req.getParameter("cScore");
 		String content = req.getParameter("content");
 		String mid = req.getParameter("mid");
 		
+		
 		//ReviewVo vo=new ReviewVo(coNum, odNum, cScore, content, mid, null);
 		//ReviewDao dao=new ReviewDao();
 		//int n = dao.update(vo);
 		
-		RevVo vo=new RevVo(pName, proSize, pdNum, coNum, odNum, cScore, content, mid, null);
+		RevVo vo=new RevVo(pName, proSize, pdNum, piFileName, coNum, odNum, cScore, content, mid, null);
 		RevDao dao=new RevDao();
 		int n = dao.updating(vo);
 		

@@ -6,6 +6,7 @@ public class RevVo {
 	private String pName;
 	private String proSize;
 	private int pdNum;
+	private String piFileName;
 	private int coNum;
 	private int odNum;
 	private String cScore;
@@ -13,12 +14,13 @@ public class RevVo {
 	private String mid;
 	private Date cDate;
 	
-	public RevVo(String pName, String proSize, int pdNum, int coNum, int odNum, String cScore, String content,
+	public RevVo(String pName, String proSize, int pdNum, String piFileName, int coNum, int odNum, String cScore, String content,
 			String mid, Date cDate) {
 		super();
 		this.pName = pName;
 		this.proSize = proSize;
 		this.pdNum = pdNum;
+		this.piFileName = piFileName;
 		this.coNum = coNum;
 		this.odNum = odNum;
 		this.cScore = cScore;
@@ -26,6 +28,9 @@ public class RevVo {
 		this.mid = mid;
 		this.cDate = cDate;
 	}
+	
+	
+	
 	public String getpName() {
 		return pName;
 	}
@@ -80,6 +85,20 @@ public class RevVo {
 	public void setcDate(Date cDate) {
 		this.cDate = cDate;
 	}
-	
-	
+	public String getPiFileName() {
+		return piFileName;
+	}
+	public void setPiFileName(String piFileName) {
+		this.piFileName = piFileName;
+	}
+
+
+/*
+	@Override
+	public String toString() {
+		return "RevVo [pName=" + pName + ", proSize=" + proSize + ", pdNum=" + pdNum + ", piFileName=" + piFileName
+				+ ", coNum=" + coNum + ", odNum=" + odNum + ", cScore=" + cScore + ", content=" + content + ", mid="
+				+ mid + ", cDate=" + cDate + "]";
+	}
+*/
 }
