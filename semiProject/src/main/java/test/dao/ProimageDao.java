@@ -66,7 +66,39 @@ public class ProimageDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	//상품넘버로 상세이미지들 가져오기
+	public ArrayList<String> selectimages(int pnum)
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select pifilename from proimage where pnum=? and imgtype=2";
+		ArrayList<String> list=new ArrayList<String>();
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, pnum);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				String filename=rs.getString("pifilename");
+				list.add(filename);
+			}
+			
 	
+			return list;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
+
 	
 	
 }

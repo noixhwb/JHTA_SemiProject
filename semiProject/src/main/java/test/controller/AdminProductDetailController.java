@@ -1,0 +1,42 @@
+package test.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import test.dao.ProdetailDao;
+import test.dao.ProductDao;
+import test.dao.ProimageDao;
+import test.vo.ProductVo;
+import test.vo.prodetailVo;
+@WebServlet("/admin/productdetail")
+public class AdminProductDetailController extends HttpServlet {
+
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		int pnum= Integer.parseInt(req.getParameter("pnum"));
+		//product
+		ProductDao dao=ProductDao.getInstance();
+		ProductVo vo=dao.selectDetail(pnum);
+		//prodetail
+		ProdetailDao pdao=ProdetailDao.getInstance();
+		ArrayList<prodetailVo> list=pdao.selectdetail(pnum);
+		//proimage
+		ProimageDao pidao=ProimageDao.getInstance();
+		String img=pidao.selectimage(pnum);
+		ArrayList<String> imgsList=pidao.selectimages(pnum);
+		
+		req.setAttribute("vo", vo);
+		req.setAttribute("list", list);
+		req.setAttribute("img", img);
+		req.setAttribute("imgsList", imgsList);
+		req.getRequestDispatcher("/Home?spage=/admin/productdetail.jsp").forward(req, resp);
+	}
+
+}

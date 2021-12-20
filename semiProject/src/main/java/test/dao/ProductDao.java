@@ -102,4 +102,40 @@ public class ProductDao {
 		}
 	}
 	
+	
+	public ProductVo selectDetail(int pnum)
+	{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from product where pnum=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, pnum);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				String pname=rs.getString("pname");
+				String pconten=rs.getString("pcontent");
+				int pprice=rs.getInt("pprice");
+				int pbuycount= rs.getInt("pbuycount");
+				String cname=rs.getString("cname");
+				ProductVo vo=new ProductVo(pnum, pname, pconten, pprice, pbuycount, cname);
+				return vo;
+			}
+	
+			return null;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 }
+
+	
+
