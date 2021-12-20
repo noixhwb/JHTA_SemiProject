@@ -29,7 +29,7 @@
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/admin/list">관리자 관리</a></li>
         <li><a href="">사용자 관리</a></li>
-        <li><a href="">주문관리</a></li>
+        <li><a href="<%=request.getContextPath()%>/admin/order">주문관리</a></li>
 		<li><a href="">상품등록</a></li>
 	</ul>
 </c:otherwise>

@@ -80,21 +80,7 @@ public class OrderListDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public int refundCompleted(int odnum) {
-		Connection con =null;
-		PreparedStatement pstmt=null;
-		try {
-			con=JdbcUtil.getCon();
-			pstmt=con.prepareStatement("update orderdetail set dstate=4  where odnum=?");
-			pstmt.setInt(1, odnum);
-			return pstmt.executeUpdate();
-		}catch(SQLException se) {
-			se.printStackTrace();
-			return -1;
-		}finally {
-			JdbcUtil.close(con, pstmt, null);
-		}
-	}
+	
 	public int decideBuy(int odnum) {
 		Connection con =null;
 		PreparedStatement pstmt=null;
