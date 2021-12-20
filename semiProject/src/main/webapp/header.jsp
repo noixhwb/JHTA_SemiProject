@@ -25,9 +25,6 @@
 </div>
 </c:when>
 
-
-
-
 <c:when test="${sessionScope.mid ne null && sessionScope.aid eq null }">
 
 

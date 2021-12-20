@@ -34,7 +34,7 @@
 		#review_content { border: 2px solid grey; padding: 5px;}
 		#review_submit { margin-top: 5px; display:block; }
 		ul{ list-style:none; }
-		span { font-size: 12px; }
+		span { font-size: 12px; text-align: left;}
 		div { text-align: center; }
 		#wrap #mypage_category li{
 			list-style:none; display: inline-block;
@@ -51,17 +51,8 @@
 		#wrap{
 			margin:0px	; padding: 0px; text-align: center;
 		}
-		[type=radio] {
-			position: absolute; opacity: 0; width: 0; height: 0;
-		}
-		[type=radio]+img {
-			cursor:pointer;
-		}
-		[type=radio]:checked+img{
-			outline: 5px solid indigo;
-		}
-		#score{
-			width: 50px; height: 30px;
+		.pdNum {
+			clar: None; border: 0px none; float: none; background-color: transparent;
 		}
 	</style>
 </head>
@@ -78,70 +69,84 @@
 		<div id ="box1">
 			<ul>
 				<li><a href="${cp}/myshop/orderList"><img src="${cp}/images/order.png"><br>주문조회</a></li>
-				<li><a href=""><img src="${cp}/images/member.png"><br>회원정보수정</a></li>
+				<li><a href="${cp}/member/update"><img src="${cp}/images/member.png"><br>회원정보수정</a></li>
 				<li><a href=""><img src="${cp}/images/shopping.png"><br>장바구니</a></li>
 				<li><a href="${cp}/review"><img src="${cp}/images/board.png"><br>리뷰관리</a></li>
 			</ul>
 		</div>
+	</div>
 	<h1 style="text-align: center">리뷰 수정</h1>
 	<form action="${ cp }/reviewUpdate" method="post">
-		<div id="product">
-			<div id="product_pic">
-				<img src="images/hoddy.PNG" style="width: 150px; height: 150px;">
+		<div class="container">
+		<div class="card border-dark mb-3">
+			<h5 class="card-header">리뷰 수정하기</h5>
+			<div class="card-body">
+				<table class="table table-hover">
+				<tbody>
+					<tr>
+						<th>제품정보</th>
+						<td>
+							<img src="imagesPro/${ vo.piFileName }" style="width: 150px; height: 150px;"> <br>
+							제품이름 : ${ vo.pName } <br>
+							제품사이즈 : ${ vo.proSize } <br>
+							제품상세번호 : ${ vo.pdNum } <br>
+							<input type="hidden" class="inv" name="pName" value="${ vo.pName }" readonly="readonly" style="width:30px">
+							<input type="hidden" class="inv" name="proSize" value="${ vo.proSize }" readonly="readonly" style="width:30px">
+							<input type="hidden" class="inv" name="pdNum" value="${ vo.pdNum }" readonly="readonly" style="width:30px">
+						</td>
+					</tr>
+					<tr>
+						<th>리뷰글번호</th>
+						<td>
+							${ vo.coNum } <br>
+							<input type="hidden" class="inv" name="coNum" value="${ vo.coNum }" readonly="readonly">
+						</td>
+					</tr>
+					<tr>
+						<th>주문상세번호</th>
+						<td>
+							${ vo.odNum } <br>
+							<input type="hidden" class="inv" name="odNum" value="${ vo.odNum }" readonly="readonly">
+						</td>
+					</tr>
+					<tr>
+						<th>작성자 아이디</th>
+						<td>
+							${ vo.mid } <br>
+							<input type="hidden" class="inv" name="mid" value="${ vo.mid }" readonly="readonly">
+						</td>
+					</tr>
+					<tr>
+						<th>평점</th>
+						<td>
+							<input type="radio" name="cScore" value="★★★★★">★★★★★
+							<input type="radio" name="cScore" value="★★★★">★★★★
+							<input type="radio" name="cScore" value="★★★">★★★
+							<input type="radio" name="cScore" value="★★">★★
+							<input type="radio" name="cScore" value="★">★
+						</td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td>
+							<span>*30자 이내로 작성해주세요</span> <br>
+							<input type="text" name="content" 
+								   style="width: 400px; height: 20px; text-align: left;"
+								   value="${ requestScope.vo.content }">
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			</div>
 		</div>
+		</div>
+		<div id="product">
+			
+		</div>
 		<div id="cust_estm">
-			<table>
-				<tr>
-					<th>제품정보</th>
-					<td>
-						<input type="text" name="pName" value="${ vo.pName }" readonly="readonly" style="width:30px">
-						<input type="text" name="proSize" value="${ vo.proSize }" readonly="readonly" style="width:30px">
-						<input type="text" name="pdNum" value="${ vo.pdNum }" readonly="readonly" style="width:30px">
-					</td>
-				</tr>
-				<tr>
-					<th>리뷰글번호</th>
-					<td>
-						<input type="text" name="coNum" value="${ vo.coNum }" readonly="readonly">
-					</td>
-				</tr>
-				<tr>
-					<th>주문상세번호</th>
-					<td>
-						<input type="text" name="odNum" value="${ vo.odNum }" readonly="readonly">
-					</td>
-				</tr>
-				<tr>
-					<th>작성자 아이디</th>
-					<td>
-						<input type="text" name="mid" value="${ vo.mid }" readonly="readonly">
-					</td>
-				</tr>
-				<tr>
-					<th>평점</th> 
-					<td>
-						<input type="radio" name="cScore" value="★★★★★">★★★★★
-						<input type="radio" name="cScore" value="★★★★">★★★★
-						<input type="radio" name="cScore" value="★★★">★★★
-						<input type="radio" name="cScore" value="★★">★★
-						<input type="radio" name="cScore" value="★">★
-					</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td>
-						<span>*30자 이내로 작성해주세요</span> <br>
-						<input type="text" name="content" 
-							   style="width: 400px; height: 20px; text-align: left;"
-							   value="${ requestScope.vo.content }">
-					</td>
-				</tr>
-				
-			</table>
+			
 			<input type="submit" value="리뷰수정">
 		</div>
 	</form>
-	</div>
 </body>
 </html>

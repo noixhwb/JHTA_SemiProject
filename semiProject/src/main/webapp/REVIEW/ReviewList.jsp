@@ -15,8 +15,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>마이리뷰목록.jsp</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<style>
 		* { margin:auto; }
+		<%--
 		h1 {
 		    font-size: 30px;
 		 	text-align: center;
@@ -33,6 +35,7 @@
 		    border-bottom: 1px solid #444444;
 		    padding: 10px;
 		}
+		--%>
 		#wrap #mypage_category li{
 			list-style:none; display: inline-block;
 		}
@@ -50,6 +53,7 @@
 		}
 	</style>
 </head>
+
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 	<div id="wrap">
@@ -63,40 +67,46 @@
 		<div id ="box1">
 			<ul>
 				<li><a href="${cp}/myshop/orderList"><img src="${cp}/images/order.png"><br>주문조회</a></li>
-				<li><a href=""><img src="${cp}/images/member.png"><br>회원정보수정</a></li>
+				<li><a href="${cp}/member/update"><img src="${cp}/images/member.png"><br>회원정보수정</a></li>
 				<li><a href=""><img src="${cp}/images/shopping.png"><br>장바구니</a></li>
 				<li><a href="${cp}/review"><img src="${cp}/images/board.png"><br>리뷰관리</a></li>
 			</ul>
 		</div>
-	<h1>마이 리뷰 목록</h1>
-	<table border="1">
-		<tr>
-			<th>리뷰글번호</th>
-			<th>주문번호</th>
-			<!-- <th>상품명</th> -->
-			<th>평점</th>
-			<th>내용</th>
-			<!-- <th>작성자(아이디)</th> -->
-			<th>작성일</th>
-			<th>상세보기</th>
-			<th>수정</th>
-			<th>삭제</th>
-		</tr>
+	</div>
+	<h1 class="display-6"><strong>마이 리뷰 목록</strong></h1>
+	
+	<div class="container">
+	<table class="table table-hover w-auto">
+		<thead>
+			<tr class="table-secondary">
+				<th scope="col">리뷰글번호</th>
+				<th scope="col">주문번호</th>
+				<!-- <th>상품명</th> -->
+				<th scope="col">평점</th>
+				<th scope="col">내용</th>
+				<th scope="col">작성일</th>
+				<th scope="col">상세보기</th>
+				<th scope="col">수정</th>
+				<th scope="col">삭제</th>
+			</tr>
+		</thead>
+		<tbody>
 		<c:forEach var="vo" items="${ list }">
 			<tr>
-				<td>${ vo.coNum }</td>
-				<td>${ vo.odNum }</td>
+				<td scope="row">${ vo.coNum }</td>
+				<td scope="row">${ vo.odNum }</td>
 				<%-- 상품명없음 --%>
-				<td>${ vo.cScore }</td>
-				<td>${ vo.content }</td>
-				<%-- 아이디안보임 --%>
-				<td>${ vo.cDate }</td>
-				<td><a href="${ cp }/reviewDetail?coNum=${ vo.coNum }">상세보기</a></td>
-				<td><a href="${ cp }/reviewUpdate?coNum=${ vo.coNum }">수정</a></td>
-				<td><a href="${ cp }/reviewDelete?coNum=${ vo.coNum }">삭제</a></td>
+				<td scope="row">${ vo.cScore }</td>
+				<td scope="row">${ vo.content }</td>
+				<td scope="row">${ vo.cDate }</td>
+				<td scope="row"><a href="${ cp }/reviewDetail?coNum=${ vo.coNum }">상세보기</a></td>
+				<td scope="row"><a href="${ cp }/reviewUpdate?coNum=${ vo.coNum }">수정</a></td>
+				<td scope="row"><a href="${ cp }/reviewDelete?coNum=${ vo.coNum }">삭제</a></td>
 			</tr>
 		</c:forEach>
+		</tbody>
 	</table>
 	</div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
