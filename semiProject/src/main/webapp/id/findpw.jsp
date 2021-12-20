@@ -7,6 +7,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#wrap{
+		margin:0px	;
+		padding: 0px;
+	}
+#mypage_category{
+		margin-left: 30px;
+		margin-bottom: 70px;
+	}
+#wrap #box1{
+		 
+		 text-align: center;
+		 display: inline-block; 
+		 padding-bottom: 20px;
+		 margin-left: 35%;
+	}	
+	table,tr,th,td{
+	}
+	th{
+	width:150px; height:50px;
+	text-align: left;
+	}
+	#box2{
+	border: 1px solid black; border-collapse: collapse;
+	width:530px; height: 100px;
+	text-align: center;
+	margin-left: 35%;
+	}
+	.btn1{
+		background-color: black;
+			padding: 15px 120px;
+			margin: 2px;
+			border: none;
+			color: white;
+			text-align: right;
+			font-size: 16px;
+			display: inline-block;
+			cursor: pointer;
+			margin-left: 35%;
+	}
+	
+</style>
 <script type="text/javascript">
 	var xhr=null;
 	function findPwd(){
@@ -35,11 +77,30 @@
 </script>
 </head>
 <body>
-<h1>비밀번호찾기</h1>
-아이디입력 <input type="text" id="mid"><br>
-휴대폰번호입력 <input type="text" id="mphone">
-<input type="submit" value="찾기" maxlength="11" onclick="findPwd()">
-<div id="result">
+<div id="wrap">
+
+	<div id="mypage_category">
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/Home">Home</a> > 비밀번호 찾기</li>
+		</ul>
+		<br>
+	<h3>비밀번호찾기</h3>
+	</div>
+	
+	<div id="box2"><div id="result"></div></div>
+	<div id="box1">
+		<table>
+			<tr>
+				<th>아이디입력</th>
+				<td><input type="text" id="mid"></td>
+			</tr>
+			<tr>
+				<th>휴대폰번호입력</th>
+				<td><input type="text" id="mphone"></td>
+			</tr>
+		</table>
+		<input type="submit" value="찾기" class="btn1"  maxlength="11" onclick="findPwd()">
+	</div>
 </div>
 </body>
 </html>
