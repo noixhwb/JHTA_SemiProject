@@ -129,6 +129,8 @@ td {
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/common.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -145,7 +147,7 @@ td {
 			<div class="main_box">
 				<div class="titleArea">
 					<div>
-						<a href="${cp }/Home" id="a1">home</a> <span>></span> <span>장바구니</span>
+						<a href="${cp }/Home" id="a1">Home</a> <span>></span> <span>장바구니</span>
 					</div>
 					<div class="orderStep">
 						<span title="현재페이지" class="active fontcolor_print">1.장바구니</span> <span>2.결제</span>
@@ -154,32 +156,36 @@ td {
 				</div>				
 					<c:choose>
 						<c:when test="${fn:length(list) != 0}">
-						<table class="box1" cellspacing="0" cellpadding="0">
-							<thead>
-								<tr class="titlebox">
-									<td class="check"><input type="checkbox" value="전체선택"
-										id="all" onclick="checkAll()"></td>
-									<td class="img">이미지&nbsp;&nbsp;</td>
-									<td class="price">가격&nbsp;&nbsp;</td>
-									<td class="p_name">상품이름&nbsp;&nbsp;</td>
-									<td class="bt">삭제버튼&nbsp;&nbsp;</td>
-								</tr>
-							</thead>
-							<tbody class="infobox">
-								<c:forEach var="vo" items="${list }">
-									<tr>
-										<td class="check">
-										<input type="checkbox" name="product">
-										</td>
-										<td class="img">
-										<img src="">&nbsp;&nbsp;</td>
-										<td class="price">${vo.pPrice }&nbsp;&nbsp;</td>
-										<td class="p_name">${vo.pName }&nbsp;&nbsp;</td>
-										<td class="bt"><a href="<%=request.getContextPath()%>/delete?cCartNum=${vo.cCartNum}">삭제</a></td>
+						<form action="${cp }/MyOrder" method="post" id="orderFrm">
+							<table class="box1" cellspacing="0" cellpadding="0">
+								<thead>
+									<tr class="titlebox">
+										<td class="check"><input type="checkbox" value="전체선택" id="all" onclick="checkAll()"></td>
+										<td class="img">이미지&nbsp;&nbsp;</td>
+										<td class="p_name">상품이름&nbsp;&nbsp;</td>
+										<td class="price">가격&nbsp;&nbsp;</td>
+										<td class="price">수량&nbsp;&nbsp;</td>
+										<td class="bt">삭제버튼&nbsp;&nbsp;</td>
 									</tr>
-								</c:forEach>
-							</tbody>
-					</table>
+								</thead>
+								<tbody class="infobox">
+									<c:forEach var="vo" items="${list }">
+										<tr>
+											<td class="check">
+											<input type="checkbox" name="product" value="${vo.cCartNum }">
+											</td>
+											<td class="img">
+											<img src="imagesPro/가디건/111.jpg.jpg" style="width: 200px; height: 200px;">&nbsp;&nbsp;
+											</td>
+											<td class="p_name">${vo.pName }&nbsp;&nbsp;</td>
+											<td class="price">${vo.pPrice }&nbsp;&nbsp;</td>
+											<td class="price"><input type="number"></td>
+											<td class="bt"><a href="<%=request.getContextPath()%>/delete?cCartNum=${vo.cCartNum}">삭제</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+						</table>
+					</form>
 				</c:when>
 				<c:otherwise>
 					<div class="">
@@ -191,12 +197,12 @@ td {
 				<br>
 				<div class="button_box">
 					<div class="p_all_bt">
-						<a class="aa" href="${cp }/ORDER/MyOrder.jsp"onclick="allbasket" id="a1"
+						<a class="aa" onclick="allbasket()" id="a1"
 							style="margin: 0 auto"> <span>전체상품 주문</span>
 						</a>
 					</div>
 					<div class="p_bt">
-						<a class="aa" href="${cp }/ORDER/MyOrder.jsp" onclick="selectbasket"
+						<a class="aa" onclick="selectbasket()"
 							style="margin: 0 auto"> <span>선택상품 주문</span>
 						</a>
 					</div>
@@ -214,6 +220,15 @@ td {
 				for (var i = 0; i < 10; i++)
 					document.getElementsByName("product")[i].checked = false;
 			}
+		}
+		
+		function allbasket() {
+			$("input:checkbox[name='product']").prop("checked", true);
+			$("#orderFrm").submit();
+		}
+		
+		function selectbasket() {
+			$("#orderFrm").submit();
 		}
 	</script>
 </body>
