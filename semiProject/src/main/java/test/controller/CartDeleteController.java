@@ -13,7 +13,7 @@ import test.dao.CartDao;
 public class CartDeleteController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id=req.getParameter("mId");
+		String id=req.getParameter("cCartNum");
 		CartDao dao=new CartDao();
 		int n=dao.delete(id);
 		if(n>0) {

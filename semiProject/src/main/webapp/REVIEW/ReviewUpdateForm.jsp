@@ -51,6 +51,18 @@
 		#wrap{
 			margin:0px	; padding: 0px; text-align: center;
 		}
+		[type=radio] {
+			position: absolute; opacity: 0; width: 0; height: 0;
+		}
+		[type=radio]+img {
+			cursor:pointer;
+		}
+		[type=radio]:checked+img{
+			outline: 5px solid indigo;
+		}
+		#score{
+			width: 50px; height: 30px;
+		}
 	</style>
 </head>
 <body>
@@ -72,23 +84,42 @@
 			</ul>
 		</div>
 	<h1 style="text-align: center">리뷰 수정</h1>
-	<form action="${ pageContext.request.contextPath }/reviewUpdate" method="post">
+	<form action="${ cp }/reviewUpdate" method="post">
 		<div id="product">
 			<div id="product_pic">
 				<img src="images/hoddy.PNG" style="width: 150px; height: 150px;">
-			</div>
-			<div id="product_detail">
-				<ul>
-					<li>주문상세번호 :</li>
-					<li>제품명</li>
-					<li>사이즈</li>
-				</ul>
 			</div>
 		</div>
 		<div id="cust_estm">
 			<table>
 				<tr>
-					<th>평점</th>
+					<th>제품정보</th>
+					<td>
+						<input type="text" name="pName" value="${ vo.pName }" readonly="readonly" style="width:30px">
+						<input type="text" name="proSize" value="${ vo.proSize }" readonly="readonly" style="width:30px">
+						<input type="text" name="pdNum" value="${ vo.pdNum }" readonly="readonly" style="width:30px">
+					</td>
+				</tr>
+				<tr>
+					<th>리뷰글번호</th>
+					<td>
+						<input type="text" name="coNum" value="${ vo.coNum }" readonly="readonly">
+					</td>
+				</tr>
+				<tr>
+					<th>주문상세번호</th>
+					<td>
+						<input type="text" name="odNum" value="${ vo.odNum }" readonly="readonly">
+					</td>
+				</tr>
+				<tr>
+					<th>작성자 아이디</th>
+					<td>
+						<input type="text" name="mid" value="${ vo.mid }" readonly="readonly">
+					</td>
+				</tr>
+				<tr>
+					<th>평점</th> 
 					<td>
 						<input type="radio" name="cScore" value="★★★★★">★★★★★
 						<input type="radio" name="cScore" value="★★★★">★★★★
@@ -106,24 +137,7 @@
 							   value="${ requestScope.vo.content }">
 					</td>
 				</tr>
-				<tr>
-					<th>리뷰글번호</th>
-					<td>
-						<span>${ vo.coNum }</span>
-					</td>
-				</tr>
-				<tr>
-					<th>주문상세번호</th>
-					<td>
-						<span>${ vo.odNum }</span>
-					</td>
-				</tr>
-				<tr>
-					<th>아이디</th>
-					<td>
-						<span>${ vo.mid }</span>
-					</td>
-				</tr>
+				
 			</table>
 			<input type="submit" value="리뷰수정">
 		</div>
