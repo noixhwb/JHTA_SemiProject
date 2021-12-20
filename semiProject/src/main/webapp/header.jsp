@@ -26,15 +26,9 @@
 </c:when>
 
 
-<<<<<<< HEAD
-<c:when test="${sessionScope.mid ne null && sessionScope.aid eq null }">
-=======
-
-
 
 <c:when test="${sessionScope.mid ne null && sessionScope.aid eq null }">
 
->>>>>>> branch 'master' of https://github.com/Eunjung0404/semiProject.git
 <div id="headerMenu">
 	<ul>
 		<li><a href="">NEW</a></li>
