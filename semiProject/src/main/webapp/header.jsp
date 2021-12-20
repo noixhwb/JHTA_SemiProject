@@ -26,7 +26,11 @@
 </c:when>
 
 
+
+
+
 <c:when test="${sessionScope.mid ne null && sessionScope.aid eq null }">
+
 <div id="headerMenu">
 	<ul>
 		<li><a href="">NEW</a></li>
