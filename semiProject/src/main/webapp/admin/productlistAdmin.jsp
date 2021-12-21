@@ -37,7 +37,7 @@ border-bottom: 3px solid #168;
 
 <tr>
 <td>${vo.pNum }</td>
-<td><a href="${cp }/admin/productdetail?pnum=${vo.pNum }">${vo.pName }</a></td>
+<td><a href="${cp }/admin/productdetail?pnum=${vo.pNum }&page=admin">${vo.pName }</a></td>
 
 </tr>
 
