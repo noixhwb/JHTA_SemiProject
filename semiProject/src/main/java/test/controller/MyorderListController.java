@@ -42,10 +42,10 @@ public class MyorderListController extends HttpServlet {
 		MemberVo del = mdao.select((String)req.getSession().getAttribute("mid"));
 		req.setAttribute("del", del);
 		
-		req.setAttribute("main", "/ORDER/MyOrderForm.jsp");
-		req.setAttribute("footer", "/footer.jsp");
-		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
-		//req.getRequestDispatcher("/ORDER/MyOrder.jsp").forward(req, resp);
+		//req.setAttribute("main", "/ORDER/MyOrderForm.jsp");
+		//req.setAttribute("footer", "/footer.jsp");
+		//req.getRequestDispatcher("/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/ORDER/MyOrderForm.jsp").forward(req, resp);
 		
 	}
 }
