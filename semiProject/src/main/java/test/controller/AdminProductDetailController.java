@@ -21,9 +21,11 @@ public class AdminProductDetailController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		int pnum= Integer.parseInt(req.getParameter("pnum"));
+		String page=req.getParameter("page");
 		//product
 		ProductDao dao=ProductDao.getInstance();
 		ProductVo vo=dao.selectDetail(pnum);
+		String price=String.valueOf(vo.getpPrice());
 		//prodetail
 		ProdetailDao pdao=ProdetailDao.getInstance();
 		ArrayList<prodetailVo> list=pdao.selectdetail(pnum);
@@ -36,7 +38,14 @@ public class AdminProductDetailController extends HttpServlet {
 		req.setAttribute("list", list);
 		req.setAttribute("img", img);
 		req.setAttribute("imgsList", imgsList);
-		req.getRequestDispatcher("/Home?spage=/admin/productdetail.jsp").forward(req, resp);
+		if(page.equals("admin"))
+		{
+			req.getRequestDispatcher("/Home?spage=/admin/productdetail.jsp").forward(req, resp);
+		}else
+		{
+			req.getRequestDispatcher("/Home?spage=/product/productDetail.jsp").forward(req, resp);
+		}
+		
 	}
 
 }

@@ -1,4 +1,3 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,6 +8,7 @@ display: grid;
 grid-template-columns: repeat(4, 300px);
 	gap: 10px 50px;
     margin-left: 180px;
+    padding-bottom: 200px
 }
 #img
 {
@@ -29,7 +29,8 @@ margin-top:10px;
   
   <div class="item">
 
-  <img src="<%=request.getContextPath()%>/imagesPro/${listP[i] }" id="img"><br>
+  <a href="<%=request.getContextPath()%>/admin/productdetail?pnum=${list[i].pNum }&page=product">
+  <img src="<%=request.getContextPath()%>/imagesPro/${listP[i] }" id="img"></a><br>
       ${list[i].pName }<br>
        <hr width =100% color="gray" align="left" size=1 id="line">
   ${list[i].pPrice }
