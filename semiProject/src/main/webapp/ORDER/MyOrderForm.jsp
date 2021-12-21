@@ -30,8 +30,7 @@
 		<thead>
 			<tr class="table-secondary">
 				<th scope="col">상품이미지</th>
-				<th scope="col">상품상태</th>
-				<!-- <th>상품명</th> -->
+				<th scope="col">상품정보</th>
 				<th scope="col">상품금액</th>
 				<th scope="col">수량</th>
 				<th scope="col">주문금액</th>
@@ -42,12 +41,11 @@
 			<c:when test="${fn:length(list) != 0}">
 			<c:forEach var="vo" items="${list }">
 			<tr>
-				<td scope="row">이미지</td>
-				<td scope="row">제품명 ${ vo.pName } <br> 사이즈 </td>
-				<%-- 상품명없음 --%>
+				<td scope="row"><img src="/imagesPro/${ vo.piFileName }" class="card-img-top"  style="width: 150px; height: 150px;"> </td>
+				<td scope="row">상품명 ${ vo.pName } <br> 사이즈 ${ vo.proSize }</td>
 				<td scope="row">${ vo.pPrice }원</td>
-				<td scope="row">수량 00</td>
-				<td scope="row">주문금액 00</td>
+				<td scope="row">${ vo.proCount }</td>
+				<td scope="row">${ vo.pPrice }*${vo.proCount }</td>
 			</tr>
 			</c:forEach>
 			</c:when>
