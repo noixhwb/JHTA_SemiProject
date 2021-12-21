@@ -108,7 +108,8 @@
 				  		환불신청중
 				  	</c:when>
 				  	<c:when test="${vo.dstate==7 }">
-				  		구매확정
+				  		구매확정<br>
+				  		<a href="${cp }/reviewWrite?odNum=${vo.odnum}" onclick="return confirm('리뷰하러 가시겠습니까?');">리뷰하러가기</a>
 				  	</c:when>
 			  	</c:choose>
 			  	</th>
@@ -155,6 +156,7 @@
 				  	</c:when>
 				  	<c:when test="${vo2.dstate==7 }">
 				  		구매확정
+				  		<a href="${cp }/reviewWrite?odNum=${vo2.odnum}" onclick="return confirm('리뷰하러 가시겠습니까?');">리뷰하러가기</a>
 				  	</c:when>
 				  	
 			  	</c:choose>

@@ -23,7 +23,6 @@ public class ReviewDao {
 			pstmt.setString(2, vo.getcScore());
 			pstmt.setString(3, vo.getContent());
 			pstmt.setString(4, vo.getMid());
-			pstmt.setDate(5, vo.getcDate());
 			return pstmt.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();

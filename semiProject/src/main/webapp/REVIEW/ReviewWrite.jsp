@@ -62,6 +62,7 @@
 </head>
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
+	<%--
 	<div id="wrap">
 		<div id="mypage_category">
 			<ul>
@@ -79,9 +80,9 @@
 			</ul>
 		</div>
 	</div>
-	
+	 --%>
 	<h1 class="display-6 text-center"><strong>리뷰 작성하기</strong></h1>
-	<form action="${ cp }/reviewUpdate" method="post">
+	<form action="${ cp }/reviewWrite" method="post">
 		<div class="container">
 		<div class="row">
 			<div class="col-6 offset-3">
@@ -105,13 +106,6 @@
 						</td>
 					</tr>
 					<tr>
-						<th>리뷰글번호</th>
-						<td colspan="2">
-							${ vo.coNum } <br>
-							<input type="hidden" class="inv" name="coNum" value="${ vo.coNum }" readonly="readonly">
-						</td>
-					</tr>
-					<tr>
 						<th>주문상세번호</th>
 						<td colspan="2">
 							${ vo.odNum } <br>
@@ -121,8 +115,8 @@
 					<tr>
 						<th>작성자 아이디</th>
 						<td colspan="2">
-							${ vo.mid } <br>
-							<input type="hidden" class="inv" name="mid" value="${ vo.mid }" readonly="readonly">
+							${ sessionScope.mid } <br>
+							<input type="hidden" class="inv" name="mid" value="${ sessionScope.mid }" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
@@ -154,7 +148,7 @@
 			
 		</div>
 		<div id="cust_estm">
-			<input type="submit" value="리뷰수정">
+			<input type="submit" value="리뷰작성">
 		</div>
 	</form>
 </body>
