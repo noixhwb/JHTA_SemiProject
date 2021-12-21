@@ -50,10 +50,10 @@ public class ReviewUpdateController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String pName = req.getParameter("pName");
-		String proSize = req.getParameter("proSize");
-		int pdNum = Integer.parseInt(req.getParameter("pdNum"));
-		String piFileName = req.getParameter("piFileName");
+		//String pName = req.getParameter("pName");
+		//String proSize = req.getParameter("proSize");
+		//int pdNum = Integer.parseInt(req.getParameter("pdNum"));
+		//String piFileName = req.getParameter("piFileName");
 		int coNum = Integer.parseInt(req.getParameter("coNum"));
 		int odNum = Integer.parseInt(req.getParameter("odNum"));
 		String cScore = req.getParameter("cScore");
@@ -61,13 +61,13 @@ public class ReviewUpdateController extends HttpServlet{
 		String mid = req.getParameter("mid");
 		
 		
-		//ReviewVo vo=new ReviewVo(coNum, odNum, cScore, content, mid, null);
-		//ReviewDao dao=new ReviewDao();
-		//int n = dao.update(vo);
+		ReviewVo vo=new ReviewVo(coNum, odNum, cScore, content, mid, null);
+		ReviewDao dao=new ReviewDao();
+		int n = dao.update(vo);
 		
-		RevVo vo=new RevVo(pName, proSize, pdNum, piFileName, coNum, odNum, cScore, content, mid, null);
-		RevDao dao=new RevDao();
-		int n = dao.updating(vo);
+		//RevVo vo=new RevVo(pName, proSize, pdNum, piFileName, coNum, odNum, cScore, content, mid, null);
+		//RevDao dao=new RevDao();
+		//int n = dao.updating(vo);
 		
 		if (n>0) {
 			resp.sendRedirect(req.getContextPath()+"/review");

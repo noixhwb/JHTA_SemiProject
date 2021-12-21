@@ -12,6 +12,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>리뷰삭제하기.jsp</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<style>
 		#wrap #mypage_category li{
 			list-style:none; display: inline-block;
@@ -48,24 +49,33 @@
 				<li><a href="${cp}/review"><img src="${cp}/images/board.png"><br>리뷰관리</a></li>
 			</ul>
 		</div>
-	<%
-		request.setCharacterEncoding("UTF-8");
-		int coNum = Integer.parseInt(request.getParameter("coNum"));
-		
-		int n =new ReviewDao().delete(coNum);
-		
-		if (n > 0) {
-			out.print("<h1>삭제 완료!</h1>");
-			//RequestDispatcher rd = request.getRequestDispatcher("/review");
-			//rd.forward(request, response);
-			response.sendRedirect("/review");
-		} else {
-			out.print("<h1>삭제 실패!</h1>");
-		%>
 	<a href="${ cp }/review">마이리뷰목록 돌아가기</a>
-		<%
-		}
-	%>
+	
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	  삭제
+	</button>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">게시물 삭제</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        게시물을 정말 삭제하시겠습니까?
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn btn-primary">삭제하기</button>
+	       	<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 </body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>

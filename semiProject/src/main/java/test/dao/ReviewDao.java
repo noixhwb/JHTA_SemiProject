@@ -145,7 +145,7 @@ public class ReviewDao {
 	public int update(ReviewVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		String sql = "UPDATE COMMENTS_S SET CSCORE=?, CONTENT=? WHERE coNum=?";
+		String sql = "UPDATE COMMENTS_S SET CSCORE=?, CONTENT=?, CDATE=SYSDATE WHERE coNum=?";
 		
 		try {
 			con = JdbcUtil.getCon();

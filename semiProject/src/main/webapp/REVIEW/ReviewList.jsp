@@ -79,9 +79,9 @@
 	<table class="table table-hover w-auto">
 		<thead>
 			<tr class="table-secondary">
-				<th scope="col">리뷰글번호</th>
+				<%--<th scope="col">리뷰글번호</th> --%>
 				<th scope="col">주문번호</th>
-				<!-- <th>상품명</th> -->
+				<th scope="col">상품명</th>
 				<th scope="col">평점</th>
 				<th scope="col">내용</th>
 				<th scope="col">작성일</th>
@@ -93,9 +93,9 @@
 		<tbody>
 		<c:forEach var="vo" items="${ list }">
 			<tr>
-				<td scope="row">${ vo.coNum }</td>
+				<%--<td scope="row">${ vo.coNum }</td> --%>
 				<td scope="row">${ vo.odNum }</td>
-				<%-- 상품명없음 --%>
+				<td scope="row">${ vo.pName }</td>
 				<td scope="row">${ vo.cScore }</td>
 				<td scope="row">${ vo.content }</td>
 				<td scope="row">${ vo.cDate }</td>
@@ -108,5 +108,5 @@
 	</table>
 	</div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
