@@ -20,8 +20,8 @@ public class MyorderListController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setAttribute("header", "/header.jsp");
-		req.setAttribute("footer", "/footer.jsp");
-		System.out.println("test");
+		//req.setAttribute("footer", "/footer.jsp");
+		//System.out.println("test");
 		
 		//상품리스트
 		req.setAttribute("product", req.getParameterValues("product"));
@@ -34,8 +34,10 @@ public class MyorderListController extends HttpServlet {
 		MemberVo del = mdao.select((String)req.getSession().getAttribute("mid"));
 		req.setAttribute("del", del);
 		
-		
-		req.getRequestDispatcher("/ORDER/MyOrder.jsp").forward(req, resp);
+		req.setAttribute("main", "/ORDER/MyOrderForm.jsp");
+		req.setAttribute("footer", "/footer.jsp");
+		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
+		//req.getRequestDispatcher("/ORDER/MyOrder.jsp").forward(req, resp);
 		
 	}
 }
