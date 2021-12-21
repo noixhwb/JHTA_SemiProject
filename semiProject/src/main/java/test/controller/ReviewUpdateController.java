@@ -27,24 +27,16 @@ public class ReviewUpdateController extends HttpServlet{
 		RevDao dao=new RevDao();
 		RevVo vo = dao.selecting(coNum);
 		req.setAttribute("vo", vo);
-		System.out.println("@@@@"+vo);
-		String spage=req.getParameter("spage");
-		if(spage==null)
-		{
-			spage="home.jsp";
-		}
 		
 		req.setAttribute("header", "header.jsp");
 		req.setAttribute("menu", "menu.jsp");
 		if (vo == null) {
 			req.setAttribute("result", "fail");
-			req.getRequestDispatcher("/REVIEW/Result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Home?spage=/REVIEW/Result.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("vo", vo);
-			req.setAttribute("main", "/REVIEW/ReviewUpdateForm.jsp");
+			req.getRequestDispatcher("/Home?spage=/REVIEW/ReviewUpdateForm.jsp").forward(req, resp);
 		}
-		req.setAttribute("footer", "footer.jsp");
-		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -70,10 +62,11 @@ public class ReviewUpdateController extends HttpServlet{
 		//int n = dao.updating(vo);
 		
 		if (n>0) {
-			resp.sendRedirect(req.getContextPath()+"/review");
+			//resp.sendRedirect(req.getContextPath()+"/review");
+			req.getRequestDispatcher("/Home?spage=/review").forward(req, resp);
 		} else {
 			req.setAttribute("result", "fail");
-			req.getRequestDispatcher("/REVIEW/Result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Home?spage=/REVIEW/Result.jsp").forward(req, resp);
 		}
 	}
 }

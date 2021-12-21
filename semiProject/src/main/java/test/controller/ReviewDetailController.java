@@ -35,8 +35,6 @@ public class ReviewDetailController extends HttpServlet{
 		
 		req.setAttribute("header", "header.jsp");
 		req.setAttribute("menu", "menu.jsp");
-		req.setAttribute("main", "/REVIEW/ReviewDetail.jsp");
-		req.setAttribute("footer", "footer.jsp");
-		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Home?spage=/REVIEW/ReviewDetail.jsp").forward(req, resp);
 	}
 }

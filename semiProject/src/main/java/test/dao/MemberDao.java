@@ -235,4 +235,82 @@ public class MemberDao {
 	}
 	
 	
+	
+	//페이징 전용
+	public int getCount(String field,String keyword) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getCon();
+			String sql="select NVL(count(mid),0) from member_s";
+			if(field!=null && !field.equals("")) {
+				sql += " where "+ field +" like '%"+ keyword + "%'";
+			}
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			return -1;
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}		
+	}
+	public ArrayList<MemberVo> list(int startRow,int endRow,String field,String keyword){
+		String sql="";
+		if(field==null || field.equals("")) { //검색조건이 없는 경우
+				sql= "select * from "
+					+ "("
+					+ "    select aa.*,rownum rnum from"
+					+ "    ("
+					+ "	      select * from member_s "
+					+ "	      order by mid desc"
+					+ "    )aa"
+					+ ")"
+					+ "where rnum>=? and rnum<=?";
+		}else { //검색조건이 있는 경우
+				sql= "select * from "
+					+ "("
+					+ "    select aa.*,rownum rnum from"
+					+ "    ("
+					+ "	      select * from member_s where "+ field  +" like '%"+ keyword +"%'"
+					+ "	      order by mid desc"
+					+ "    )aa"
+					+ ")"
+					+ "where rnum>=? and rnum<=?";
+		}
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs=pstmt.executeQuery();
+			ArrayList<MemberVo> list=new ArrayList<MemberVo>();
+			while(rs.next()) {
+				String mid=rs.getString("mid");
+				String mpwd=rs.getString("mpwd");
+				String mname=rs.getString("mname");
+				String maddr=rs.getString("maddr");
+				String mphone=rs.getString("mphone");
+				int mstate=rs.getInt("mstate");
+				Date regdate=rs.getDate("regdate");
+				
+				MemberVo vo=new MemberVo(mid, mpwd, mname, maddr,mphone,mstate, regdate);
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 }

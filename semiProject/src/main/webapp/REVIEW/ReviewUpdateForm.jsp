@@ -62,6 +62,7 @@
 </head>
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
+	<%--
 	<div id="wrap">
 		<div id="mypage_category">
 			<ul>
@@ -79,7 +80,8 @@
 			</ul>
 		</div>
 	</div>
-	
+	 --%>
+	 
 	<h1 class="display-6 text-center"><strong>마이리뷰 수정하기</strong></h1>
 	<form action="${ cp }/reviewUpdate" method="post">
 		<div class="container">

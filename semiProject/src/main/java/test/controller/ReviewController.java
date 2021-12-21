@@ -28,17 +28,10 @@ public class ReviewController extends HttpServlet{
 		
 		req.setAttribute("list", list);
 		
-		String spage=req.getParameter("spage");
-		if(spage==null)
-		{
-			spage="home.jsp";
-		}
 		
 		req.setAttribute("header", "header.jsp");
 		req.setAttribute("menu", "menu.jsp");
-		req.setAttribute("main", "/REVIEW/ReviewList.jsp");
-		req.setAttribute("footer", "footer.jsp");
-		req.getRequestDispatcher("/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Home?spage=/REVIEW/ReviewList.jsp").forward(req,resp);
 		
 	}
 }
