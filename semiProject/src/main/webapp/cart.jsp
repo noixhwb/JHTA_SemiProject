@@ -175,7 +175,7 @@ td {
 											<input type="checkbox" name="product" value="${vo.cCartNum }">
 											</td>
 											<td class="img">
-											<img src="imagesPro/가디건/111.jpg.jpg" style="width: 200px; height: 200px;">&nbsp;&nbsp;
+											<img src="/images/가디건/111.jpg.jpg" style="width: 200px; height: 200px;">&nbsp;&nbsp;
 											</td>
 											<td class="p_name">${vo.pName }&nbsp;&nbsp;</td>
 											<td class="price">${vo.pPrice }&nbsp;&nbsp;</td>

@@ -14,6 +14,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>리뷰상세보기.jsp</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<style>
 		#wrap #mypage_category li{
 			list-style:none; display: inline-block;
@@ -30,15 +31,8 @@
 		#wrap{
 			margin:0px	; padding: 0px; text-align: center;
 		}
-		.container {
-		    height: 100%;
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-		}
 	</style>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+	</head>
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 	<div id="wrap">
@@ -59,15 +53,18 @@
 		</div>
 	</div>
 	
+	<form action="${ cp }/review" method="post">
+	<h1 class="display-6 text-center"><strong>마이리뷰 상세보기</strong></h1>
 	<div class="container">
-		<div class="row">
-	<div class="card" style="width: 100%;">
+	<div class="row">
+		<div class="col-6 offset-3">
+	<div class="card border-secondary mb-3">
 		
 		<h5 class="card-header">주문번호 : ${ vo.odNum }</h5>
 		<div class="card-body">
 	  		<img src="imagesPro/${ vo.piFileName }" class="card-img-top"  style="width: 150px; height: 150px;">
-	    	<h5 class="card-title">제품 이름 : ${ vo.pName }</h5>
-	    	<p class="card-text">사이즈 : ${ vo.proSize } <br> 제품상세번호 : ${ vo.pdNum } <br> 파일이름 : ${ vo.piFileName }</p>
+	    	<h5 class="card-title">${ vo.pName }</h5>
+	    	<p class="card-text">${ vo.proSize } 사이즈 <br> 제품상세번호 : ${ vo.pdNum }</p>
 	  	</div>
 	  	<ul class="list-group list-group-flush">
 	    	<li class="list-group-item">리뷰글번호 : ${ vo.coNum }</li>
@@ -76,12 +73,14 @@
 	    	<li class="list-group-item">작성자(아이디) : ${ vo.mid }</li>
 	    	<li class="list-group-item">작성일 : ${ vo.cDate }</li>
 	  	</ul>
-	  	<div class="card-body">
-	    	<a href="${cp}/review" class="card-link">마이리뷰목록으로 돌아가기</a>
-	  	</div>
 	</div>
 		</div>
 	</div>
+	</div>
+	<div id="cust_estm">
+		<input type="submit" value="마이리뷰목록으로 돌아가기">
+	</div>
+	</form>
 </body>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
