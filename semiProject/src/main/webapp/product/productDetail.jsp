@@ -110,6 +110,7 @@ color:white;
 <c:set var="cp" value="${ pageContext.request.contextPath}" />
 <div class="Productcontainer">
 
+     <!--상세이미지(작은이미지) -->
 	<div class="blank" id="sideimg">
 		<img src="${cp }/imagesPro/${img}" id="detailimg" onmouseover="changeimg(event)">
 		<c:forEach var="imgs" items="${imgsList}">
@@ -117,11 +118,11 @@ color:white;
 			<br>
 		</c:forEach>
 	</div>
-
+   <!--메인이미지 -->
 	<div class="blank" id="mainimg">
 		<img src="${cp }/imagesPro/${img}" id="img_m">
 	</div>
-
+     <!--제품 선택 -->
 	<div class="blank" id="product_text">
 		<div style="font: 80px;">
 			<h1>${vo.pName }</h1>
@@ -166,7 +167,7 @@ color:white;
 			<input type="button" value="구매하기" class="buybut"> <input type="button" value="장바구니" class="cartbut">
 		</div>
 	</div>
-
+    <!-- 제품상세-->
 	<div class="blank" id="product_detail">
 		<div class="productpage" id="productpage">
 			<div id="menu_sel">
@@ -186,6 +187,7 @@ color:white;
 				</c:forEach>
 			</div>
 		</div>
+			<!-- 결제정보 보여주기용-->
 		<div class="buyinfopage" id="buyinfopage">
 			<div id="menu_sel">
 				<ul>
@@ -227,6 +229,7 @@ color:white;
 <!-- 
    총 구매 가격=id:pricetotal,name:pricetotal
    수량 =id:select_num,name:select_num
+   
 
  -->
 <script type="text/javascript">
