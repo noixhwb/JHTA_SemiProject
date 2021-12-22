@@ -19,9 +19,9 @@
 		<c:when test="${ requestScope.result == 'success' }">
 			<div class="row">
 				<div class="col-6 offset-3">
-			<div class="card border-danger mb-3">
+			<div class="card border-danger mb-3" style="margin-top: 10%;">
 				<!-- <div class="card-header">Header</div> -->
-				<div class="card-body text-danger" style="margin-top: 250px;">
+				<div class="card-body text-danger">
 					<img src="images/checked.png" class="card-img-top" style="width: 300px; height: 300px;">
 					<h1 class="card-title"><strong>주문이 완료되었습니다</strong></h1>
 					<p class="card-text">@@orders, orderdetail에서 가져오기@@ <br> 주문번호 <br> 주문일자 <br>주문된리스트 @@</p>
@@ -34,7 +34,7 @@
 		<c:otherwise>
 			<div class="row">
 				<div class="col-6 offset-3">
-			<div class="card text-white bg-danger mb-3" style="margin-top: 30%;">
+			<div class="card text-white bg-danger mb-3" style="margin-top: 10%;">
 				<div class="card-body">
 					<img src="images/sad.png" class="card-img-top" style="width: 300px; height: 300px;">
 					<h1 class="card-title"><strong>주문을 완료하지 못했습니다</strong></h1>
