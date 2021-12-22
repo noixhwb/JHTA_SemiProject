@@ -44,9 +44,10 @@ public class AdminProductInsertController extends HttpServlet {
 		System.out.println(cName);
 		ProductVo vo = new ProductVo(0, pName, pContent, pPrice, 0, cName);
 		int n = dao.insertProduct(vo);
+		// product pk번호 불러오기
 		int pnum = dao.getpNum();
 		System.out.println(pnum);
-		// product pk번호 불러오기
+		
 
 		if (n > 0) {
 			// 디테일한 파일들
@@ -94,7 +95,7 @@ public class AdminProductInsertController extends HttpServlet {
 			}
 
 			
-			//에러 시댕~
+			//prodetail DB등록
 			for(int i=0;i<prosize.length;i++)
 			 {
 				 System.out.println("반복문까지 들어올수있음");
