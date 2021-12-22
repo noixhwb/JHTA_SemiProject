@@ -59,6 +59,10 @@ public class ProductListController extends HttpServlet{
 			}
 			req.setAttribute("list", list);
 			req.setAttribute("listP", listP);
+			  req.setAttribute("pageCount",pageCount);
+			   req.setAttribute("startPage", startPageNum);
+			   req.setAttribute("endPage", endPageNum);
+			   req.setAttribute("pageNum", pageNum);
 		}else if(category!=null && cname!=null)
 		{
 			System.out.println(cname);
@@ -81,6 +85,10 @@ public class ProductListController extends HttpServlet{
 			}
 			req.setAttribute("list", list);
 			req.setAttribute("listP", listP);
+			  req.setAttribute("pageCount",pageCount);
+			   req.setAttribute("startPage", startPageNum);
+			   req.setAttribute("endPage", endPageNum);
+			   req.setAttribute("pageNum", pageNum);
 		}else
 		{
 			int count =dao.getCount_all(startRow, endRow);
@@ -104,6 +112,10 @@ public class ProductListController extends HttpServlet{
 			
 			req.setAttribute("list", list);
 			req.setAttribute("listP", listP);
+			  req.setAttribute("pageCount",pageCount);
+			   req.setAttribute("startPage", startPageNum);
+			   req.setAttribute("endPage", endPageNum);
+			   req.setAttribute("pageNum", pageNum);
 		}
 		
 		req.getRequestDispatcher("/Home?spage=/product/productlist.jsp").forward(req, resp);

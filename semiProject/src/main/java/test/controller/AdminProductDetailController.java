@@ -41,7 +41,11 @@ public class AdminProductDetailController extends HttpServlet {
 		if(page.equals("admin"))
 		{
 			req.getRequestDispatcher("/Home?spage=/admin/productdetail.jsp").forward(req, resp);
-		}else
+		}else if(page.equals("update"))
+		{
+			req.getRequestDispatcher("/Home?spage=/admin/productUpdateForm.jsp").forward(req, resp);
+		}
+		else
 		{
 			req.getRequestDispatcher("/Home?spage=/product/productDetail.jsp").forward(req, resp);
 		}

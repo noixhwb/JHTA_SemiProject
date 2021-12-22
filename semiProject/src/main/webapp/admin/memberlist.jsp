@@ -12,14 +12,14 @@
 	border: 1px solid black;
 	
 	}
-	tr:hover { background-color: #F5F5F5; }
+	tr:hover { background-color: #bebebe; }
 	
 	#tb{
-	margin-left: 34%;
+	margin-left: 30%;
 	}
 	
 	#num{
-	margin-left: 34%;
+	margin-left: 30%;
 	}
 	#box1{
 	margin-left: 45%;
@@ -51,27 +51,22 @@
 	width: 100px;
 	background-color:#6495ED;
 	}
+	#t7{
+	background-color:#6495ED;
+	}
 	
+	td{ text-align: center; height: 30px;}
+	#d0{
+	color: red;
+	}
+	#d111{
+	background-color: #FF8200;
+	}
+	#d1111{
+	background-color: #57E9E1;
+	}
+
 	
-	#d1{
-	height: 30px;
-	text-align: center;
-	}
-	#d2{
-	text-align: center;
-	}
-	#d3{
-	text-align: center;
-	}
-	#d4{
-	text-align: center;
-	}
-	#d5{
-	text-align: center;
-	}
-	#d6{
-	text-align: center;
-	}
 </style>
 </head>
 <body>
@@ -84,17 +79,57 @@
 		<th id="t4">전화번호</th>
 		<th id="t5">회원상태</th>
 		<th id="t6">가입일</th>
+		<th id="t7">정보수정</th>
 	</tr>
 		<c:forEach var="vo" items="${list }">
 	<tr>
-	
-	
-			<td id="d1">${vo.mid }</td>
-			<td id="d2">${vo.mname }</td>
-			<td id="d3">${vo.maddr }</td>
-			<td id="d4">${vo.mphone }</td>
-			<td id="d5">${vo.mstate }</td>
-			<td id="d6">${vo.regdate }</td>
+		<c:choose>
+			
+			<c:when test="${vo.mstate =='0' }">
+			<td id="d0">${vo.mid }</td>
+			<td id="d0">${vo.mname }</td>
+			<td id="d0">${vo.maddr }</td>
+			<td id="d0">${vo.mphone }</td>
+			<td id="d0">탈퇴회원</td>
+			<td id="d0">${vo.regdate }</td>
+			<td id="d0"><a href="<%=request.getContextPath()%>/member/update10?mid=${vo.mid }">수정</a></td>
+			</c:when>
+			
+			
+			<c:when test="${vo.mstate =='1' }">
+			<td id="d11">${vo.mid }</td>
+			<td id="d11">${vo.mname }</td>
+			<td id="d11">${vo.maddr }</td>
+			<td id="d11">${vo.mphone }</td>
+			<td id="d11">일반회원</td>
+			<td id="d11">${vo.regdate }</td>
+			<td id="d11"><a href="<%=request.getContextPath()%>/member/update10?mid=${vo.mid }">수정</a></td>
+			</c:when>
+			
+			
+			<c:when test="${vo.mstate =='2' }">
+			<td id="d111">${vo.mid }</td>
+			<td id="d111">${vo.mname }</td>
+			<td id="d111">${vo.maddr }</td>
+			<td id="d111">${vo.mphone }</td>
+			<td id="d111">VIP</td>
+			<td id="d111">${vo.regdate }</td>
+			<td id="d111"><a href="<%=request.getContextPath()%>/member/update10?mid=${vo.mid }">수정</a></td>
+			</c:when>
+			
+			
+			<c:when test="${vo.mstate =='3' }">
+			<td id="d1111">${vo.mid }</td>
+			<td id="d1111">${vo.mname }</td>
+			<td id="d1111">${vo.maddr }</td>
+			<td id="d1111">${vo.mphone }</td>
+			<td id="d1111">VVIP</td>
+			<td id="d1111">${vo.regdate }</td>
+			<td id="d1111"><a href="<%=request.getContextPath()%>/member/update10?mid=${vo.mid }">수정</a></td>
+			</c:when>
+			
+			<c:otherwise></c:otherwise>
+		</c:choose>
 	</tr>
 	</c:forEach>
 </table>

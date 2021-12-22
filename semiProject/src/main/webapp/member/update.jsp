@@ -114,7 +114,12 @@
 	String a="";
 	if(mstate == 1){
 		a="일반회원";
-	}else if(mstate == 0){
+	}else if(mstate == 2){
+		a="VIP";
+	}else if(mstate == 3){
+		a="VVIP";
+	}
+	else{
 		a="탈퇴회원";
 	}
 	

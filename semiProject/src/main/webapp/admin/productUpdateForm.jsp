@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .product_detail {
@@ -27,7 +28,7 @@
 
 </style>
 <!-- 제품상세페이지(관리자용) -->
-<h1 style="text-align: center; padding-bottom: 50px;">상품상세페이지</h1>
+<h1 style="text-align: center; padding-bottom: 50px;">제품수정페이지</h1>
 <c:set var="cp" value="${ pageContext.request.contextPath}" />
 <!-- 카테고리 -->
 <div>
@@ -37,22 +38,29 @@
 			<td id="col">대분류</td>
 			<td>카테고리</td>
 			<td id="col">소분류</td>
-			<td>${requestScope.vo.cName}</td>
+			<td><input type="text" value="${requestScope.vo.cName}">
+			<select>
+			<option>
+			<option>
+			</select>
+			
+			</td>
 			<!-- 제품번호 -->
 		</tr>
 		<tr>
 			<td id="col">제품번호</td>
-			<td colspan="3">${requestScope.vo.pNum}</td>
+			<td colspan="3">${requestScope.vo.pNum}	<input type="hidden" value="${requestScope.vo.pNum}" name="pnum"></td>
+			<input>
 		</tr>
 		<!-- 제품명 -->
 		<tr>
 			<td id="col">제품명</td>
-			<td colspan="3">${requestScope.vo.pName}</td>
+			<td colspan="3"><input type="text" value="${requestScope.vo.pName}" name="pName"></td>
 		</tr>
 		<!-- 제품 내용 -->
 		<tr>
 			<td id="col">내용</td>
-			<td colspan="3">${requestScope.vo.pContent}</td>
+			<td colspan="3"><textarea name="pContent">${requestScope.vo.pContent}</textarea></td>
 		</tr>
 		<!-- 사이즈 개수 -->
 
@@ -83,10 +91,8 @@
 			</td>
 		</tr>
 		<tr>
-		<td colspan="4" style="text-align: right;">	<a href="${cp }/admin/productdetail?pnum=${vo.pNum }&page=update">수정</a><input type="button" value="삭제"> <input type="button" value="목록으로"></td>
+		<td colspan="4" style="text-align: right;">	<input type="button" value="수정"> <input type="button" value="삭제"> <input type="button" value="목록으로"></td>
 		</tr>
 	</table>
 	
 </div>
-
-

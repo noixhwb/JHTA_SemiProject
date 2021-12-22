@@ -75,7 +75,23 @@ public class AdminLoginController extends HttpServlet{
 				
 				System.out.println("로그인성공");
 				resp.sendRedirect(req.getContextPath()+"/Home");
-				
+				}else if(mvo.getMstate() == 2){
+					HttpSession session= req.getSession();
+					session.setAttribute("mid", mid);
+					session.setAttribute("mpwd", mvo.getMpwd());
+					session.setAttribute("mstate", mvo.getMstate());
+					
+					System.out.println("로그인성공");
+					resp.sendRedirect(req.getContextPath()+"/Home");
+				}else if(mvo.getMstate() == 3){
+					HttpSession session= req.getSession();
+					session.setAttribute("mid", mid);
+					session.setAttribute("mpwd", mvo.getMpwd());
+					session.setAttribute("mstate", mvo.getMstate());
+					
+					System.out.println("로그인성공");
+					resp.sendRedirect(req.getContextPath()+"/Home");		
+				}
 				}else {
 				System.out.println("탈퇴된 회원 로그인시도중");
 				req.setAttribute("ms2", "이미 탈퇴한 계정입니다.");
@@ -90,7 +106,7 @@ public class AdminLoginController extends HttpServlet{
 				
 			}
 			
-		}
+		
 		
 	}
 }
