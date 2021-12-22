@@ -83,17 +83,22 @@ public class OrderListDao {
 	
 	public int decideBuy(int odnum) {
 		Connection con =null;
-		PreparedStatement pstmt=null;
+		PreparedStatement pstmt1=null;
+		PreparedStatement pstmt2=null;
 		try {
 			con=JdbcUtil.getCon();
-			pstmt=con.prepareStatement("update orderdetail set dstate=7  where odnum=?");
-			pstmt.setInt(1, odnum);
-			return pstmt.executeUpdate();
+			pstmt2=con.prepareStatement("update product set pbuycount=pbuycount+1 where pnum=(select p.pnum from prodetail d , product p, orderdetail o,orders od where d.pnum = p.pnum and d.pdnum=o.pdnum and o.onum=od.onum and odnum=?)");
+			pstmt2.setInt(1, odnum);
+			pstmt2.executeUpdate();
+			pstmt1=con.prepareStatement("update orderdetail set dstate=7  where odnum=?");
+			pstmt1.setInt(1, odnum);
+			
+			return pstmt1.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return -1;
 		}finally {
-			JdbcUtil.close(con, pstmt, null);
+			JdbcUtil.close(con, pstmt1, null);
 		}
 	}
 	
@@ -150,30 +155,30 @@ public class OrderListDao {
 		}
 	}
 	
-	public ArrayList<OrderListVo> list(int startrow,int endrow,String mid){
-		String sql="select * from("
-				+ "select  aa.odnum ,aa.delocation,aa.dstate,aa.dcount,aa.totalsales,aa.odate,aa.mid,rownum rnum from(select * from orders o,orderdetail d where o.onum =d.onum and mid=? order by odate desc)aa) where rnum>=? and rnum<=?";
+	public ArrayList<OrderListVo> list(int startrow,int endrow,String mid1){
+		String sql="select * from(select aa.odnum,aa.prosize,aa.dcount,aa.pname,aa.totalsales,aa.dstate,aa.mid,aa.delocation,aa.odate,rownum rnum from(select * from  prodetail d , product p, orderdetail o,orders od where d.pnum = p.pnum and d.pdnum=o.pdnum and o.onum=od.onum and mid=? order by odate desc)aa) where rnum>=? and rnum<=?";
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, mid);
+			pstmt.setString(1, mid1);
 			pstmt.setInt(2, startrow);
 			pstmt.setInt(3, endrow);
 			rs=pstmt.executeQuery();
 			ArrayList<OrderListVo> list= new ArrayList<OrderListVo>();
 			while(rs.next()) {
-				
-				String mid1=rs.getString("mid");
+				int odnum=rs.getInt("odnum");
+				String prosize=rs.getString("prosize");
+				int dcount=rs.getInt("dcount");
+				String pname=rs.getString("pname");
+				int dstate=rs.getInt("dstate");
+				String mid=rs.getString("mid");
 				int totalsales=rs.getInt("totalsales");
 				String delocation=rs.getString("delocation");
-				Date odate =rs.getDate("odate");
-				int odnum=rs.getInt("odnum");
-				int dcount=rs.getInt("dcount");
-				int dstate=rs.getInt("dstate");
-				OrderListVo vo =new OrderListVo(odnum, odnum, odnum, dcount, dcount, dstate, mid1, totalsales, delocation, odate);
+				Date odate=rs.getDate("odate");
+				OrderListVo vo = new OrderListVo(odnum, prosize, dcount, pname, dstate, mid, totalsales, delocation, odate);
 				
 				list.add(vo);
 
@@ -188,31 +193,34 @@ public class OrderListDao {
 		
 	}
 	public ArrayList<OrderListVo> decideDay(Date date1,Date date2,String mid1){
-		String sql="select * from orders o,orderdetail d where TO_CHAR(odate, 'YYYY-MM-DD') >= ? and TO_CHAR(odate, 'YYYY-MM-DD')  <= ? and o.onum=d.onum and mid=? order by odnum desc";
+		String sql="select aa.odnum,aa.prosize,aa.dcount,aa.pname,aa.totalsales,aa.dstate,aa.mid,aa.delocation,aa.odate,rownum rnum from(select * from  prodetail d , product p, orderdetail o,orders od where d.pnum = p.pnum and d.pdnum=o.pdnum and o.onum=od.onum and mid=? and TO_CHAR(odate, 'YYYY-MM-DD') >= ? and TO_CHAR(odate, 'YYYY-MM-DD')  <= ? order by odate desc)aa";
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
-			pstmt.setDate(1, date1);
-			pstmt.setDate(2, date2);
-			pstmt.setString(3, mid1);
+			pstmt.setString(1, mid1);
+			pstmt.setDate(2, date1);
+			pstmt.setDate(3, date2);
+			
+			
 			rs=pstmt.executeQuery();
 			ArrayList<OrderListVo> list= new ArrayList<OrderListVo>();
 			while(rs.next()) {
 				
+				int odnum=rs.getInt("odnum");
+				String prosize=rs.getString("prosize");
+				int dcount=rs.getInt("dcount");
+				String pname=rs.getString("pname");
+				int dstate=rs.getInt("dstate");
 				String mid=rs.getString("mid");
 				int totalsales=rs.getInt("totalsales");
 				String delocation=rs.getString("delocation");
-				Date odate =rs.getDate("odate");
-				int odnum=rs.getInt("odnum");
-				int dcount=rs.getInt("dcount");
-				int dstate=rs.getInt("dstate");
-				OrderListVo vo =new OrderListVo(odnum, odnum, odnum, dcount, dcount, dstate, mid, totalsales, delocation, odate);
+				Date odate=rs.getDate("odate");
+				OrderListVo vo = new OrderListVo(odnum, prosize, dcount, pname, dstate, mid, totalsales, delocation, odate);
 				
 				list.add(vo);
-
 			}
 				return list;
 		}catch(SQLException se) {
