@@ -6,22 +6,22 @@
 <c:when test="${sessionScope.aid eq null}">
 
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/Home?spage=/product/list">best</a></li>
+		<li><a href="<%=request.getContextPath()%>/product/list">best</a></li>
 
-		<li><a href="">상의</a>
+		<li><a href="<%=request.getContextPath()%>/product/list?ct=상의">상의</a>
 			<ul class="sub">
-				<li><a href="">니트</a></li>
-				<li><a href="">티셔츠</a></li>
+				<li><a href="<%=request.getContextPath()%>/product/list?ct=상의&cname=니트">니트</a></li>
+				<li><a href="<%=request.getContextPath()%>/product/list?ct=상의&cname=티셔츠">티셔츠</a></li>
 			</ul></li>
-		<li><a href="">하의</a>
+		<li><a href="<%=request.getContextPath()%>/product/list?ct=하의">하의</a>
 			<ul class="sub">
-				<li><a href="">슬랙스</a></li>
-				<li><a href="">트레이닝</a></li>
+				<li><a href="<%=request.getContextPath()%>/product/list?ct=하의&cname=슬랙스">슬랙스</a></li>
+				<li><a href="<%=request.getContextPath()%>/product/list?ct=하의&cname=트레이닝">트레이닝</a></li>
 			</ul></li>
-		<li><a href="">아우터</a>
+		<li><a href="<%=request.getContextPath()%>/product/list?ct=아우터">아우터</a>
 			<ul class="sub">
-				<li><a href="">가디건</a></li>
-				<li><a href="">코트</a></li>
+				<li><a href="<%=request.getContextPath()%>/product/list?ct=아우터&cname=가디건">가디건</a></li>
+				<li><a href="<%=request.getContextPath()%>/product/list?ct=아우터&cname=코트">코트</a></li>
 			</ul></li>
 	</ul>
 </c:when>
