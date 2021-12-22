@@ -68,7 +68,8 @@ create table cart
 
 	constraint fk_cartpNum foreign key(pnum) references product(pNum),
 	constraint fk_cartuId foreign key(mId) references member_s(mId)
-	
+	--추가
+	alter table cart add ccount number(10);--수량
 );
 
 --주문

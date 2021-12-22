@@ -96,6 +96,38 @@ public class OrderListDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	
+	public int reviewCompelete(int odnum) {
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement("update orderdetail set dstate=8  where odnum=?");
+			pstmt.setInt(1, odnum);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
+	public int reviewDelete(int odnum) {
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement("update orderdetail set dstate=7  where odnum=?");
+			pstmt.setInt(1, odnum);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 	public int getCount(String mid) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
