@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import test.dao.ProdetailDao;
 import test.dao.ProductDao;
 import test.dao.ProimageDao;
+import test.dao.RevprodDao;
 import test.vo.ProductVo;
+import test.vo.RevprodVo;
 import test.vo.prodetailVo;
 @WebServlet("/admin/productdetail")
 public class AdminProductDetailController extends HttpServlet {
@@ -33,6 +35,10 @@ public class AdminProductDetailController extends HttpServlet {
 		ProimageDao pidao=ProimageDao.getInstance();
 		String img=pidao.selectimage(pnum);
 		ArrayList<String> imgsList=pidao.selectimages(pnum);
+		//review
+		RevprodDao rvdao=new RevprodDao();
+		ArrayList<RevprodVo> rvlist = rvdao.selectProductReview(pnum);
+		req.setAttribute("rvlist", rvlist);
 		
 		req.setAttribute("vo", vo);
 		req.setAttribute("list", list);
