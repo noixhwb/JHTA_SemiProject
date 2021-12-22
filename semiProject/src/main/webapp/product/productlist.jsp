@@ -23,19 +23,28 @@ margin-top:10px;
 </style>
 
 <div class="container">
-
-<c:forEach var="i" begin="0" end="${list.size() -1}">
+<c:choose>
+<c:when test="${list.size()!=0}">
+<c:forEach var="i" begin="0" end="${list.size()-1}">
 
   
   <div class="item">
 
-  <a href="<%=request.getContextPath()%>/admin/productdetail?pnum=${list[i].pNum }&page=product">
+  <a href="<%=request.getContextPath()%>/admin/productdetail?pnum=${list[i].pnum }&page=product">
   <img src="<%=request.getContextPath()%>/imagesPro/${listP[i] }" id="img"></a><br>
-      ${list[i].pName }<br>
+      ${list[i].pname }<br>
        <hr width =100% color="gray" align="left" size=1 id="line">
-  ${list[i].pPrice }
+  ${list[i].pprice }
   <a href="">리뷰</a>
  
   </div>
   </c:forEach>
+</c:when>
+<c:otherwise>
+상품이 0개있습니다.
+
+</c:otherwise>
+
+</c:choose>
+
 </div>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.JdbcUtil;
+import test.vo.CategoryVo;
 import test.vo.ProductVo;
 import test.vo.ProimageVo;
 import test.vo.prodetailVo;
@@ -135,29 +136,57 @@ public class ProductDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	//페이징처리+카테고리 리스트출력
-	public ArrayList<ProductVo> selectcategory()
+	//전체 목록 카운트 가져오기
+	public int getCount_all(int startRow,int endRow)
 	{
 
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
-		ArrayList<ProductVo> list=new ArrayList<ProductVo>();
+		String sql="select NVL(count(pnum),0) ccount from (select product.*,rownum rnum from(select * from product order by pnum DESC )product) where rnum>=? and rnum<=?";
+		
 		try
 		{
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs=pstmt.executeQuery();
+			rs.next();
+			int count=rs.getInt("ccount");
+			return count;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
+	
+	//페이징처리 
+	public ArrayList<CategoryVo> selectAll_page(int startRow,int endRow)
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from (select product.*,rownum rnum from(select * from product order by pnum DESC )product) where rnum>=? and rnum<=?";
+		ArrayList<CategoryVo> list=new ArrayList<CategoryVo>();
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
 				int pnum=rs.getInt("pnum");
-				String pname=rs.getString("pname");
-				String pconten=rs.getString("pcontent");
+				String pname=rs.getString("pname");	
 				int pprice=rs.getInt("pprice");
-				int pbuycount= rs.getInt("pbuycount");
-				String cname=rs.getString("cname");
-				ProductVo vo=new ProductVo(pnum, pname, pconten, pprice, pbuycount, cname);
+				CategoryVo vo =new CategoryVo(pnum, pname, pprice, null);
 			    list.add(vo);
 			}
 	
@@ -171,29 +200,31 @@ public class ProductDao {
 		}
 	}
 	
-	//페이징처리+cname별 출력
-	public ArrayList<ProductVo> selectcategory_cname()
+	
+	//페이징처리+카테고리 리스트출력
+	public ArrayList<CategoryVo> selectcategory(int startRow,int endRow,String code)
 	{
 
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? and p.cname=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
-		ArrayList<ProductVo> list=new ArrayList<ProductVo>();
+		String sql="select * from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
+		ArrayList<CategoryVo> list=new ArrayList<CategoryVo>();
 		try
 		{
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, code);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
 				int pnum=rs.getInt("pnum");
 				String pname=rs.getString("pname");
-				String pconten=rs.getString("pcontent");
 				int pprice=rs.getInt("pprice");
-				int pbuycount= rs.getInt("pbuycount");
-				String cname=rs.getString("cname");
-				ProductVo vo=new ProductVo(pnum, pname, pconten, pprice, pbuycount, cname);
+		        String ccode=rs.getString("code");
+				CategoryVo vo=new CategoryVo(pnum, pname, pprice, ccode);
 			    list.add(vo);
 			}
 	
@@ -202,6 +233,100 @@ public class ProductDao {
 		{
 			se.printStackTrace();
 			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	//카테고리별 전체 글수 가져오기
+	public int getCount_category(int startRow,int endRow,String code)
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select NVL(count(pnum),0) ccount from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, code);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs=pstmt.executeQuery();
+			rs.next();
+			int count=rs.getInt("ccount");
+			return count;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	//페이징처리+cname별 출력
+	public ArrayList<CategoryVo> selectcategory_cname(int startRow,int endRow,String code,String cname)
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? and p.cname=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
+		ArrayList<CategoryVo> list=new ArrayList<CategoryVo>();
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, code);
+			pstmt.setString(2, cname);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				int pnum=rs.getInt("pnum");
+				String pname=rs.getString("pname");
+
+				int pprice=rs.getInt("pprice");
+				String ccode=rs.getString("code");
+				
+				CategoryVo vo=new CategoryVo(pnum, pname, pprice, ccode);
+				list.add(vo);
+			}
+	
+			return list;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	//cname별 count 가져오기
+	public int getCount_cname(int startRow,int endRow,String code,String cname)
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select NVL(count(pnum),0) ccount from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? and p.cname=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, code);
+			pstmt.setString(2, cname);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			rs=pstmt.executeQuery();
+			rs.next();
+			int count=rs.getInt("ccount");
+			return count;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
 		}finally {
 			JdbcUtil.close(con, pstmt, rs);
 		}
