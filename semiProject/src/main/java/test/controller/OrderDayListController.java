@@ -20,11 +20,13 @@ public class OrderDayListController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("utf-8");
+		String sdate1=req.getParameter("date1");
+		if(sdate1==null) {
+			resp.sendRedirect(req.getContextPath()+"/myshop/orderList");
+		}
 		HttpSession session = req.getSession();
 		String mid=(String)session.getAttribute("mid");
 		OrderListDao dao =new OrderListDao(); 
-		
-		String sdate1=req.getParameter("date1");
 		
 
 		

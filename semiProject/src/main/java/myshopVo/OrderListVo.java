@@ -3,38 +3,28 @@ package myshopVo;
 import java.sql.Date;
 
 public class OrderListVo {
-	private int onum;
 	private int odnum;
-	private int pdnum;
+	private String prosize;
 	private int dcount;
-	private int dprice;
+	private String pname;
 	private int dstate;
 	private String mid;
 	private int totalsales;
 	private String delocation;
 	private Date odate;
 	public OrderListVo() {}
-	
-	public OrderListVo(int onum, int odnum, int pdnum, int dcount, int dprice, int dstate, String mid, int totalsales,
+	public OrderListVo(int odnum, String prosize, int dcount, String pname, int dstate, String mid, int totalsales,
 			String delocation, Date odate) {
 		super();
-		this.onum = onum;
 		this.odnum = odnum;
-		this.pdnum = pdnum;
+		this.prosize = prosize;
 		this.dcount = dcount;
-		this.dprice = dprice;
+		this.pname = pname;
 		this.dstate = dstate;
 		this.mid = mid;
 		this.totalsales = totalsales;
 		this.delocation = delocation;
 		this.odate = odate;
-	}
-
-	public int getOnum() {
-		return onum;
-	}
-	public void setOnum(int onum) {
-		this.onum = onum;
 	}
 	public int getOdnum() {
 		return odnum;
@@ -42,11 +32,11 @@ public class OrderListVo {
 	public void setOdnum(int odnum) {
 		this.odnum = odnum;
 	}
-	public int getPdnum() {
-		return pdnum;
+	public String getProsize() {
+		return prosize;
 	}
-	public void setPdnum(int pdnum) {
-		this.pdnum = pdnum;
+	public void setProsize(String prosize) {
+		this.prosize = prosize;
 	}
 	public int getDcount() {
 		return dcount;
@@ -54,11 +44,11 @@ public class OrderListVo {
 	public void setDcount(int dcount) {
 		this.dcount = dcount;
 	}
-	public int getDprice() {
-		return dprice;
+	public String getPname() {
+		return pname;
 	}
-	public void setDprice(int dprice) {
-		this.dprice = dprice;
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
 	public int getDstate() {
 		return dstate;

@@ -31,7 +31,7 @@
         <li><a href="<%=request.getContextPath()%>/member/list">사용자 관리</a></li>
         <li><a href="<%=request.getContextPath()%>/admin/order">주문관리</a></li>
 		<li><a href="<%=request.getContextPath()%>/Home?spage=/admin/productInsert.jsp">상품 관리</a></li>
-
+		<li><a href="<%=request.getContextPath()%>/admin/sales">매출 관리</a></li>
 	</ul>
 </c:otherwise>
 </c:choose>
