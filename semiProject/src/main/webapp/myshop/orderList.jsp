@@ -49,12 +49,13 @@
 	</div>
 	
 	
-	<table border="1" width="800">
+	<table border="1" width="1000">
 		
 		<colgroup>
 		<col style="width:135px;">
-		
 		<col style="width:auto;">
+		<col style="width:111px;">
+		<col style="width:61px;">
 		<col style="width:61px;">
 		<col style="width:111px;">
 		<col style="width:111px;">
@@ -64,9 +65,10 @@
 		<thead>
 		 <tr>
 		  	<th scope="col">주문번호</th>
-		  	
+		  	<th scope="col">제품명</th>
 		  	<th scope="col">배송지</th>
 		  	<th scope="col">수량</th>
+		  	<th scope="col">제품사이즈</th>
 		  	<th scope="col">상품구매금액</th>
 		  	<th scope="col">주문일자</th>
 		  	<th scope="col">주문처리상태</th>
@@ -77,9 +79,10 @@
 			<c:forEach var="vo" items="${requestScope.list }">
 		 	<tr>
 			 	<th scope="col">${vo.odnum }</th>
-			  	
+			  	<th scope="col">${vo.pname }</th>
 			  	<th scope="col">${vo.delocation }</th>
 			  	<th scope="col">${vo.dcount }</th>
+			  	<th scope="col">${vo.prosize }</th>
 			  	<th scope="col">${vo.totalsales }</th>
 			  	<th scope="col">${vo.odate }</th>
 			  	<th scope="col">
@@ -128,9 +131,10 @@
 			<c:forEach var="vo2" items="${requestScope.list2 }">
 		 	<tr>
 			 	<th scope="col">${vo2.odnum }</th>
-			  	
+			  	<th scope="col">${vo2.pname }</th>
 			  	<th scope="col">${vo2.delocation }</th>
 			  	<th scope="col">${vo2.dcount }</th>
+			  	<th scope="col">${vo2.prosize }</th>
 			  	<th scope="col">${vo2.totalsales }</th>
 			  	<th scope="col">${vo2.odate }</th>
 			  	<th scope="col">
