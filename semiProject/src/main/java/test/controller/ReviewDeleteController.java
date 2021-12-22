@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import myshopDao.OrderListDao;
 import test.dao.ReviewDao;
 import test.vo.ReviewVo;
 
@@ -20,7 +21,11 @@ public class ReviewDeleteController extends HttpServlet{
 		ReviewDao dao=new ReviewDao();
 		int n = dao.delete(coNum);
 		
-		if (n>0) {
+		OrderListDao odao=new OrderListDao();
+		int odNum = Integer.parseInt(req.getParameter("odNum"));
+		int nn = odao.reviewDelete(odNum);
+		
+		if (n>0 && nn>0) {
 			resp.sendRedirect(req.getContextPath()+"/review");
 		} else {
 			req.setAttribute("result", "fail");

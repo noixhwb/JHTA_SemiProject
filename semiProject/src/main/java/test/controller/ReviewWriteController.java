@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import myshopDao.OrderListDao;
 import test.dao.PrevDao;
 import test.dao.RevDao;
 import test.dao.ReviewDao;
@@ -49,14 +50,18 @@ public class ReviewWriteController extends HttpServlet{
 		ReviewVo vo=new ReviewVo(0, odNum, cScore, content, mid, null);
 		ReviewDao dao=new ReviewDao();
 		int n = dao.insert(vo);
+		
+		OrderListDao odao=new OrderListDao();
+		int nn = odao.reviewCompelete(odNum);
+		
 		System.out.println(n);
 		System.out.println("@@@@@"+vo);
-		if (n>0) {
+		if (n>0 && nn>0) {
 			req.setAttribute("result", "success");
-			req.getRequestDispatcher("/Home?spage=/review").forward(req, resp);
+			req.getRequestDispatcher("/Home?spage=/REVIEW/ReviewInsertOk.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("result", "fail");
-			req.getRequestDispatcher("/Home?spage=/REVIEW/Result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Home?spage=/REVIEW/ResultInsertOk.jsp").forward(req, resp);
 		}
 	}
 }

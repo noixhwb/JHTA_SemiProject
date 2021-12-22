@@ -111,6 +111,10 @@
 				  		구매확정<br>
 				  		<a href="${cp }/reviewWrite?odNum=${vo.odnum}" onclick="return confirm('리뷰하러 가시겠습니까?');">리뷰하러가기</a>
 				  	</c:when>
+				  	<c:when test="${vo.dstate==8 }">
+				  		구매확정<br>
+				  		리뷰작성완료
+				  	</c:when>
 			  	</c:choose>
 			  	</th>
 			  </tr>

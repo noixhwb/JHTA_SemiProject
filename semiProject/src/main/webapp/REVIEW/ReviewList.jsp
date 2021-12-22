@@ -101,7 +101,7 @@
 				<td scope="row">${ vo.cDate }</td>
 				<td scope="row"><a href="${ cp }/reviewDetail?coNum=${ vo.coNum }">상세보기</a></td>
 				<td scope="row"><a href="${ cp }/reviewUpdate?coNum=${ vo.coNum }">수정</a></td>
-				<td scope="row"><a href="${ cp }/reviewDelete?coNum=${ vo.coNum }">삭제</a></td>
+				<td scope="row"><a href="${ cp }/reviewDelete?coNum=${ vo.coNum }&odNum=${ vo.odNum }">삭제</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>
