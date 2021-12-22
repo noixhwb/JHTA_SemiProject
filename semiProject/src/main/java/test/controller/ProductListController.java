@@ -19,6 +19,14 @@ public class ProductListController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
+		String spageNum = req.getParameter("pageNum");
+		int pageNum = 1;
+		if (spageNum != null) {
+			pageNum = Integer.parseInt(spageNum);
+		}
+		int endRow = pageNum * 20;
+		int startRow = endRow - 19;
+		
 		ProductDao dao=ProductDao.getInstance();
 		ArrayList<ProductVo> list=dao.selectAll();
 		ArrayList<String> listP=new ArrayList<String>();

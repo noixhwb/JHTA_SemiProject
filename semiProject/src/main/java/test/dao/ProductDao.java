@@ -102,7 +102,7 @@ public class ProductDao {
 		}
 	}
 	
-	
+	//상세정보
 	public ProductVo selectDetail(int pnum)
 	{
 		Connection con=null;
@@ -135,6 +135,78 @@ public class ProductDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	//페이징처리+카테고리 리스트출력
+	public ArrayList<ProductVo> selectcategory()
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
+		ArrayList<ProductVo> list=new ArrayList<ProductVo>();
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				int pnum=rs.getInt("pnum");
+				String pname=rs.getString("pname");
+				String pconten=rs.getString("pcontent");
+				int pprice=rs.getInt("pprice");
+				int pbuycount= rs.getInt("pbuycount");
+				String cname=rs.getString("cname");
+				ProductVo vo=new ProductVo(pnum, pname, pconten, pprice, pbuycount, cname);
+			    list.add(vo);
+			}
+	
+			return list;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
+	//페이징처리+cname별 출력
+	public ArrayList<ProductVo> selectcategory_cname()
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? and p.cname=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
+		ArrayList<ProductVo> list=new ArrayList<ProductVo>();
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				int pnum=rs.getInt("pnum");
+				String pname=rs.getString("pname");
+				String pconten=rs.getString("pcontent");
+				int pprice=rs.getInt("pprice");
+				int pbuycount= rs.getInt("pbuycount");
+				String cname=rs.getString("cname");
+				ProductVo vo=new ProductVo(pnum, pname, pconten, pprice, pbuycount, cname);
+			    list.add(vo);
+			}
+	
+			return list;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
 }
 
 	
