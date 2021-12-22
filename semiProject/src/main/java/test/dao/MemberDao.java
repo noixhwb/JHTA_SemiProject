@@ -313,4 +313,65 @@ public class MemberDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	
+	
+	//어드민페이지>사용자관리>유저정보 조회
+	public MemberVo adminselect(String mid) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=JdbcUtil.getCon();
+			String sql="select * from member_s where mid=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String mpwd=rs.getString("mpwd");
+				String mname=rs.getString("mname");
+				String maddr=rs.getString("maddr");
+				String mphone=rs.getString("mphone");
+				int mstate=rs.getInt("mstate");
+				Date regdate=rs.getDate("regdate");
+				MemberVo vo=new MemberVo(mid, mpwd, mname, maddr,mphone,mstate,regdate);
+				return vo;
+			}
+			return null;
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con,pstmt,rs);
+		}
+		
+		
+		
+	}
+	
+	//어드민페이지에서 유저정보수정
+	public int adminupdate(MemberVo vo) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=JdbcUtil.getCon();
+			String sql="update member_s set mpwd=? , mname=? , maddr=? , mphone=? , mstate=? where mid=? ";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getMpwd());
+			pstmt.setString(2, vo.getMname());
+			pstmt.setString(3, vo.getMaddr());
+			pstmt.setString(4, vo.getMphone());
+			pstmt.setInt(5, vo.getMstate());
+			pstmt.setString(6, vo.getMid());
+			return pstmt.executeUpdate();
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
 }
