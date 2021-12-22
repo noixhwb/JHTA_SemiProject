@@ -23,9 +23,7 @@ public class CartController extends HttpServlet{
 		String mid= (String)req.getSession().getAttribute("mid");
 		CartDao dao = new CartDao();
 		ArrayList<CartVo> list = dao.selectCartList((String)req.getSession().getAttribute("mid"));
-		//System.out.println("mid"+req.getSession().getAttribute("mid"));
 		req.setAttribute("list", list);
-		System.out.println(list);
 		req.getRequestDispatcher("cart.jsp").forward(req, resp);
 		
 	}

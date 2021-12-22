@@ -175,11 +175,11 @@ td {
 											<input type="checkbox" name="product" value="${vo.cCartNum }">
 											</td>
 											<td class="img">
-											<img src="/images/가디건/111.jpg.jpg" style="width: 200px; height: 200px;">&nbsp;&nbsp;
+											<img src="<%=request.getContextPath()%>/imagesPro/${vo.piFileName }"style="width: 150px; height: 150px;">&nbsp;&nbsp;
 											</td>
 											<td class="p_name">${vo.pName }&nbsp;&nbsp;</td>
 											<td class="price">${vo.pPrice }&nbsp;&nbsp;</td>
-											<td class="price"><input type="number"></td>
+											<td class="price"><input type="number"  min="0" value="${vo.ccount }" name="cartCnt"></td>
 											<td class="bt"><a href="<%=request.getContextPath()%>/delete?cCartNum=${vo.cCartNum}">삭제</a></td>
 										</tr>
 									</c:forEach>
