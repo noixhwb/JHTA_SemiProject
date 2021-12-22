@@ -33,6 +33,7 @@ public class CartDao {
 				String piFileName = rs.getString("piFileName");
 				String proSize = rs.getString("proSize");
 				int ccount = rs.getInt("ccount");
+				int pdNum =rs.getInt("pdNum");
 				
 				CartVo vo = new CartVo();
 				vo.setcCartNum(cCartNum);
@@ -41,6 +42,7 @@ public class CartDao {
 				vo.setPiFileName(piFileName);
 				vo.setProSize(proSize);
 				vo.setccount(ccount);
+				vo.setPdNum(pdNum);
 				list.add(vo);
 			}
 			return list;

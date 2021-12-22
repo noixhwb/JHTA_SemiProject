@@ -1,6 +1,7 @@
 package test.controller;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Map;
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class MyorderListController extends HttpServlet {
 		
 		//상품리스트2(사진,사이즈 포함)
 		int totPrice = 0;
-		CartDao cdao=new CartDao();
-		List<Map<String,Object>> list = cdao.selectCartOrderList(req.getParameterValues("product"));
+		CartDao dao=new CartDao();
+		List<Map<String,Object>> list = dao.selectCartOrderList(req.getParameterValues("product"));
 		String[] cnt = req.getParameterValues("cartCnt");
 		for(int i=0;i<list.size();i++) {
 			System.out.println(cnt[i]);
@@ -33,6 +34,7 @@ public class MyorderListController extends HttpServlet {
 			int price = Integer.parseInt(String.valueOf(list.get(i).get("pPrice")));
 			totPrice += price*ccnt;
 			list.get(i).put("price", price*ccnt);
+			
 		}
 		req.setAttribute("list", list);
 		req.setAttribute("totPrice", totPrice);

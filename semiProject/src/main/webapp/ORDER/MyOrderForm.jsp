@@ -35,6 +35,7 @@
 		<c:forEach var="vo" items="${ list }">
 			<input type="hidden" name="pnum" value="${vo.pNum }">
 			<input type="hidden" name="cnt" value="${vo.cnt }">
+			<input type="hidden" name="pdnum" value="${vo.pdNum }">			
 			<tr>
 				<td scope="row"><img src="<%=request.getContextPath()%>/imagesPro/${vo.piFilename}"style="width: 120px; height: 120px;"></td>
 				<td scope="row">${ vo.pName }</td>

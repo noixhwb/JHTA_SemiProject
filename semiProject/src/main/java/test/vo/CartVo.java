@@ -9,7 +9,20 @@ public class CartVo {
 	private int proCount;
 	private int ccount;
 	private String mId;
+	private int pdNum;
 	
+	public int getCcount() {
+		return ccount;
+	}
+	public void setCcount(int ccount) {
+		this.ccount = ccount;
+	}
+	public int getPdNum() {
+		return pdNum;
+	}
+	public void setPdNum(int pdNum) {
+		this.pdNum = pdNum;
+	}
 	public int getcCartNum() {
 		return cCartNum;
 	}

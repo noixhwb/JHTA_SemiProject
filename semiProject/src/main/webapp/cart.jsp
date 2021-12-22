@@ -181,10 +181,12 @@ td {
 											<td class="price">${vo.pPrice }&nbsp;&nbsp;</td>
 											<td class="price"><input type="number"  min="0" value="${vo.ccount }" name="cartCnt"></td>
 											<td class="bt"><a href="<%=request.getContextPath()%>/delete?cCartNum=${vo.cCartNum}">삭제</a></td>
+											
 										</tr>
 									</c:forEach>
 								</tbody>
 						</table>
+						<caption style="text-align: center; color: red;">상품금액+배송비 = ${totPrice }</caption>
 					</form>
 				</c:when>
 				<c:otherwise>
