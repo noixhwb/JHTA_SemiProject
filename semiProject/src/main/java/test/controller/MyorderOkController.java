@@ -61,7 +61,7 @@ public class MyorderOkController extends HttpServlet{
 				
 				
 		//장바구니 내역 삭제
-		//String mid = (String)req.getSession().getAttribute("mid");
+		//String cCartNum = (String)req.getSession().getAttribute("cCartNum");
 		//CartdelDao cddao=new CartdelDao();
 		//int cdn = cddao.delete(mid);
 				
