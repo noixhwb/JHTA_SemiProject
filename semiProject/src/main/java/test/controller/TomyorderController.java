@@ -27,6 +27,7 @@ public class TomyorderController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int pNum = Integer.parseInt(req.getParameter("pNum"));
+		System.out.println(pNum);
 		
 			//product
 			ProductDao dao=ProductDao.getInstance();
