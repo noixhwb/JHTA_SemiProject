@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 import db.JdbcUtil;
 
 import myshopVo.OrderListVo;
@@ -132,7 +133,90 @@ public class AdminOrderDao {
 		}
 		
 	}
-	
-	
+	public ArrayList<OrderListVo> getDaysales() {
+		String sql="select sum(totalsales) sales,TO_CHAR(odate,'yy-MM-dd')sdate from orders o,orderdetail d where o.onum=d.onum and dstate=7 group by TO_CHAR(odate,'yy-MM-dd')";
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			ArrayList<OrderListVo> list =new ArrayList<OrderListVo>();
+			while(rs.next()) {
+				
+				int sales=rs.getInt("sales");
+				String sdate=rs.getString("sdate");
+				OrderListVo vo =new OrderListVo(sales, sdate);
+				list.add(vo);
+
+			}
+				return list;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public ArrayList<OrderListVo> getMonsales() {
+		String sql="select sum(totalsales)sales,TO_CHAR(odate,'yy-MM')sdate from orders o,orderdetail d where o.onum=d.onum and dstate=7 group by TO_CHAR(odate,'yy-MM')";
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			ArrayList<OrderListVo> list= new ArrayList<OrderListVo>();
+			while(rs.next()) {
+				
+				
+				int sales=rs.getInt("sales");
+				String sdate=rs.getString("sdate");
+				OrderListVo vo =new OrderListVo(sales, sdate);
+				list.add(vo);
+
+			}
+				return list;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public ArrayList<OrderListVo> decideDay(Date date1,Date date2){
+		String sql="select NVL(sum(totalsales),0)sales from orders o,orderdetail d where TO_CHAR(odate, 'YYYY-MM-DD') >=? and TO_CHAR(odate, 'YYYY-MM-DD')  <=? and o.onum=d.onum and dstate=7 order by odnum desc";
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setDate(1, date1);
+			pstmt.setDate(2, date2);
+			
+			
+			rs=pstmt.executeQuery();
+			ArrayList<OrderListVo> list= new ArrayList<OrderListVo>();
+			while(rs.next()) {
+				int sales=rs.getInt("sales");
+				OrderListVo vo =new OrderListVo(sales, "test");
+				
+				list.add(vo);
+			}
+				return list;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+		
+	}
 	
 }

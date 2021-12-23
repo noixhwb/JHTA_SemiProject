@@ -5,21 +5,59 @@
  <link rel="stylesheet" href="/resources/demos/style.css">
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- <style>
- #box4 img{
- 	width:30px; height: 30px;
- }
- #box4 days li{
- 	list-style:none; display: inline-block;
- }
- #box4 table{
- 	text-align: center;
- }
- </style>
-<div id= "box4">
+<style>
+	 a:link { color: red; text-decoration: none;}
+ 		a:visited { color: black; text-decoration: none;}
+ 	a:hover { color: blue; text-decoration: underline;}
+	
+	h3{
+		text-align: center;
+	}
+	
+	#wrap{
+			text-align: center;
+		}
+		
+	.paging{
+		text-align: center;
+	}
+	
+	#hor-minimalist-a
+	{
+		margin:auto;
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 12px;
+		background: #fff;
+		
+		width: 1000px;
+		
+		border-collapse: collapse;
+		text-align: center;
+	}
+	#hor-minimalist-a th
+	{
+		border-collapse: collapse;
+		font-size: 14px;
+		font-weight: normal;
+		color: #039;
+		padding: 10px 8px;
+		border-bottom: 2px solid #6678b1;
+	}
+	#hor-minimalist-a td
+	{
+		color: #669;
+		padding: 9px 8px 0px 8px;
+		border-collapse: collapse;
+	}
+	#hor-minimalist-a tbody tr:hover td
+	{
+		color: #009;
+	}
+</style>
+<div id= "wrap">
 <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 	<h3>전체주문내역</h3>
-	<div id="days">
+	<div id="days" style="text-align: center;">
 		<form action="<%=request.getContextPath()%>/myshop/dayList" method="post">
 			<script>
 			  $.datepicker.setDefaults({
@@ -40,29 +78,17 @@
 			  });
 			
 		</script>
-			<p>조회기간:
+			조회기간:
 			  <input type="text" id="datepicker1" name="date1"> ~
 			  <input type="text" id="datepicker2" name="date2">
-			</p>
+			
 			<input type="submit" value="조회" name="day">
 		</form>
 	</div>
 	
 	
-	<table border="1" width="1000">
-		
-		<colgroup>
-		<col style="width:135px;">
-		<col style="width:auto;">
-		<col style="width:111px;">
-		<col style="width:61px;">
-		<col style="width:61px;">
-		<col style="width:111px;">
-		<col style="width:111px;">
-		<col style="width:111px;">
-		
-		</colgroup>
-		<thead>
+	<table id="hor-minimalist-a">
+	<thead>
 		 <tr>
 		  	<th scope="col">주문번호</th>
 		  	<th scope="col">제품명</th>
@@ -74,18 +100,20 @@
 		  	<th scope="col">주문처리상태</th>
 		  	
 		 </tr>
+		 </thead>
+		 <tbody>
 		<c:choose>
 		<c:when test="${requestScope.list!=null}">
 			<c:forEach var="vo" items="${requestScope.list }">
 		 	<tr>
-			 	<th scope="col">${vo.odnum }</th>
-			  	<th scope="col">${vo.pname }</th>
-			  	<th scope="col">${vo.delocation }</th>
-			  	<th scope="col">${vo.dcount }</th>
-			  	<th scope="col">${vo.prosize }</th>
-			  	<th scope="col">${vo.totalsales }</th>
-			  	<th scope="col">${vo.odate }</th>
-			  	<th scope="col">
+			 	<td>${vo.odnum }</td>
+			  	<td>${vo.pname }</td>
+			  	<td>${vo.delocation }</td>
+			  	<td>${vo.dcount }</td>
+			  	<td>${vo.prosize }</td>
+			  	<td>${vo.totalsales }</td>
+			  	<td>${vo.odate }</td>
+			  	<td>
 			  	<c:choose>
 				  	<c:when test="${vo.dstate==1}">
 				  		결제완료<br>
@@ -119,7 +147,7 @@
 				  		리뷰작성완료
 				  	</c:when>
 			  	</c:choose>
-			  	</th>
+			  	</td>
 			  </tr>
 		 	 </c:forEach>
 			
@@ -130,14 +158,14 @@
 			
 			<c:forEach var="vo2" items="${requestScope.list2 }">
 		 	<tr>
-			 	<th scope="col">${vo2.odnum }</th>
-			  	<th scope="col">${vo2.pname }</th>
-			  	<th scope="col">${vo2.delocation }</th>
-			  	<th scope="col">${vo2.dcount }</th>
-			  	<th scope="col">${vo2.prosize }</th>
-			  	<th scope="col">${vo2.totalsales }</th>
-			  	<th scope="col">${vo2.odate }</th>
-			  	<th scope="col">
+			 	<td>${vo2.odnum }</td>
+			  	<td>${vo2.pname }</td>
+			  	<td>${vo2.delocation }</td>
+			  	<td>${vo2.dcount }</td>
+			  	<td>${vo2.prosize }</td>
+			  	<td>${vo2.totalsales }</td>
+			  	<td>${vo2.odate }</td>
+			  	<td>
 			  	<c:choose>
 				  	<c:when test="${vo2.dstate==1}">
 				  		결제완료<br>
@@ -168,7 +196,7 @@
 				  	</c:when>
 				  	
 			  	</c:choose>
-			  	</th>
+			  	</td>
 			  </tr>
 		 	 </c:forEach>
 		 	
@@ -177,7 +205,7 @@
 		
 		 </c:otherwise>
 		 </c:choose>
-		</thead>
+		</tbody>
 	</table>
 	<c:choose>
 			<c:when test="${list2!=null}">
@@ -186,7 +214,7 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-			<div><!-- 페이징 -->
+			<div class="paging"><!-- 페이징 -->
 				<c:forEach var="i" begin="${startPage }" end="${endPage}">
 				 	<c:choose>
 				 		<c:when test="${i==pageNum }">
