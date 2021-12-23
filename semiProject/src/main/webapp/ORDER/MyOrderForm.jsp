@@ -44,7 +44,7 @@
 				<%-- 상품명없음 --%>
 				<td scope="row">${ vo.pPrice }</td>
 				<td scope="row">${ vo.cnt }</td>
-				<td scope="row">${ vo.price }</td>
+				<td scope="row">@@@${ vo.pdNum }</td>
 			</tr>
 		</c:forEach>
 		</tbody>
