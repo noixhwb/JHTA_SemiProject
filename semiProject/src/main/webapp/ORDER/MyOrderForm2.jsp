@@ -29,24 +29,23 @@
 				<th scope="col">상품이름</th>
 				<th scope="col">상품금액</th>
 				<th scope="col">수량</th>
-				<th scope="col">주문금액</th>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="vo" items="${ list }">
-			<input type="hidden" name="pnum" value="${vo.pNum }">
-			<input type="hidden" name="cnt" value="${vo.cnt }">
-			<input type="hidden" name="pdnum" value="${vo.pdNum }">			
-			<input type="hidden" name="price" value="${vo.price }">
+		<%--<c:forEach var="vo" items="${ list }"> --%>
+			<input type="hidden" name="pNum" value="${vo.pNum }">
+			<%--<input type="hidden" name="cnt" value="${vo.cnt }"> --%>
+			<input type="hidden" name="pName" value="${vo.pName }">			
+			<input type="hidden" name="pPrice" value="${vo.pPrice }">
 			<tr>
-				<td scope="row"><img src="<%=request.getContextPath()%>/imagesPro/${vo.piFilename}"style="width: 120px; height: 120px;"></td>
+				<td scope="row"><img src="${cp }/imagesPro/${img}"style="width: 120px; height: 120px;"></td>
 				<td scope="row">${ vo.pName }</td>
-				<%-- 상품명없음 --%>
 				<td scope="row">${ vo.pPrice }</td>
-				<td scope="row">${ vo.cnt }</td>
-				<td scope="row">${ vo.price }</td>
+				<c:forEach var="list" items="${list }">
+				<td scope="row">ㅎㅎ${ list.pdNum}</td>
+				</c:forEach>
 			</tr>
-		</c:forEach>
+
 		</tbody>
 		</table>
 		</div>

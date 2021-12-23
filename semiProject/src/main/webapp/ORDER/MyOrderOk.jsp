@@ -24,7 +24,7 @@
 				<div class="card-body text-danger">
 					<img src="images/checked.png" class="card-img-top" style="width: 300px; height: 300px;">
 					<h1 class="card-title"><strong>주문이 완료되었습니다</strong></h1>
-					<p class="card-text">@@orders, orderdetail에서 가져오기@@ <br> 주문번호 <br> 주문일자 <br>주문된리스트 @@</p>
+					<p class="card-text">@@주문번호@@</p>
 				</div>
 			</div>
 				</div>
