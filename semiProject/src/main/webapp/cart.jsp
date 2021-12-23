@@ -232,6 +232,7 @@ td {
 		function selectbasket() {
 			$("#orderFrm").submit();
 		}
+		
 	</script>
 </body>
 </html>

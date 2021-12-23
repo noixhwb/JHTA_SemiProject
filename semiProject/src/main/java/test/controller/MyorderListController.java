@@ -22,7 +22,7 @@ public class MyorderListController extends HttpServlet {
 
 		req.setAttribute("header", "/header.jsp");
 		
-		//상품리스트2(사진,사이즈 포함)
+		//상품리스트(사진,사이즈 포함)
 		int totPrice = 0;
 		CartDao dao=new CartDao();
 		List<Map<String,Object>> list = dao.selectCartOrderList(req.getParameterValues("product"));
