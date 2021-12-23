@@ -15,7 +15,7 @@
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 	<form action="${ cp }/myorderOk">
-	<div class="container">
+	<div class="container" >
 	<div class="card border-dark mb-3">
 	
 		<h5 class="card-header">주문하실 상품</h5>
@@ -101,7 +101,7 @@
 	</div>	
 	</div>
 	
-	<div id="purch">
+	<div id="purch" style="margin-bottom:200px;">
 		<input type="submit" value="구매하기">
 	</div>
 	</form>
