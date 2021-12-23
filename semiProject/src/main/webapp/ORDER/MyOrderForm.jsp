@@ -41,10 +41,9 @@
 			<tr>
 				<td scope="row"><img src="<%=request.getContextPath()%>/imagesPro/${vo.piFilename}"style="width: 120px; height: 120px;"></td>
 				<td scope="row">${ vo.pName }</td>
-				<%-- 상품명없음 --%>
 				<td scope="row">${ vo.pPrice }</td>
 				<td scope="row">${ vo.cnt }</td>
-				<td scope="row">@@@${ vo.pdNum }</td>
+				<td scope="row">${ vo.price }</td>
 			</tr>
 		</c:forEach>
 		</tbody>
@@ -102,7 +101,7 @@
 	</div>	
 	</div>
 	
-	<div id="purch">
+	<div id="purch" style="margin-bottom: 200px">
 		<input type="submit" value="구매하기">
 	</div>
 	</form>

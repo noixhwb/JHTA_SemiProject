@@ -56,7 +56,7 @@
 
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
-	<div id="wrap">
+	<div id="wrap" style="margin-bottom: 200px">
 		<div id="mypage_category">
 			<ul>
 				<li>

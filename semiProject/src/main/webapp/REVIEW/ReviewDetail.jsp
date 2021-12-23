@@ -78,7 +78,7 @@
 		</div>
 	</div>
 	</div>
-	<div id="cust_estm">
+	<div id="cust_estm" style="margin-bottom: 200px">
 		<input type="submit" value="마이리뷰목록으로 돌아가기">
 	</div>
 	</form>
