@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
 .Productcontainer {
 	display: grid;
@@ -164,7 +164,7 @@ color:white;
 	
 		<!-- 구매하기,장바구니 버튼 -->
 		<div>
-			<input type="button" value="구매하기" class="buybut"> <input type="button" value="장바구니" class="cartbut">
+			<input type="button" value="구매하기" class="buybut" onclick="location.href='${cp}/toMyOrder?pNum=${ vo.pNum }'"> <input type="button" value="장바구니" class="cartbut">
 		</div>
 	</div>
     <!-- 제품상세-->
@@ -221,7 +221,29 @@ color:white;
 				<hr width=100% color="gray" align="left" size=1>
 				<br>
 			</div>
-
+		<div class="container">
+			<table class="table table-hover">
+			<thead>
+				<tr class="table-secondary">
+					<%--<th scope="col">리뷰글번호</th> --%>
+					<th scope="col">리뷰 내용</th>
+					<th scope="col">평점</th>
+					<th scope="col">아이디</th>
+					<th scope="col">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="revvo" items="${ rvlist }">
+				<tr>
+					<td scope="row">${ revvo.content }</td>
+					<td scope="row">${ revvo.cScore }</td>
+					<td scope="row">${ revvo.mid }</td>
+					<td scope="row">${ revvo.cDate }</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+			</table>
+		</div>
 		</div>
 
 	</div>
@@ -232,6 +254,7 @@ color:white;
    
    
  -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 	//이미지 변경 
 	function changeimg(e) {
