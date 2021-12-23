@@ -34,9 +34,7 @@
 }
 #inputform
 {
- background-color:gray;
- width:440px;
- height:500px;
+ background-color: #A6B8C4;
  position:absolute;
  top:50px;
  text-align: center;
@@ -56,6 +54,51 @@
 	display: none;
 		margin:50px;
 }
+
+/* 	유저로그인 수정 부분 */
+	h3 {
+		text-align: left;
+		margin-bottom: 20px;
+		}
+		
+		
+	#tt1{
+	width: 250px; height: 20px;
+	}
+	#tag1{
+	width: 100%; height: 100%;
+	}
+	#loginbt{
+	width: 120px; height: 70px;
+	}
+	#loginbt1{
+	width: 90%; height: 100%;
+	background-color: black;
+	border: 1px solid black;
+	color: white;
+	cursor: pointer;
+	}
+	#y{
+	height: 20px;
+	}
+	#y1{
+	height: 40px;
+	}
+	#tt12{
+	height: 40px;
+	}
+	#btn10{
+	width: 100%; height: 100%;
+	background-color: black;
+	color: white;
+	border: 1px solid black;
+	font-size: 7px;
+	cursor: pointer;
+	}
+	
+	/* 	관리자로그인 수정 부분 */
+	
+	
 </style>
 
 
@@ -85,24 +128,52 @@
 <div id="inputform">
 	<div id="userlogin">
 		<form method="post" action="<%=request.getContextPath()%>/admin/login">
-		    유저로그인<br>
-			아이디<input type="text" name="mid"><br> 
-			비밀번호<input type="password" name="mpwd">
-			<input type="submit" value="로그인"><br>
-			<a href="<%=request.getContextPath()%>/findidform">
-			아이디찾기
-			</a>
-			<a href="<%=request.getContextPath()%>/findpwdform">
-			비밀번호찾기
-			</a>
+		    <h3 >유저로그인</h3>
+		<table>
+		<tr>
+			<th colspan="2" id="tt1"><input type="text" name="mid" id="tag1" placeholder="아이디" onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"><br> </th>	
+			<td rowspan="2" id="loginbt"><input type="submit" id="loginbt1" value="로그인"><td>
+		</tr>
+		
+		<tr>	
+			<th colspan="2" id="tt1" ><input type="password" name="mpwd" id="tag1" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'" ></th>
+		</tr>	
+		
+		<tr>
+			<th id="y"></th>
+		</tr>
+		
+		<tr>
+			<th id="tt12"><a  href="<%=request.getContextPath()%>/Home?spage=/member/join.jsp"><button type="button" id="btn10">회원가입</button></a> </th>
+			<th id="tt12"><a  href="<%=request.getContextPath()%>/findidform"><button type="button" id="btn10">아이디찾기</button>   </a></th>
+			<th id="tt12"><a  href="<%=request.getContextPath()%>/findpwdform"><button type="button" id="btn10">비밀번호찾기</button> </a></th>
+		</tr>
+		</table>
 		</form>
 				
 	</div>
 	<div id="adminlogin">
 		<form method="post" action="<%=request.getContextPath()%>/admin/login">
-		관리자로그인<br>
-		아이디<input type="text" name="aid"> <br> 로그인<input type="password" name="apwd">
-		<input type="submit" value="로그인">
+		<h3>관리자로그인</h3>
+		<table>
+			<tr>
+				<th colspan="2" id="tt1"><input type="text" name="aid" id="tag1" placeholder="아이디" onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"></th> 
+				<td rowspan="2" id="loginbt"> <input type="submit" id="loginbt1" value="로그인"></td>
+			</tr>
+			
+			<tr>
+				<th colspan="2" id="tt1" ><input type="password" name="apwd" id="tag1" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'"></th>
+			</tr>
+			
+			<tr>
+            	<th id="y"></th>
+       		</tr>
+			<tr>
+            	<th id="y1"></th>
+       		</tr>
+        	
+        
+		</table>
 		</form>
 		
 	</div>

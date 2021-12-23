@@ -12,6 +12,8 @@ public class OrderListVo {
 	private int totalsales;
 	private String delocation;
 	private Date odate;
+	private int sales;
+	private String sdate;
 	public OrderListVo() {}
 	public OrderListVo(int odnum, String prosize, int dcount, String pname, int dstate, String mid, int totalsales,
 			String delocation, Date odate) {
@@ -25,6 +27,22 @@ public class OrderListVo {
 		this.totalsales = totalsales;
 		this.delocation = delocation;
 		this.odate = odate;
+	}
+	public OrderListVo(int sales,String sdate) {
+		this.sales=sales;
+		this.sdate=sdate;
+	}
+	public int getSales() {
+		return sales;
+	}
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
+	public String getSdate() {
+		return sdate;
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
 	}
 	public int getOdnum() {
 		return odnum;
