@@ -164,7 +164,7 @@ color:white;
 	
 		<!-- 구매하기,장바구니 버튼 -->
 		<div>
-			<input type="button" value="구매하기" class="buybut" onclick="location.href='${cp}/toMyOrder?pnum=${ vo.pNum }'"> <input type="button" value="장바구니" class="cartbut">
+			<input type="button" value="구매하기" class="buybut" onclick="location.href='${cp}/toMyOrder?pNum=${ vo.pNum }'"> <input type="button" value="장바구니" class="cartbut">
 		</div>
 	</div>
     <!-- 제품상세-->
