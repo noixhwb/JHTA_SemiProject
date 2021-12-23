@@ -91,7 +91,6 @@ public class AdminLoginController extends HttpServlet{
 					
 					System.out.println("로그인성공");
 					resp.sendRedirect(req.getContextPath()+"/Home");		
-				}
 				}else {
 				System.out.println("탈퇴된 회원 로그인시도중");
 				req.setAttribute("ms2", "이미 탈퇴한 계정입니다.");
@@ -109,4 +108,5 @@ public class AdminLoginController extends HttpServlet{
 		
 		
 	}
+}
 }

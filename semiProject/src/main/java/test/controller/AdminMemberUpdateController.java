@@ -21,7 +21,7 @@ public class AdminMemberUpdateController extends HttpServlet{
 		
 		if(vo==null) {
 			req.setAttribute("rr", "no");
-			req.getRequestDispatcher("/Home?spage=/admin/memberresult.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Home?spage=/admin/memberupdateForm.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("vo", vo);
 			req.getRequestDispatcher("/Home?spage=/admin/memberupdateForm.jsp").forward(req, resp);
@@ -47,6 +47,6 @@ public class AdminMemberUpdateController extends HttpServlet{
 		}else {
 			req.setAttribute("rr", "no");
 		}
-		req.getRequestDispatcher("/Home?spage=/admin/memberresult.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Home?spage=/admin/memberupdateForm.jsp").forward(req, resp);
 	}
 }

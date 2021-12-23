@@ -8,73 +8,57 @@
 <meta charset="UTF-8">
 <title>BeanJoin</title>
 <style>
-
-	#wrap{
-		margin:0px	; padding: 0px; text-align: center;
-		
-		}	
+	
 	#box1{
-		 width:900px; height: 50px; 
-		 padding-bottom: 20px;
-		 display: inline-block; 
-		 
-		 
-		}
-	#box2{
-		width:800px; height: 400px; 
-		padding-bottom: 20px;
-		display:flex;
-		justify-contents:center;
-		margin: 0 auto;
-
+	border: 1px solid;
+	width:700px; height: 500px;
+	margin-left: 30%;
+	border-radius: 7px;
+	background-color: #f3f6f4;
 	}
-	table{
+	#box2 h2{
+	margin-top: 10px;
+	margin-left: 30px;
+	margin-right: 30px;
+	margin-bottom: 30px;
+	text-align: center;
+	border-radius: 7px;
+	
+	background-color: #000000;
+	color: white;
 	}
 	th{
-	width:100px; height: 50px; 
-	text-align:left;
+	width: 190px;
+	text-align: right;
+	padding-top: 11px;
+	padding-bottom: 21px;
+	padding-right: 30px;
 	}
-	td{
-	width:300px;
+	#tt{
+	width : 240px;
+	margin-bottom: 11px;
 	}
-	#tb1{
-	width:300px;
-	}
-	
-	
-	#mid{
-	width:240px; height: 25px;
-	font-size: 20px;
-	}
-	#mpwd{
-	width:240px; height: 25px;
-	font-size: 20px;
-	}
-	#mname{
-	width:240px; height: 25px;
-	font-size: 20px;
-	}
-	#maddr{
-	width:240px; height: 25px;
-	font-size: 20px;
+	input{
+	width: 200px; height: 23px;
+	font-size: 16px;
 	}
 	#mphone1{
-	width:50px; height: 25px;		
-	font-size: 20px;	
+	width: 50px; height: 23px;
+	}
+	#btn1{
+	width: 500px; height: 50px;
+	margin-left: 90px;
+	border-radius: 9px;
+	background-color: black;
+	color: white;
 	}
 	
-	#btn1 {	
-			background-color: black;
-			padding: 20px 23px;
-			margin: 2px;
-			border: none;
-			color: white;
-			text-align: right;
-			text-decoration: none;
-			font-size: 16px;
-			display: inline-block;
-			cursor: pointer;
+	
+	
+	#x{
+	width: 694px; height: 50px;
 	}
+	
 	
 </style>
 <script type="text/javascript">
@@ -221,40 +205,37 @@ function success(){
 </script>
 <body>
 <div id="wrap">
+
 	<div id="box1">
-	        <h2 align="center">회원 가입</h2>     
-	         &nbsp;
-	        <hr width = 100% size=1 color=black>
-	        <br>
-	</div>
-	
-	<div id="box2">
+		<div id="box2">
+		 <h2>회원 가입</h2>
+		</div>
 	<form name="f" method="post" action="<%=request.getContextPath() %>/join" onsubmit="return sendIt();">
-	     <table >
+	     <table id="tablebox">
 			<tr >
 	            <th>아이디 </th>
-	            <td><input type="text" name="mid" id="mid" maxlength="12" onkeyup="idCheck()"></td>
-	            <th id="tb1"><span id="idcheck"></span></th>
+	            <td id="tt"><input type="text" name="mid" id="mid" maxlength="12" onkeyup="idCheck()"></td>
+	            <td id="tb1"><span id="idcheck"></span></td>
 	        </tr>
 	        
 	        <tr>
 	            <th> 비밀번호</th>
-	            <td><input type="password" name="mpwd" id="mpwd" maxlength="16"></td>
-	            <th id="tb1"> 8자~16자 사이 입력해주세요 </th>
+	            <td id="tt"><input type="password" name="mpwd" id="mpwd" maxlength="16"></td>
+	            <td id="tb1"> 8자~16자 사이 입력해주세요 </td>
 	        </tr >
 	        
 	        <tr>
 	            <th> 이름 </th>
-	            <td><input type="text" name="mname" id="mname" maxlength="4"></td>
+	            <td id="tt"><input type="text" name="mname" id="mname" maxlength="4"></td>
 	        </tr >
 	        <tr>
 	            <th> 주소 </th>
-	            <td><input type="text" name="maddr" id="maddr" maxlength="6"></td>
+	            <td id="tt"><input type="text" name="maddr" id="maddr" maxlength="6"></td>
 	        </tr>
 	        <tr>
 	            <th> 연락처 </th>
-	            <td>
-	            	   <select name="mphone1" style="width:50px; height: 29px;">
+	            <td id="tt">
+	            	   <select name="mphone1" style="width:50px; height: 25px;">
 					        <option value="010" id="mphone1">010</option>
 					        <option value="011" id="mphone1">011</option>
 					        <option value="016" id="mphone1">016</option>
@@ -265,17 +246,16 @@ function success(){
 	            	<input type="text" name="mphone3" id="mphone1"maxlength="4" size="2">
 	            </td >
 	        </tr>
+	        <tr> <td colspan="6" id="x"></td> </tr>
 	        <tr>
-	            <th>
-	                <p align="right">&nbsp;</p>
-	            </th>
-	            <td>
+	            <td colspan="6" >
 	            <input type="submit" id="btn1" value="가입하기">
 	            </td>
 	        </tr>
 	    </table>
 	</form>
 	</div>
+	
 </div>
 </body>
 </html>
