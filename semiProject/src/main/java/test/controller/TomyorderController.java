@@ -28,6 +28,14 @@ public class TomyorderController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int pNum = Integer.parseInt(req.getParameter("pNum"));
 		System.out.println(pNum);
+		int pdNum = Integer.parseInt(req.getParameter("pdNum"));
+		int num = Integer.parseInt(req.getParameter("num"));
+		int pricetotal = Integer.parseInt(req.getParameter("pricetotal"));
+		
+		req.setAttribute("pNum", pNum);
+		req.setAttribute("pdNum", pdNum);
+		req.setAttribute("num", num);
+		req.setAttribute("pricetotal", pricetotal);
 		
 			//product
 			ProductDao dao=ProductDao.getInstance();
