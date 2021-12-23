@@ -143,14 +143,12 @@ public class ProductDao {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select NVL(count(pnum),0) ccount from (select product.*,rownum rnum from(select * from product order by pnum DESC )product) where rnum>=? and rnum<=?";
+		String sql="select NVL(count(pnum),0) ccount from (select product.*,rownum rnum from(select * from product order by pnum DESC )product)";
 		
 		try
 		{
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
 			rs=pstmt.executeQuery();
 			rs.next();
 			int count=rs.getInt("ccount");
@@ -244,14 +242,13 @@ public class ProductDao {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select NVL(count(pnum),0) ccount from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
+		String sql="select NVL(count(pnum),0) ccount from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? order by p.pnum DESC)product)";
 		try
 		{
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, code);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
+	
 			rs=pstmt.executeQuery();
 			rs.next();
 			int count=rs.getInt("ccount");
@@ -310,15 +307,13 @@ public class ProductDao {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select NVL(count(pnum),0) ccount from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? and p.cname=? order by p.pnum DESC)product) where rnum>=? and rnum<=?";
+		String sql="select NVL(count(pnum),0) ccount from (select pnum,pname,pprice,code, rownum rnum from(select pnum,pname,pprice,code from product p,category c where p.cname=c.cname and c.code=? and p.cname=? order by p.pnum DESC)product)";
 		try
 		{
 			con=JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, code);
 			pstmt.setString(2, cname);
-			pstmt.setInt(3, startRow);
-			pstmt.setInt(4, endRow);
 			rs=pstmt.executeQuery();
 			rs.next();
 			int count=rs.getInt("ccount");
@@ -331,7 +326,52 @@ public class ProductDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	//업데이트
+	public int updateProduct(ProductVo vo)
+	{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="update product set pname=?,pcontent=?,pprice=?,cname=? where pnum=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getpName());
+			pstmt.setString(2, vo.getpContent());
+			pstmt.setInt(3,vo.getpPrice());
+			pstmt.setString(4,vo.getcName());
+			pstmt.setInt(5,vo.getpNum());
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
 	
+	}
+	//삭제
+	public int deleteProduct(int pnum)
+	{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql="delete from product where pnum=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,pnum);
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	
+	}
 }
 
 	

@@ -47,13 +47,12 @@ public class AdminProductInsertController extends HttpServlet {
 		// product pk번호 불러오기
 		int pnum = dao.getpNum();
 		System.out.println(pnum);
-		
 
 		if (n > 0) {
 			// 디테일한 파일들
-			 String[] prosize =  mr.getParameterValues("prosize");
-			 String[] procount = mr.getParameterValues("procount");
-			ProdetailDao pddao=ProdetailDao.getInstance();
+			String[] prosize = mr.getParameterValues("prosize");
+			String[] procount = mr.getParameterValues("procount");
+			ProdetailDao pddao = ProdetailDao.getInstance();
 			Enumeration<String> em = mr.getFileNames();
 			while (em.hasMoreElements()) {
 				String file = em.nextElement();
@@ -61,60 +60,51 @@ public class AdminProductInsertController extends HttpServlet {
 				System.out.println(savefilename);
 				System.out.println(file);
 				ProimageVo iVo;
-				if(file.indexOf("s")>-1)
-				{
+				if (file.indexOf("s") > -1) {
 					File f = new File(saveDir + "\\" + savefilename);
 					long filesize = f.length();
-					iVo = new ProimageVo(0, pnum, savefilename, filesize,2);
+					iVo = new ProimageVo(0, pnum, savefilename, filesize, 2);
 					ProimageDao Idao = ProimageDao.getInstance();
 					int n2 = Idao.insertimg(iVo);
 					if (n2 > 0) {
 						System.out.println("img등록 성공");
-						
+
 					} else {
 						System.out.println("img등록 실패");
 					}
-					
-				}else
-				{
+
+				} else {
 					File f = new File(saveDir + "\\" + savefilename);
 					long filesize = f.length();
-					iVo = new ProimageVo(0, pnum, savefilename, filesize,1);
+					iVo = new ProimageVo(0, pnum, savefilename, filesize, 1);
 					ProimageDao Idao = ProimageDao.getInstance();
 					int n2 = Idao.insertimg(iVo);
 					if (n2 > 0) {
 						System.out.println("img등록 성공");
-						
+
 					} else {
 						System.out.println("img등록 실패");
 					}
 				}
-				
-				
 
 			}
 
-			
-			//prodetail DB등록
-			for(int i=0;i<prosize.length;i++)
-			 {
-				 System.out.println("반복문까지 들어올수있음");
-		
-				 prodetailVo pdVo=new prodetailVo(0, pnum, prosize[i], Integer.parseInt(procount[i]));
-				 int n3=pddao.insertProdetail(pdVo);
-				 if(n3>0)
-				 {
-						System.out.println("상세등록 성공");
-						
-				
-				 }
-				 else
-				 {
-					 System.out.println("상세등록 실패");
-			 }
-			 
-			 }
-			
+			// prodetail DB등록
+			for (int i = 0; i < prosize.length; i++) {
+				System.out.println("반복문까지 들어올수있음");
+
+				prodetailVo pdVo = new prodetailVo(0, pnum, prosize[i], Integer.parseInt(procount[i]));
+				int n3 = pddao.insertProdetail(pdVo);
+				if (n3 > 0) {
+					System.out.println("상세등록 성공");
+
+				} else {
+					System.out.println("상세등록 실패");
+				}
+
+			}
+			 req.getRequestDispatcher("/Home?spage=/admin/productlist").forward(req, resp);
+
 		} else {
 			System.out.println("product등록 실패");
 		}

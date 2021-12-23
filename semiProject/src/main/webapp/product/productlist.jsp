@@ -52,8 +52,8 @@ text-align: center;
 
 </div>
 <div class="page">
-     <a href="${cp }/product/list?pageNum=${startPage-1}">&lt;&lt;</a>
-
+     <a href="${cp }/product/list?pageNum=${pageNum-1}">&lt;&lt;</a>
+   
    <c:forEach var="i" begin="${startPage}" end="${endPage }">
       <c:choose>
          <c:when test="${pageNum==i }">
@@ -64,7 +64,7 @@ text-align: center;
          </c:otherwise>
       </c:choose> 
    </c:forEach>
-     <a href="${cp }/product/list?pageNum=${endPage+1}">&gt;&gt;</a>
+     <a href="${cp }/product/list?pageNum=${pageNum+1}">&gt;&gt;</a>
 </div>
 <!-- 페이징 처리 -->
 

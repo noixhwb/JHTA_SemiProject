@@ -30,8 +30,8 @@ public class ProductListController extends HttpServlet{
 		if (spageNum != null) {
 			pageNum = Integer.parseInt(spageNum);
 		}
-		int endRow = pageNum * 20;
-		int startRow = endRow - 19;
+		int endRow = pageNum * 12;
+		int startRow = endRow - 11;
 		
 		ProductDao dao=ProductDao.getInstance();
 		ArrayList<String> listP=new ArrayList<String>();
@@ -39,7 +39,8 @@ public class ProductListController extends HttpServlet{
 		{
 			System.out.println("들어왔다.");
 			int count =dao.getCount_category(startRow, endRow, category);
-			int pageCount = (int) Math.ceil(count / 10.0);// 전체 페이지 갯수
+			int pageCount = (int) Math.ceil(count / 12.0);// 전체 페이지 갯수
+			System.out.println(pageCount);
 			int startPageNum = ((pageNum - 1) / 10 * 10) + 1;// 시작페이지
 			int endPageNum = startPageNum + 9;// 끝페이지
 			if (endPageNum > pageCount) {
@@ -93,6 +94,8 @@ public class ProductListController extends HttpServlet{
 		{
 			int count =dao.getCount_all(startRow, endRow);
 			int pageCount = (int) Math.ceil(count / 10.0);// 전체 페이지 갯수
+			System.out.println(count);
+			System.out.println(pageCount);
 			int startPageNum = ((pageNum - 1) / 10 * 10) + 1;// 시작페이지
 			int endPageNum = startPageNum + 9;// 끝페이지
 			if (endPageNum > pageCount) {

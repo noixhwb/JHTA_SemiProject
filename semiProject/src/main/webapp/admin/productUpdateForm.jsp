@@ -26,6 +26,7 @@
 }
 </style>
 <!-- 제품상세페이지(관리자용) -->
+<form method="post" action="${ pageContext.request.contextPath}/Home?spage=/admin/productInsert" enctype="multipart/form-data">
 <h1 style="text-align: center; padding-bottom: 50px;">제품수정페이지</h1>
 <c:set var="cp" value="${ pageContext.request.contextPath}" />
 <!-- 카테고리 -->
@@ -44,7 +45,7 @@
 	</td>
 			<td id="col">소분류</td>
 			<td>
-				<input type="hidden" value="${requestScope.vo.cName}" id="hiddenCname">
+				<input type="hidden" value="${requestScope.vo.cName}" id="hiddenCname" name="cName">
 				<select id="selectcname" name="cname">
 				<option>---option을 선택해주세요---</option>
 				</select>
@@ -55,7 +56,7 @@
 		<tr>
 			<td id="col">제품번호</td>
 			<td colspan="3">${requestScope.vo.pNum}
-				<input type="hidden" value="${requestScope.vo.pNum}" name="pnum">
+				<input type="hidden" value="${requestScope.vo.pNum}" name="pNum">
 			</td>
 		</tr>
 		<!-- 제품명 -->
@@ -81,7 +82,7 @@
 					<input type="text" value="${i.proSize}" name="prosize">
 				</td>
 				<td id="col">재고량</td>
-				<td>${i.proCount}</td>
+				<td><input type="text" value="${i.proCount}" name="procount"></td>
 			</tr>
 		</c:forEach>
 
@@ -116,7 +117,7 @@
 	</table>
 
 </div>
-
+</form>
 <script type="text/javascript">
 //첨부파일 input 생성 함수
 function createfilebox() {

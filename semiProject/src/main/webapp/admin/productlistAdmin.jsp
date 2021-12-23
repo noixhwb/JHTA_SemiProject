@@ -9,6 +9,7 @@ border-collapse:separate;
 position: absolute;
 left:150px;
 padding-top: 50px;
+padding-bottom: 200px;
 
 }
 .admin_product_list th
@@ -56,6 +57,5 @@ background-color:black;
 <tr>
 <td colspan="2" style="text-align: right;"><a href="${cp }/Home?spage=/admin/productInsert.jsp" id="addbtn">제품추가</a></td>
 </tr>
-
 </table>
 </div>
