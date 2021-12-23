@@ -58,9 +58,10 @@ public class ProdetailDao {
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
+				int pdnum=rs.getInt("pdnum");
 				String prosize=rs.getString("prosize");
 				int procount=rs.getInt("procount");
-				prodetailVo vo=new prodetailVo(0, pnum, prosize, procount);
+				prodetailVo vo=new prodetailVo(pdnum, pnum, prosize, procount);
 				list.add(vo);
 			}
 			return list;
