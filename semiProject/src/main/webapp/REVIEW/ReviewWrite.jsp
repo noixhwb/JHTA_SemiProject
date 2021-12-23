@@ -147,7 +147,7 @@
 		<div id="product">
 			
 		</div>
-		<div id="cust_estm">
+		<div id="cust_estm" style="margin-bottom: 200px">
 			<input type="submit" value="리뷰작성">
 		</div>
 	</form>

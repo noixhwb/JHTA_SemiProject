@@ -194,14 +194,14 @@
 				<tr>
 					<td>
 					<!-- 구매하기 파라미터 넘기는 form -->
-						<form method="post" id="buyform">
+						<form method="post" id="buyform" action="${cp}/toMyOrder?pNum=${ vo.pNum }">
 			                 <!-- pdNum -->
 			                  <input type="hidden" value="" id="pdNum" name="pdNum"> 
 							 <!-- 구매수량 -->
 							  <input type="hidden" value="0" id="num" name="num"> 
 							  <!-- 총구매가격 -->
 							  <input type="hidden" value="0" id="pricetotal" name="pricetotal"> 
-							  <input type="submit" value="구매하기" class="buybut" onclick="location.href='${cp}/toMyOrder?pNum=${ vo.pNum }'">
+							  <input type="submit" value="구매하기" class="buybut">
 						</form>
 					</td>
 					<td>

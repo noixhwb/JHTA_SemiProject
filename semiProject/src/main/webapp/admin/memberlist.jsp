@@ -29,30 +29,38 @@
 	#t1{
 	width: 130px;
 	height: 40px;
-	background-color:#6495ED;
+	background-color: black;
+	color: white;
 	}
 	#t2{
 	width: 100px;
-	background-color:#6495ED;
+	background-color: black;
+	color: white;
 	}
 	#t3{
 	width: 100px;
-	background-color:#6495ED;
+	background-color: black;
+	color: white;
 	}
 	#t4{
 	width: 140px;
-	background-color:#6495ED;
+	background-color: black;
+	color: white;
 	}
 	#t5{
 	width: 70px;
-	background-color:#6495ED;
+	background-color: black;
+	color: white;
 	}
 	#t6{
 	width: 100px;
-	background-color:#6495ED;
+	background-color: black;
+	color: white;
 	}
 	#t7{
-	background-color:#6495ED;
+	width: 100px;
+	background-color: black;
+	color: white;
 	}
 	
 	td{ text-align: center; height: 30px;}
@@ -63,13 +71,14 @@
 	background-color: #FF8200;
 	}
 	#d1111{
-	background-color: #57E9E1;
+	background-color: #6495ED;
 	}
 
 	
 </style>
 </head>
 <body>
+
 <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 <table id="tb">
 	<tr>

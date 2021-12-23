@@ -46,7 +46,7 @@
 		</c:otherwise>
 	</c:choose>
 	</div>
-	<div id="submitbtn">
+	<div id="submitbtn" style="margin-bottom: 200px">
 		<input type="submit" value="마이리뷰목록으로 가기">
 	</div>
 	</form>

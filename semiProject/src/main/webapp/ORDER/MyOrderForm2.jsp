@@ -14,15 +14,15 @@
 </head>
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
-	<form action="${ cp }/myorderOk">
+	<form action="${ cp }/myorderOk2">
 	<div class="container" >
 	<div class="card border-dark mb-3">
 	
 		<h5 class="card-header">주문하실 상품</h5>
 	  	<div class="card-body">
 		<table class="table table-hover">
-		<caption style="text-align: center; color: red;">총금액+배송비 = ${totPrice }</caption>
-		<input type="hidden" name="totPrice" value="${ totPrice }">
+		<caption style="text-align: center; color: red;">총금액+배송비 = ${ pricetotal }</caption>
+		<input type="hidden" name="pricetotal" value="${ pricetotal }">
 		<thead>
 			<tr class="table-secondary">
 				<th scope="col">상품이미지</th>
@@ -33,17 +33,18 @@
 		</thead>
 		<tbody>
 		<%--<c:forEach var="vo" items="${ list }"> --%>
-			<input type="hidden" name="pNum" value="${vo.pNum }">
-			<%--<input type="hidden" name="cnt" value="${vo.cnt }"> --%>
-			<input type="hidden" name="pName" value="${vo.pName }">			
-			<input type="hidden" name="pPrice" value="${vo.pPrice }">
+			<input type="hidden" name="pNum" value="${ pNum }">
+			<input type="hidden" name="pdNum" value="${ pdNum }">
+			<input type="hidden" name="num" value="${ num }">			
+			<input type="hidden" name="pPrice" value="${ vo.pPrice }">
 			<tr>
 				<td scope="row"><img src="${cp }/imagesPro/${img}"style="width: 120px; height: 120px;"></td>
 				<td scope="row">${ vo.pName }</td>
 				<td scope="row">${ vo.pPrice }</td>
-				<c:forEach var="list" items="${list }">
-				<td scope="row">ㅎㅎ${ list.pdNum}</td>
-				</c:forEach>
+				<td scope="row">${ num }</td>
+				<%--<c:forEach var="list" items="${list }">
+				<td scope="row">${ num }</td>
+				</c:forEach>  --%>
 			</tr>
 
 		</tbody>

@@ -24,7 +24,11 @@
 				<div class="card-body text-danger">
 					<img src="images/checked.png" class="card-img-top" style="width: 300px; height: 300px;">
 					<h1 class="card-title"><strong>주문이 완료되었습니다</strong></h1>
-					<p class="card-text">@@주문번호@@</p>
+					<p class="card-text">
+					<c:forEach var="list" items="${myorderlist}">
+							주문번호 : ${ list.oNum } <br>
+					</c:forEach>
+				</p>		
 				</div>
 			</div>
 				</div>
@@ -46,7 +50,7 @@
 		</c:otherwise>
 	</c:choose>
 	</div>
-	<div id="submitbtn">
+	<div id="submitbtn" style="margin-bottom: 200px">
 		<input type="submit" value="홈으로 가기">
 	</div>
 	</form>
