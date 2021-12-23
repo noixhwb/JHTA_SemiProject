@@ -76,15 +76,16 @@
 	border: 1px solid #000;
 	box-sizing: border-box;
 }
-.select
-{
-background-color: black;
-color:white;
+
+.select {
+	background-color: black;
+	color: white;
 }
-.select a
-{
-color:white;
+
+.select a {
+	color: white;
 }
+
 #mainimg #img_m {
 	width: 700px;
 }
@@ -106,11 +107,29 @@ color:white;
 #num_div {
 	float: right;
 }
+
+.table-hover {
+	width: 70%;
+	margin-bottom: 200px;
+	position: absolute;
+	left: 15%;
+}
+
+.table-hover th {
+	background-color: gray;
+	height: 40px;
+	color: white;
+}
+
+.table-hover td {
+	height: 30px;
+	border: 1px solid brack;
+}
 </style>
 <c:set var="cp" value="${ pageContext.request.contextPath}" />
 <div class="Productcontainer">
-    
-     <!--상세이미지(작은이미지) -->
+
+	<!--상세이미지(작은이미지) -->
 	<div class="blank" id="sideimg">
 		<img src="${cp }/imagesPro/${img}" id="detailimg" onmouseover="changeimg(event)">
 		<c:forEach var="imgs" items="${imgsList}">
@@ -118,15 +137,14 @@ color:white;
 			<br>
 		</c:forEach>
 	</div>
-   <!--메인이미지 -->
+	<!--메인이미지 -->
 	<div class="blank" id="mainimg">
 		<img src="${cp }/imagesPro/${img}" id="img_m">
 	</div>
-     <!--제품 선택 -->
+	<!--제품 선택 -->
 	<div class="blank" id="product_text">
 		<div style="font: 80px;">
 			<h1>${vo.pName }</h1>
-			<input type="hidden" value="${vo.pName }" id="name">
 		</div>
 		<input type="hidden" value="${vo.pPrice }" id="price">
 		<div id="pricediv"></div>
@@ -143,7 +161,8 @@ color:white;
 				<option value="noselect">[필수] 옵션을 선택해주세요</option>
 				<option value="noselect">------------------------------------</option>
 				<c:forEach var="vo" items="${list}">
-					<option value="${vo.proSize}">${vo.proSize}</option>
+					<option value="${vo.pdNum}">${vo.proSize}</option>
+
 				</c:forEach>
 
 			</select>
@@ -151,23 +170,62 @@ color:white;
 		</div>
 		<hr width=100% color="gray" align="left" size=1 id="line">
 		<!-- 사이즈 선택시 해당 div에 추가 -->
+
 		<div id="adddiv"></div>
-		<table style="width:100%">
-		
-		<tr>
-		<td><div style="font-size: 20px;">TOTAL</div></td>
-		<td><div style="font-size: 20px;text-align: right;" id="total">0</div></td>
-		</tr>
+
+
+		<table style="width: 100%">
+
+			<tr>
+				<td>
+					<div style="font-size: 20px;">TOTAL</div>
+				</td>
+				<td>
+					<div style="font-size: 20px; text-align: right;" id="total">0</div>
+				</td>
+			</tr>
 		</table>
-		
-		
-	
+
+
+
 		<!-- 구매하기,장바구니 버튼 -->
 		<div>
-			<input type="button" value="구매하기" class="buybut" onclick="location.href='${cp}/toMyOrder?pNum=${ vo.pNum }'"> <input type="button" value="장바구니" class="cartbut">
+			<table>
+				<tr>
+					<td>
+					<!-- 구매하기 파라미터 넘기는 form -->
+						<form method="post" id="buyform">
+			                 <!-- pdNum -->
+			                  <input type="hidden" value="" id="pdNum" name="pdNum"> 
+							 <!-- 구매수량 -->
+							  <input type="hidden" value="0" id="num" name="num"> 
+							  <!-- 총구매가격 -->
+							  <input type="hidden" value="0" id="pricetotal" name="pricetotal"> 
+							  <input type="submit" value="구매하기" class="buybut" onclick="location.href='${cp}/toMyOrder?pNum=${ vo.pNum }'">
+						</form>
+					</td>
+					<td>
+						<!-- 장바구니 파라미터 넘기는 form -->
+						<form method="post" action="">
+						 <!-- 메인이미지 -->
+							<input type="hidden" value="${img}" name="mainimg">
+								 <!-- 제품명 -->
+							 <input type="hidden" value="${vo.pName }" id="name" name="pName"> 
+							 	 <!-- 구매수량 -->
+							 <input type="hidden" value="0" id="num" name="num"> 
+							 	 <!-- 총구매가격 -->
+							 <input type="hidden" value="0" id="pricetotal" name="pricetotal"> 
+							 <input type="submit" value="장바구니" class="cartbut">
+						</form>
+					</td>
+				</tr>
+			</table>
+
+
+
 		</div>
 	</div>
-    <!-- 제품상세-->
+	<!-- 제품상세-->
 	<div class="blank" id="product_detail">
 		<div class="productpage" id="productpage">
 			<div id="menu_sel">
@@ -187,7 +245,7 @@ color:white;
 				</c:forEach>
 			</div>
 		</div>
-			<!-- 결제정보 보여주기용-->
+		<!-- 결제정보 보여주기용-->
 		<div class="buyinfopage" id="buyinfopage">
 			<div id="menu_sel">
 				<ul>
@@ -209,7 +267,7 @@ color:white;
 				</tr>
 			</table>
 		</div>
-		
+
 		<!-- 리뷰 정보 가져오는 div-->
 		<div class="reviewPage" id="reviewPage">
 			<div id="menu_sel">
@@ -222,7 +280,7 @@ color:white;
 				<br>
 			</div>
 
-			<table class="table table-hover">
+			<table class="table-hover">
 
 				<tr class="table-secondary">
 					<%--<th scope="col">리뷰글번호</th> --%>
@@ -232,14 +290,14 @@ color:white;
 					<th scope="col">작성일</th>
 				</tr>
 
-			<c:forEach var="revvo" items="${ rvlist }">
-				<tr>
-					<td scope="row">${ revvo.content }</td>
-					<td scope="row">${ revvo.cScore }</td>
-					<td scope="row">${ revvo.mid }</td>
-					<td scope="row">${ revvo.cDate }</td>
-				</tr>
-			</c:forEach>
+				<c:forEach var="revvo" items="${ rvlist }">
+					<tr>
+						<td scope="row">${ revvo.content }</td>
+						<td scope="row">${ revvo.cScore }</td>
+						<td scope="row">${ revvo.mid }</td>
+						<td scope="row">${ revvo.cDate }</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 
@@ -279,17 +337,20 @@ color:white;
 	function addproduct() {
 		let div = document.getElementById("adddiv");
 		//select value값 가져오기
-		var select_size = document.getElementById("select_size").value;
-
+		var select = document.getElementById("select_size");
+		var select_size = select.options[select.selectedIndex].text;
+		//pdnum값 가져오기
+		
+		var pdNum = document.getElementById("pdNum");
+		pdNum.value=select.value;
 		//value값에 따라 조건 주기
 		if (select_size == "noselect") {
-			console.log("값을 선택하세요~")
+			console.log("값을 선택하세요~");
 		} else {
 			//div추가(사이즈 정보,가격정보,)
 			let size_div = document.createElement("div");
 			let num_div = document.createElement("div");
 			let Price_div = document.createElement("div");
-			let pricetotal = document.createElement("input");
 			Price_div.setAttribute("id", "Price_div");
 			//이름가져오기
 			let name = document.getElementById("name").value;
@@ -301,7 +362,8 @@ color:white;
 			select_num.setAttribute("type", "number");
 			select_num.setAttribute("id", "select_num");
 			select_num.setAttribute("name", "select_num");
-			select_num.setAttribute("value", "1");
+			select_num.setAttribute("min", "0");
+			select_num.setAttribute("value", "0");
 			//사이즈
 			size_div.innerHTML = name;
 			size_div.innerHTML += "<br>size : " + select_size;
@@ -309,11 +371,7 @@ color:white;
 			select_num.setAttribute("id", "select_num");
 			select_num.setAttribute("onchange", "addprice()");
 			Price_div.innerHTML = changeprice(1);
-			// 총 가격 int값으로 넣기
-			pricetotal.setAttribute("type", "hidden");
-			pricetotal.setAttribute("id", "pricetotal");
-			pricetotal.setAttribute("name", "pricetotal");
-			pricetotal.setAttribute("value", "0");
+
 			let line = document.createElement("hr");
 			line.setAttribute("id", "line");
 
@@ -321,30 +379,29 @@ color:white;
 			div.appendChild(num_div);
 			num_div.appendChild(select_num);
 			div.appendChild(Price_div);
-			div.appendChild(pricetotal);
+
 			div.appendChild(line);
 
 		}
 
 	}
-	function totalprice()
-	{
+	function totalprice() {
 		let Price_div = document.getElementById("Price_div").innerText;
 		let total = document.getElementById("total");
-		total.innerText=Price_div;
+		total.innerText = Price_div;
 	}
 	function addprice() {
 		let num = document.getElementById("select_num").value;
 		let price = document.getElementById("price").value;
 		let Price_div = document.getElementById("Price_div");
-		let pricetotal= document.getElementById("pricetotal");
+		let pricetotal = document.getElementById("pricetotal");
+		let addnum = document.getElementById("num");
 		console.log(pricetotal.value);
+		addnum.value = num;
 		Price_div.innerHTML = changeprice(num);
-		pricetotal.value=price*num;
+		pricetotal.value = price * num;
 		totalprice();
 	}
-
-
 
 	window.onload = function() {
 		let pricediv = document.getElementById("pricediv");
