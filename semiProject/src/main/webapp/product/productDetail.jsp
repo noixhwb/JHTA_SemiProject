@@ -164,10 +164,7 @@ color:white;
 	
 		<!-- 구매하기,장바구니 버튼 -->
 		<div>
-			<input type="button" value="구매하기" class="buybut" onclick="location.href='${cp}/toMyOrder?pnum=${ vo.pNum }'"> 
-			<form name="addForm" action="/add">
-			<input type="button" value="장바구니" class="cartbut" onclick="<%=request.getContextPath()%>webapp/cart">
-			</form>
+			<input type="button" value="구매하기" class="buybut" onclick="location.href='${cp}/toMyOrder?pnum=${ vo.pNum }'"> <input type="button" value="장바구니" class="cartbut">
 		</div>
 	</div>
     <!-- 제품상세-->
@@ -373,11 +370,5 @@ color:white;
 			let div = document.getElementById("buyinfo");
 			div.innerHTML = xml;
 		}
-	function addCart() {
-		if(confirm("장바구니에 담으시겠습니까?")){
-			document.addForm.submit();
-		}
-		
-	}
 	}
 </script>

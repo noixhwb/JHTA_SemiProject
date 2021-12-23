@@ -25,8 +25,8 @@ public class MyordDao {
 			pstmt1.setString(1, vo1.getmId());
 			pstmt1.setInt(2, vo1.getTotalSales());
 			pstmt1.setString(3, vo1.getDelocation());
-			rs = pstmt1.executeQuery();
-			//while(rs.next()) {
+			pstmt1.executeUpdate();
+			//while (rs.next()) {
 				pstmt2 = con.prepareStatement(sql2);
 				pstmt2.setInt(1, vo2.getPdNum());
 				pstmt2.setInt(2, vo2.getdCount());

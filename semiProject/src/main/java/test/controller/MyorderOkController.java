@@ -32,7 +32,8 @@ public class MyorderOkController extends HttpServlet{
 		//주문상세테이블 추가
 		//String[] mpdnum = req.getParameterValues("pdnum");
 		//int pdnum = Integer.parseInt(mpdnum[0]);
-		int pdnum=11001002; //값 ""로 나와서 임의로 아무숫자넣음..왜??ㅠㅜ
+		int pdnum=11001003; //값 ""로 나와서 임의로 아무숫자넣음..왜??ㅠㅜ
+		
 		String[] mdcount = req.getParameterValues("cnt");
 		//int dcount = Integer.parseInt(mdcount[0]);
 		String[] mdprice = req.getParameterValues("price");
@@ -64,7 +65,6 @@ public class MyorderOkController extends HttpServlet{
 		//CartdelDao cddao=new CartdelDao();
 		//int cdn = cddao.delete(mid);
 				
-		req.setAttribute("result", "success");
 		req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);		
 		/*		
 		if (n>0) {
