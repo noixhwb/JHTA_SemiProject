@@ -76,7 +76,7 @@ public class CartDao {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			String sql = "select * from cart c inner join product p on c.PNUM = p.pnum inner join proimage i on p.pnum = i.pnum where cCartNum=? and IMGTYPE = 1";
+			String sql = "select * from cart c inner join product p on c.PNUM = p.pnum inner join proimage i on p.pnum = i.pnum inner join prodetail d on p.pnum = d.pnum where cCartNum=? and imgtype = 1";
 			ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 			try {
 				con = JdbcUtil.getCon();
@@ -90,12 +90,12 @@ public class CartDao {
 						String pName = rs.getString("pName");
 						int pPrice = rs.getInt("pPrice");
 						String piFilename = rs.getString("piFilename");
-						
+						int pdNum =rs.getInt("pdNum");
 						order.put("pNum", pNum);
 						order.put("pName", pName);
 						order.put("pPrice", pPrice);
 						order.put("piFilename", piFilename);
-						
+						order.put("pdNum", pdNum);
 						list.add(order);
 					}
 				}
