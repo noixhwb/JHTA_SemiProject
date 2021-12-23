@@ -97,6 +97,82 @@ public class ProimageDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	//update
+	public int updateimg(ProimageVo vo)
+	{
+		Connection con= null;
+		PreparedStatement pstmt=null;
+		String sql="update proimage pifilename=?,pifilesize=? set where pnum=? and imgtype=?";
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getPiFilename());
+			pstmt.setLong(2, vo.getPiFilesize());
+			pstmt.setInt(3, vo.getpNum());
+			pstmt.setInt(4, vo.getImgtype());
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+	}
+	
+	//삭제
+	public int deleteimg(int pnum,int pinum)
+	{
+		Connection con= null;
+		PreparedStatement pstmt=null;
+		String sql="delete from proimage where pnum=? and pinum=?";
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, pnum);
+			pstmt.setInt(2, pinum);
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+	}
+	//pinum값 가져오기
+	public ArrayList<Integer> selectipinum(int pnum)
+	{
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select pinum from proimage where pnum=?";
+		ArrayList<Integer> list=new ArrayList<Integer>();
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, pnum);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				int pinum=rs.getInt("pinum");
+				list.add(pinum);
+			}
+			
+	
+			return list;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	
 
 	

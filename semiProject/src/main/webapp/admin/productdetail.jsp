@@ -49,6 +49,11 @@
 			<td id="col">제품명</td>
 			<td colspan="3">${requestScope.vo.pName}</td>
 		</tr>
+		<!-- 제품가격 -->
+		<tr>
+			<td id="col">제품가격</td>
+			<td colspan="3">${requestScope.vo.pPrice}</td>
+		</tr>
 		<!-- 제품 내용 -->
 		<tr>
 			<td id="col">내용</td>

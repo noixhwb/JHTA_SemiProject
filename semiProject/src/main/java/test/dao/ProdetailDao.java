@@ -73,5 +73,49 @@ public class ProdetailDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	//업데이트
+	public int updateProdetail(prodetailVo vo)
+	{
+		Connection con= null;
+		PreparedStatement pstmt=null;
+		String sql="update prodetail set prosize=?,procount=? where pnum=? and pdnum=?";
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getProSize());
+			pstmt.setInt(2, vo.getProCount());
+			pstmt.setInt(3, vo.getpNum());;
+			pstmt.setInt(4, vo.getPdNum());;
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+	}
+	//삭제
+	public int deleteProdetail(int pnum,int pdnum)
+	{
+		Connection con= null;
+		PreparedStatement pstmt=null;
+		String sql="delete from prodetail where pnum=?";
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, pnum);;
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+	}
+	
 
 }

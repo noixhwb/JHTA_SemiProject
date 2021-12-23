@@ -26,7 +26,7 @@
 }
 </style>
 <!-- 제품상세페이지(관리자용) -->
-<form method="post" action="${ pageContext.request.contextPath}/Home?spage=/admin/productInsert" enctype="multipart/form-data">
+<form method="post" action="${ pageContext.request.contextPath}/Home?spage=/admin/updateproduct" enctype="multipart/form-data">
 <h1 style="text-align: center; padding-bottom: 50px;">제품수정페이지</h1>
 <c:set var="cp" value="${ pageContext.request.contextPath}" />
 <!-- 카테고리 -->
@@ -66,6 +66,11 @@
 				<input type="text" value="${requestScope.vo.pName}" name="pName">
 			</td>
 		</tr>
+		<!-- 제품가격 -->
+		<tr>
+			<td id="col">제품가격</td>
+			<td colspan="3"><input type="text" value="${requestScope.vo.pPrice}" name="pPrice"></td>
+		</tr>
 		<!-- 제품 내용 -->
 		<tr>
 			<td id="col">내용</td>
@@ -80,6 +85,7 @@
 				<td id="col">사이즈</td>
 				<td>
 					<input type="text" value="${i.proSize}" name="prosize">
+					<input type="hidden" value="${i.pdNum}" name="pdnum">
 				</td>
 				<td id="col">재고량</td>
 				<td><input type="text" value="${i.proCount}" name="procount"></td>
@@ -91,6 +97,7 @@
 			<td id="col">대표이미지</td>
 			<td>
 				<input type="file" name="file"><br>
+				 <input type="hidden" value="${img}" name="imgs">
 			</td>
 		</tr>
 		<tr>
@@ -103,6 +110,10 @@
 			<td id="col">상세이미지</td>
 			<td>
 				<div id="fileBox"></div>
+				<c:forEach var="imgs" items="${imgsList}">
+				    <input type="hidden" value="${imgs}" name="imgs">
+					<br>
+				</c:forEach>
 			</td>
 		</tr>
 		<tr>
@@ -111,7 +122,7 @@
 		</tr>
 		<tr>
 			<td colspan="4" style="text-align: right;">
-				<input type="button" value="수정"> <input type="button" value="삭제"> <input type="button" value="목록으로">
+				<input type="submit" value="수정"><input type="button" value="목록으로">
 			</td>
 		</tr>
 	</table>
