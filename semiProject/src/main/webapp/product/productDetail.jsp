@@ -109,7 +109,7 @@ color:white;
 </style>
 <c:set var="cp" value="${ pageContext.request.contextPath}" />
 <div class="Productcontainer">
-
+    
      <!--상세이미지(작은이미지) -->
 	<div class="blank" id="sideimg">
 		<img src="${cp }/imagesPro/${img}" id="detailimg" onmouseover="changeimg(event)">
@@ -230,7 +230,7 @@ color:white;
    총 구매 가격=id:pricetotal,name:pricetotal
    수량 =id:select_num,name:select_num
    
-
+   
  -->
 <script type="text/javascript">
 	//이미지 변경 
