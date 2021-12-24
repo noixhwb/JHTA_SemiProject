@@ -11,7 +11,9 @@
 	grid-row-gap: 50px;
 	margin-left: 150px;
 	margin-right: 150px;
+	
 	margin-top: 20px;
+	margin-bottom: 20px;
 	grid-template-rows: 800px 1fr;
 	padding-bottom: 200px;
 }
@@ -296,6 +298,7 @@
 			</table>
 		</div>
 
+<div style="padding-bottom: 200px;"></div>
 	</div>
 </div>
 <!-- 

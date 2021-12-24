@@ -38,7 +38,7 @@ public class AdminProductInsertController extends HttpServlet {
 		String pName = mr.getParameter("pName");
 		String pContent = mr.getParameter("pContent");
 		int pPrice = Integer.parseInt(mr.getParameter("pPrice"));
-		String cName = mr.getParameter("cName");
+		String cName = mr.getParameter("cname");
 		System.out.println(pName);
 		System.out.println(pContent);
 		System.out.println(cName);

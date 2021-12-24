@@ -148,38 +148,44 @@ function createfilebox() {
 
 //카테고리값 소분류 select 생성
 function createoption(e)
-{
-	var category=e.value;
-	let selectcname=document.getElementById("selectcname");
-	if(category=="상의")
 	{
-		selectcname.options.length=1;
-		let option1 =document.createElement("option");
-		option1.text="니트";
-		let option2 =document.createElement("option");
-		option2.text="티셔츠";
-		selectcname.appendChild(option1);
-		selectcname.appendChild(option2);
+		var category=e.value;
+		let selectcname=document.getElementById("selectcname");
+		if(category=="상의")
+		{
+			selectcname.options.length=1;
+			let option1 =document.createElement("option");
+			option1.text="니트";
+			option1.value="니트";
+			let option2 =document.createElement("option");
+			option2.text="티셔츠";
+			option2.value="티셔츠";
+			selectcname.appendChild(option1);
+			selectcname.appendChild(option2);
+		}
+		else if(category=="하의")
+		{
+			selectcname.options.length=1;
+			let option1 =document.createElement("option");
+			option1.text="슬랙스";
+			option1.value="슬랙스";
+			let option2 =document.createElement("option");
+			option2.text="트레이닝";
+			option2.value="트레이닝";
+			selectcname.appendChild(option1);
+			selectcname.appendChild(option2);
+		}
+		else if(category=="아우터")
+		{
+			selectcname.options.length=1;
+			let option1 =document.createElement("option");
+			option1.text="가디건";
+			option1.value="가디건";
+			let option2 =document.createElement("option");
+			option2.text="코트";
+			option2.value="코트";
+			selectcname.appendChild(option1);
+			selectcname.appendChild(option2);
+		}
 	}
-	else if(category=="하의")
-	{
-		selectcname.options.length=1;
-		let option1 =document.createElement("option");
-		option1.text="슬랙스";
-		let option2 =document.createElement("option");
-		option2.text="트레이닝";
-		selectcname.appendChild(option1);
-		selectcname.appendChild(option2);
-	}
-	else if(category=="아우터")
-	{
-		selectcname.options.length=1;
-		let option1 =document.createElement("option");
-		option1.text="가디건";
-		let option2 =document.createElement("option");
-		option2.text="코트";
-		selectcname.appendChild(option1);
-		selectcname.appendChild(option2);
-	}
-}
 </script>

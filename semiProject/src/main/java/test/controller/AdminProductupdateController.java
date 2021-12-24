@@ -38,7 +38,7 @@ public class AdminProductupdateController extends HttpServlet {
 		String pContent = mr.getParameter("pContent");
 		int pPrice = Integer.parseInt(mr.getParameter("pPrice"));
 		int pnum = Integer.parseInt(mr.getParameter("pNum"));
-		String cName = mr.getParameter("cName");
+		String cName = mr.getParameter("cname");
 		ProductVo vo = new ProductVo(pnum, pName, pContent, pPrice, 0, cName);
 		int n = dao.updateProduct(vo);
 		if(n>0)
@@ -124,7 +124,7 @@ public class AdminProductupdateController extends HttpServlet {
 					}
 
 				}
-
+				 req.getRequestDispatcher("/Home?spage=/admin/productlist").forward(req, resp);
 		}else
 		{
 			System.out.println("product 수정실패");

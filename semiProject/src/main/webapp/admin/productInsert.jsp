@@ -35,12 +35,15 @@
 <tr>
 <td id="col">대분류</td>
 <td>	<!-- 카테고리 -->
-	<select name="category" onchange="sel_category(this)">
+	<select name="category" onchange="createoption(this)">
 		<option value="1">---option을 선택해주세요---</option>
-		<option value="1">상의</option>
-		<option value="2">하의</option>
-		<option value="3">아우터</option>
-	</select></td>
+		<option value="상의">상의</option>
+		<option value="하의">하의</option>
+		<option value="아우터">아우터</option>
+	</select>
+	<br><p style="font-size:5px;color:red;">옵션을 선택해주세요</p>
+
+</td>
 </tr>
 
 <tr>
@@ -48,18 +51,11 @@
 <td>
 <!-- 하위카테고리 -->
 	<div id="select_c">
-		<select  id="1" class="sel">
-			<option value="니트">니트</option>
-			<option value="티셔츠">티셔츠</option>
-		</select>
-		<select  id="2" class="sel">
-			<option value="슬랙스">슬랙스</option>
-			<option value="트레이닝">트레이닝</option>
-		</select>
-		<select  id="3" class="sel">
-			<option value="코트">코트</option>
-			<option value="가디건">가디건</option>
-		</select>
+					<input type="hidden" value="${requestScope.vo.cName}" id="hiddenCname" name="cName">
+		<select id="selectcname" name="cname">
+				<option>---option을 선택해주세요---</option>
+				</select>
+				<br><p style="font-size:5px;color:red;">옵션을 선택해주세요</p>
 	</div>
 </td>
 </tr>
@@ -158,6 +154,47 @@
 			
 			}
 			
+	}
+	function createoption(e)
+	{
+		var category=e.value;
+		let selectcname=document.getElementById("selectcname");
+		if(category=="상의")
+		{
+			selectcname.options.length=1;
+			let option1 =document.createElement("option");
+			option1.text="니트";
+			option1.value="니트";
+			let option2 =document.createElement("option");
+			option2.text="티셔츠";
+			option2.value="티셔츠";
+			selectcname.appendChild(option1);
+			selectcname.appendChild(option2);
+		}
+		else if(category=="하의")
+		{
+			selectcname.options.length=1;
+			let option1 =document.createElement("option");
+			option1.text="슬랙스";
+			option1.value="슬랙스";
+			let option2 =document.createElement("option");
+			option2.text="트레이닝";
+			option2.value="트레이닝";
+			selectcname.appendChild(option1);
+			selectcname.appendChild(option2);
+		}
+		else if(category=="아우터")
+		{
+			selectcname.options.length=1;
+			let option1 =document.createElement("option");
+			option1.text="가디건";
+			option1.value="가디건";
+			let option2 =document.createElement("option");
+			option2.text="코트";
+			option2.value="코트";
+			selectcname.appendChild(option1);
+			selectcname.appendChild(option2);
+		}
 	}
 
 	//div보여주는용

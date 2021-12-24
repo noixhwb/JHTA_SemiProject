@@ -19,7 +19,7 @@
 		<div id="content">
 			<jsp:include page="${requestScope.main }" />
 		</div>
-		<div id="footer">
+		<div id="footer"  style="text-align: center">
 			<jsp:include page="${requestScope.footer }" />
 		</div>
 	</div>
