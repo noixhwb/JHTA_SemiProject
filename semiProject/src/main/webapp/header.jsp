@@ -17,7 +17,7 @@
 </div>
 <div id="headerLoginMenu">
 	<ul>
-		<li><a href="cart"><img src="<%=request.getContextPath()%>/images/3.png" width="25" height="25"></a></li>
+		<li><a href="<%=request.getContextPath()%>/cart"><img src="<%=request.getContextPath()%>/images/3.png" width="25" height="25"></a></li>
 		<li><a href="<%=request.getContextPath()%>/Home?spage=loginForm.jsp">Login</a></li>
 		<li><a href="<%=request.getContextPath()%>/Home?spage=/myshop/index">마이페이지</a></li>
 		<li><a href="<%=request.getContextPath()%>/Home?spage=/member/join.jsp">회원가입</a></li>
@@ -41,7 +41,7 @@
 </div>
 <div id="headerLoginMenu">
 	<ul>
-		<li><a href="cart"><img src="<%=request.getContextPath()%>/images/3.png" width="25" height="25"></a></li>
+		<li><a href="<%=request.getContextPath()%>/cart"><img src="<%=request.getContextPath()%>/images/3.png" width="25" height="25"></a></li>
 		<li><a href="<%=request.getContextPath()%>/Home?spage=/myshop/index">마이페이지</a></li>
 		<li><a href="<%=request.getContextPath()%>/Home?spage=/member/update">회원정보수정</a></li>
 		<li><a href="<%=request.getContextPath()%>/logout">Logout</a></li>
