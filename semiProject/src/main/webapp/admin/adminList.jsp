@@ -26,6 +26,11 @@ border-bottom:1px solid black;
 height:30px;
 
 }
+.admintable #m:hover
+{
+background-color: #E4E4E4;
+
+}
 </style>
 <div id="adminlist">
 <c:set var="cp" value="${ pageContext.request.contextPath}"/>
@@ -36,18 +41,10 @@ height:30px;
  <c:otherwise>
  <h1 style="text-align: center;">관리자 목록</h1>
 <!-- 상단 checkBox -->
-<div>
-<input type="checkbox">전체
-<input type="checkbox">관리자명
-<!-- 클릭 시 관리자 추가 창뜸 -->
-<a href="${cp }/admin/add">관리자추가</a>
 
-</div>
 <!-- 리스트 -->
  <div>
- <form name="check">
- <input type="button" value="전체선택" onclick="checkAll()">
-  <input type="button" value="전체삭제" onclick=><br>
+
  <table class="admintable"  >
    <tr>
      <th width="50px">check</th>
@@ -56,22 +53,35 @@ height:30px;
         <th>수정</th>  
             <th>삭제</th>  
   </tr>
+  <form method="post" action="${ pageContext.request.contextPath}/admin/delete">
   <c:forEach var="vo" items="${list }">
-     <tr>
-        <td style="text-align:center;"><input type="checkbox" name="chk" ></td>
-        <td>${vo.aId }</td>
+     <tr id="m">
+        <td style="text-align:center;"><input type="checkbox" name="chk"value="select" onchange="create(this)"></td>
+        <td>${vo.aId }<input type="hidden" value="${vo.aId }" id="sel"></td>
           <td>${vo.regdate }</td>
                   <td><a href="<%=request.getContextPath()%>/admin/update?aid=${vo.aId }">수정</a></td>
               <td><a href="<%=request.getContextPath()%>/admin/delete?aid=${vo.aId }">삭제</a></td>
             </tr>
   </c:forEach>
+
+  <tr>  
+  <td colspan="5" style="padding:25px;">전체선택<input type="checkbox" id="chkAll" onclick="checkAll(this)"value="전체선택">
+  <input type="submit" value="선택삭제">
+  <!-- 클릭 시 관리자 추가 창뜸 -->
+   <a href="${cp }/admin/add" style="border:1px solid black;">관리자추가
+   <br>
+   </a>
+  </td>
+  </tr>
+  </form>
   
  </table>
- </form>
+
  </div>
- 
- <!-- 페이징 처리 -->
-<div style="text-align: center;">
+ </c:otherwise>
+</c:choose>
+<!-- 페이징 처리 -->
+<div style="text-align: center;margin:500px ;">
    <c:if test="${startPage>10 }">
      <a href="${cp }/admin/list?pageNum=${startPage-1}">이전페이지</a>
    </c:if>
@@ -89,24 +99,36 @@ height:30px;
      <a href="${cp }/admin/list?pageNum=${endPage+1}">다음페이지</a>
    </c:if>
 </div>
- </c:otherwise>
-</c:choose>
 </div>
+
 
  <!-- 전체선택 기능구현(오류해결중) -->
  <script type="text/javascript">
 
-function checkAll() {
-	let chk=document.getElementsByName("chk");
-
-	for(var i=0;i=document.check.length;i++)
-		{
-		if(document.check.elements[i].checked !=true)
-			{
-			document.check.elements[i].checked=true;
-			}
-		
+function checkAll(e) {
+	if (e.checked == true) {
+		for(var i=0 ; i<document.getElementsByName("chk").length ; i++) {
+			document.getElementsByName("chk")[i].checked = true;
 		}
+		
+	}
+	if (e.checked == false) {
+		for(var i=0 ; i<document.getElementsByName("chk").length ; i++) {
+			document.getElementsByName("chk")[i].checked = false;
+		}
+	}	
+}
+function create(e)
+{
+	let a=document.getElementsByName("sel");
+	if (e.checked == true) {
+		let aid=document.createElement("input");
+		aid.setAttribute("type", "text");
+		aid.setAttribute("value", a);
+		aid.setAttribute("name", "aid");
+		e.appendChild(aid);
+	}
+
 	
 }
 

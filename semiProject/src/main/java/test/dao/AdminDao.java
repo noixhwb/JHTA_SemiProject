@@ -217,4 +217,35 @@ public class AdminDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	//선택삭제기능 
+	
+	//아이디중복체크
+	public boolean adminIdcheck(String aid)
+	{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from admin where aid=?";
+		try
+		{
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, aid);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				return true;
+			}
+
+			return false;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+			return false;
+		}finally
+		{
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
 }

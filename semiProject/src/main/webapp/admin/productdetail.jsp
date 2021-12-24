@@ -35,7 +35,7 @@
 		<!-- 카테고리 -->
 		<tr>
 			<td id="col">대분류</td>
-			<td>카테고리</td>
+			<td>${requestScope.code}</td>
 			<td id="col">소분류</td>
 			<td>${requestScope.vo.cName}</td>
 			<!-- 제품번호 -->

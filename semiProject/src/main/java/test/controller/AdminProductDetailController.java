@@ -29,6 +29,7 @@ public class AdminProductDetailController extends HttpServlet {
 		ProductVo vo=dao.selectDetail(pnum);
 		String price=String.valueOf(vo.getpPrice());
 		//prodetail
+		String code=dao.getcategory(vo.getcName());
 		ProdetailDao pdao=ProdetailDao.getInstance();
 		ArrayList<prodetailVo> list=pdao.selectdetail(pnum);
 		//proimage
@@ -39,7 +40,7 @@ public class AdminProductDetailController extends HttpServlet {
 		RevprodDao rvdao=new RevprodDao();
 		ArrayList<RevprodVo> rvlist = rvdao.selectProductReview(pnum);
 		req.setAttribute("rvlist", rvlist);
-		
+		req.setAttribute("code", code);
 		req.setAttribute("vo", vo);
 		req.setAttribute("list", list);
 		req.setAttribute("img", img);

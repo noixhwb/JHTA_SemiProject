@@ -13,7 +13,7 @@
 	
 }
 
-#loginform #btn {
+#loginform .btn {
 	width: 200px;
 	height: 45px;
 	font-size: 11px;
@@ -29,15 +29,15 @@
 	outline: none;
 }
 
-#loginform #btn:hover {
+#loginform .btn:hover {
 	transform: translateY(-7px);
 }
 #inputform
 {
- background-color: #A6B8C4;
+ background-color: #E4E4E4;
  position:absolute;
  top:50px;
- text-align: center;
+ text-align:center;
 
  
 }
@@ -65,7 +65,7 @@
 	#tt1{
 	width: 250px; height: 20px;
 	}
-	#tag1{
+	.tag1{
 	width: 100%; height: 100%;
 	}
 	#loginbt{
@@ -101,7 +101,12 @@
 	
 </style>
 
-
+<%String errMsg=(String)request.getAttribute("errMsg");
+  if(errMsg==null)
+  {
+	  errMsg="";
+  }
+%>
 <c:choose>
 	<c:when test="${ms1 != null }">
 		<script type="text/javascript">
@@ -120,8 +125,8 @@
 
 <div id="loginform">
 	<ul>
-		<li><input type="button" value="회원로그인" id="btn" onclick="userclickEvent()"></li>
-		<li><input type="button" value="관리자로그인" id="btn" onclick="adminclickEvent()"></li>
+		<li><input type="button" value="회원로그인" id="btn1" class="btn" onclick="userclickEvent()"></li>
+		<li><input type="button" value="관리자로그인" id="btn2" class="btn" onclick="adminclickEvent()"></li>
 
 	</ul>
 
@@ -131,12 +136,12 @@
 		    <h3 >유저로그인</h3>
 		<table>
 		<tr>
-			<th colspan="2" id="tt1"><input type="text" name="mid" id="tag1" placeholder="아이디" onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"><br> </th>	
+			<th colspan="2" id="tt1"><input type="text" name="mid" class="tag1" placeholder="아이디" onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"><br> </th>	
 			<td rowspan="2" id="loginbt"><input type="submit" id="loginbt1" value="로그인"><td>
 		</tr>
 		
 		<tr>	
-			<th colspan="2" id="tt1" ><input type="password" name="mpwd" id="tag1" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'" ></th>
+			<th colspan="2" id="tt1" ><input type="password" name="mpwd" class="tag1" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'" ></th>
 		</tr>	
 		
 		<tr>
@@ -157,21 +162,18 @@
 		<h3>관리자로그인</h3>
 		<table>
 			<tr>
-				<th colspan="2" id="tt1"><input type="text" name="aid" id="tag1" placeholder="아이디" onfocus="this.placeholder=''" onblur="this.placeholder='아이디'"></th> 
-				<td rowspan="2" id="loginbt"> <input type="submit" id="loginbt1" value="로그인"></td>
+				<th colspan="2" id="tt1"><input type="text" name="aid" class="tag1" placeholder="아이디" onfocus="this.placeholder=''" onblur="this.placeholder='아이디'" id="aid"></th> 
+				<td rowspan="2" id="loginbt"> <input type="submit" id="loginbt1" value="로그인" onclick="check()"></td>
 			</tr>
 			
 			<tr>
-				<th colspan="2" id="tt1" ><input type="password" name="apwd" id="tag1" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'"></th>
+				<th colspan="2" id="tt1" ><input type="password" name="apwd" class="tag1" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'" id="apwd"></th>
 			</tr>
-			
-			<tr>
-            	<th id="y"></th>
-       		</tr>
-			<tr>
-            	<th id="y1"></th>
-       		</tr>
-        	
+		
+		
+        	<tr>
+        	<td colspan="2" style="text-align: center;"><span style="color:red;font-size:10px" id="failaid"><%=errMsg %></span></td>
+        	</tr>
         
 		</table>
 		</form>
@@ -188,16 +190,33 @@
 
 	var div1 = document.getElementById("userlogin");
 	var div2 = document.getElementById("adminlogin");
+	var btn1 = document.getElementById("btn1");
+	var btn2 = document.getElementById("btn2");
 	function userclickEvent() {
 		div1.style.display = "block";
 		div2.style.display = "none";
-
+		btn1.style.backgroundColor="#E4E4E4";
+		btn2.style.backgroundColor="white";
 
 	};
 	function adminclickEvent() {
 		div1.style.display = "none";
 		div2.style.display = "block";
+		btn2.style.backgroundColor="#E4E4E4";
+		btn1.style.backgroundColor="white";
 	
 
 	};
+	window.onload=function()
+	{
+		let fail = document.getElementById("failaid").innerText;
+		if(fail!=""){
+			adminclickEvent();
+		}
+		else
+			{
+			userclickEvent();
+			}
+	}
+ 
 </script>

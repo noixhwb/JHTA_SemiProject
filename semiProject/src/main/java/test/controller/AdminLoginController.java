@@ -24,6 +24,15 @@ public class AdminLoginController extends HttpServlet{
 		String apwd=req.getParameter("apwd");
 		String mid=req.getParameter("mid");
 		String mpwd=req.getParameter("mpwd");
+		if(aid!=null && aid=="")
+		{
+			req.setAttribute("errMsg", "아이디를 입력해주세요");
+			req.getRequestDispatcher("/Home?spage=loginForm.jsp").forward(req, resp);
+		}else if(apwd!=null && apwd=="")
+		{
+			req.setAttribute("errMsg", "비밀번호를 입력해주세요");
+			req.getRequestDispatcher("/Home?spage=loginForm.jsp").forward(req, resp);
+		}
 		//관리자 로그인
 		if(aid!=null &&!aid.equals(""))
 		{
@@ -42,10 +51,11 @@ public class AdminLoginController extends HttpServlet{
 			}else
 			{
 				System.out.println("로그인실패");
-				req.setAttribute("errMsg", "아이디가 잘못되었습니다.");
+				req.setAttribute("errMsg", "아이디,비밀번호가 잘못되었습니다");
 				req.getRequestDispatcher("/Home?spage=loginForm.jsp").forward(req, resp);
 				
 			}
+			
 		}
 		//회원로그인
 		else if(mid!=null &&!mid.equals(""))
