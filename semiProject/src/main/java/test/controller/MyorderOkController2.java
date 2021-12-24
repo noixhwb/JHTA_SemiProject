@@ -31,6 +31,7 @@ public class MyorderOkController2 extends HttpServlet{
 		
 		//주문상세테이블 추가
 		int oNum = dao.getOnum();
+		System.out.println(oNum);
 		int pdNum = Integer.parseInt(req.getParameter("pdNum"));
 		int dCount= Integer.parseInt(req.getParameter("num"));
 		int dPrice= Integer.parseInt(req.getParameter("pPrice"));
@@ -42,15 +43,18 @@ public class MyorderOkController2 extends HttpServlet{
 		MyorderDao myorderdao=new MyorderDao();
 		ArrayList<MyorderVo> myorderlist = myorderdao.select(pdNum);
 		req.setAttribute("myorderlist", myorderlist);	
+		MyordDao myoddao=new MyordDao();
+		int odNum = myoddao.getOdnum();
+		req.setAttribute("odNum", odNum);
 		req.setAttribute("oNum", oNum);
 		
 		
 		if (n>0 && nn>0) {
 			req.setAttribute("result", "success");
-			req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk2.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("result", "fail");
-			req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk2.jsp").forward(req, resp);
 		}
 	}
 }
