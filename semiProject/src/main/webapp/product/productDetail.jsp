@@ -429,28 +429,43 @@
 		}
 	}
 	function addcart(){
-
+		console.log("a")
 		
-		var theForm = document.buyform;
-		theForm.action = "${cp}/cartinsert";
-		document.getElementById("buyform").submit();
-		
-		if(xhr.readyState==4 && xhr.status==200){
-			alert("장바구니담기성공");
-			let xml=xhr.responseXML;
-			//let exist=xml.getElementsByTagName("exist")[0].textContent;
-			
-			if(confirm("쇼핑을 계속하시겠습니까?")){
-				let span=document.getElementById("계속");
-			}else{
-				span.innerHTML="장바구니이동";
+		//var theForm = document.buyform;
+		//theForm.action = "${cp}/cartinsert";
+		//document.getElementById("buyform").submit();
+		let xhr=new XMLHttpRequest();
+		let pdNum=document.getElementById("select_size").value;
+		let num=document.getElementById("num").value;
+		console.log(pdNum,num,"............")
+		xhr.onreadystatechange=function(){
+			console.log("b");
+			if(xhr.readyState==4 && xhr.status==200){
+				alert("장바구니담기성공");
+				let result=xhr.responseText;
+				let json=JSON.parse(result);
+				console.log(json)
+				if(json.code=='success'){
+					//let exist=xml.getElementsByTagName("exist")[0].textContent;
+					
+					if(confirm("쇼핑을 계속하시겠습니까?")){
+					//	let span=document.getElementById("계속");
+					}else{
+						//span.innerHTML="장바구니이동";
+						location.href="${cp}/cart";
+					}
+					/*			let span=document.getElementById("계속");
+		 			if(exist=='true'){
+						span.innerHTML="쇼핑계속하기";
+					}else{
+						span.innerHTML="장바구니이동";
+					}*/
+				}else{
+					alert('장바구니 등록 실패');
+				}
 			}
-			/*			let span=document.getElementById("계속");
- 			if(exist=='true'){
-				span.innerHTML="쇼핑계속하기";
-			}else{
-				span.innerHTML="장바구니이동";
-			}*/
- 		}
+		}
+		xhr.open('get','${cp}/cartinsert?pdNum=' + pdNum +"&num="+ num,true);
+		xhr.send();
 	}
 </script>

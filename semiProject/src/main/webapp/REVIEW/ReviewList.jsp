@@ -56,7 +56,7 @@
 
 <body>
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
-	<div id="wrap" style="margin-bottom: 200px">
+	<div id="wrap">
 		<div id="mypage_category">
 			<ul>
 				<li>
@@ -75,7 +75,7 @@
 	</div>
 	<h1 class="display-6"><strong>마이 리뷰 목록</strong></h1>
 	
-	<div class="container">
+	<div class="container" style="margin-bottom: 200px">
 	<table class="table table-hover w-auto">
 		<thead>
 			<tr class="table-secondary">

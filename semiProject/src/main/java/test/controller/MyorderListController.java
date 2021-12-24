@@ -45,7 +45,7 @@ public class MyorderListController extends HttpServlet {
 		req.setAttribute("del", del);
 		
 		req.setAttribute("footer", "/footer.jsp");
-		req.getRequestDispatcher("/ORDER/MyOrderForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderForm.jsp").forward(req, resp);
 		
 	}
 }

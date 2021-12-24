@@ -80,12 +80,34 @@
 			<tr>
 				<th>배송메세지</th>
 				<td>
-					<select>
-						<option>요청사항을 직접 입력합니다</option>
-						<option>부재시 문 앞에 놔주세요</option>
-						<option>부재시 경비실에 놔주세요</option>
-						<option>배송 전 연락 바랍니다</option>
+					<form name="form" method="post">
+					<select name="formselect_msg2" size="1" onchange="changeText(this.form)">
+						<option>선택해주세요</option>
+						<option value="직접입력">요청사항을 직접 입력합니다</option>
+      					<option value="부재시 문 앞에 놔주세요">부재시 문 앞에 놔주세요</option>
+      					<option value="부재시 경비실에 놔주세요">부재시 경비실에 놔주세요</option>
+      					<option value="배송 전 연락 바랍니다">배송 전 연락 바랍니다</option>
 					</select>
+					<input type="text" name="text_msg_back" value=""> <br>
+					</form>
+					
+					
+					<input type="text" name="bsmsg" list="bmsg" style="width: 500px;">
+    				<datalist id="bmsg">
+      					<option value="">직접입력</option>
+      					<option value="부재시 문 앞에 놔주세요"></option>
+      					<option value="부재시 경비실에 놔주세요"></option>
+      					<option value="배송 전 연락 바랍니다"></option>
+    				</datalist> <br>
+    				
+    				
+					<select id="msg" onchange="addMsg()">
+						<option value="1">요청사항을 직접 입력합니다</option>
+						<option value="no">부재시 문 앞에 놔주세요</option>
+						<option value="no">부재시 경비실에 놔주세요</option>
+						<option value="no">배송 전 연락 바랍니다</option>
+					</select> <br>
+					<div id="divvv"></div>
 				</td>
 			</tr>
 		</tbody>
@@ -126,6 +148,28 @@ $(document).ready(function(){
 });
 	function insertOrder() {
 		//ajax 호출
+	}
+	
+	function changeText(form)
+	{
+	    form.text_msg_back.value = form.formselect_msg2.value;
+	    if(""==form.formselect_msg2.value){
+	        form.text_msg_back.focus();
+	    }
+	}
+	window.onload = initialize;
+	
+	function addMsg() {
+		var sel = document.getElementById("msg").value;
+		
+		if (sel == "no") {
+			return false;
+		}
+		if (sel == 1) {
+			
+		}
+		let div = document.getElementById("divvv");
+		divvv.
 	}
 </script>
 </html>

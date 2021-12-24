@@ -51,4 +51,29 @@ public class MyordDao {
 		}
 	}
 	
+	public int getOdnum() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql = "SELECT odnum FROM "
+				+ "("
+				+ "SELECT * FROM orderdetail "
+				+ "ORDER BY odnum DESC "
+				+ ") "
+				+ "WHERE rownum=1";
+		
+		try {
+			con = JdbcUtil.getCon();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int n = rs.getInt("odNum");
+			return n;
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return -1;
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 }

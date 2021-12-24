@@ -22,11 +22,12 @@
 			<div class="card border-danger mb-3" style="margin-top: 10%;">
 				<!-- <div class="card-header">Header</div> -->
 				<div class="card-body text-danger">
-					<img src="images/checked.png" class="card-img-top" style="width: 300px; height: 300px;">
+					<img src="images/checked.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
 					<h1 class="card-title"><strong>주문이 완료되었습니다</strong></h1>
 					<p class="card-text">
+					주문번호 : ${ oNum } <br>
 					<c:forEach var="list" items="${myorderlist}">
-							주문번호 : ${ list.oNum } <br>
+							주문상세번호 : ${ list.odNum } <br>
 					</c:forEach>
 				</p>		
 				</div>
@@ -40,7 +41,7 @@
 				<div class="col-6 offset-3">
 			<div class="card text-white bg-danger mb-3" style="margin-top: 10%;">
 				<div class="card-body">
-					<img src="images/sad.png" class="card-img-top" style="width: 300px; height: 300px;">
+					<img src="images/sad.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
 					<h1 class="card-title"><strong>주문을 완료하지 못했습니다</strong></h1>
 					<p class="card-text">오류를 확인해주세요!</p>
 				</div>

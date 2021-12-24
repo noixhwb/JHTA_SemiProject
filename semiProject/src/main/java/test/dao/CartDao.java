@@ -109,7 +109,7 @@ public class CartDao {
 				JdbcUtil.close(con, pstmt, rs);
 			}
 		}
-		public void insertCart(String pdNum,String mid, int num) {
+		public int insertCart(String pdNum,String mid, int num) {
 			Connection con=null;
 			PreparedStatement pstmt=null;
 			try {
@@ -120,8 +120,11 @@ public class CartDao {
 				pstmt.setString(2, mid);
 				pstmt.setInt(3, num);
 				pstmt.executeUpdate();
+				System.out.println(",,,,,,,,,,,,,,,,,,,,,");
+				return 1;
 			}catch(SQLException s) {
 				s.printStackTrace();
+				return -1;
 			}finally {
 				JdbcUtil.close(con,pstmt,null);
 			}
