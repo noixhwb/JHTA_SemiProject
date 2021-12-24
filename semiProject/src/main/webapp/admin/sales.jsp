@@ -75,9 +75,9 @@
 		    <td>${vo.mid}</td>
 		    <td>${vo.pname}</td>
 		    <td>${vo.dcount}</td>
-		    <td>${vo.totalsales}원</td>
+		    <td>${vo.dprice}원</td>
 		    
-		  	<c:set var="total"  value="${total+vo.totalsales}"/>
+		  	<c:set var="total"  value="${total+vo.dprice}"/>
 		  	
 		  </tr>
 		  </c:forEach>
@@ -115,8 +115,8 @@
 	<table id="hor-minimalist-a">
 	<thead>
 	<tr>
-		<th>일자</th>
-		<th>총매출</th>
+		<th scope="col">일자</th>
+		<th scope="col">총매출</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -134,8 +134,8 @@
 	<table id="hor-minimalist-a">
 	<thead>
 	<tr>
-		<th>일자</th>
-		<th>총매출</th>
+		<th scope="col">일자</th>
+		<th scope="col">총매출</th>
 	</tr>
 	</thead>
 	<tbody>

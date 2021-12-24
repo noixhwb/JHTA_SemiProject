@@ -9,13 +9,13 @@ public class OrderListVo {
 	private String pname;
 	private int dstate;
 	private String mid;
-	private int totalsales;
+	private int dprice;
 	private String delocation;
 	private Date odate;
 	private int sales;
 	private String sdate;
 	public OrderListVo() {}
-	public OrderListVo(int odnum, String prosize, int dcount, String pname, int dstate, String mid, int totalsales,
+	public OrderListVo(int odnum, String prosize, int dcount, String pname, int dstate, String mid, int dprice,
 			String delocation, Date odate) {
 		super();
 		this.odnum = odnum;
@@ -24,7 +24,7 @@ public class OrderListVo {
 		this.pname = pname;
 		this.dstate = dstate;
 		this.mid = mid;
-		this.totalsales = totalsales;
+		this.dprice = dprice;
 		this.delocation = delocation;
 		this.odate = odate;
 	}
@@ -80,11 +80,11 @@ public class OrderListVo {
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-	public int getTotalsales() {
-		return totalsales;
+	public int getdprice() {
+		return dprice;
 	}
-	public void setTotalsales(int totalsales) {
-		this.totalsales = totalsales;
+	public void setdprice(int dprice) {
+		this.dprice = dprice;
 	}
 	public String getDelocation() {
 		return delocation;

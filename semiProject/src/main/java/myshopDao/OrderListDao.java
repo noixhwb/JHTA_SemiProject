@@ -156,7 +156,7 @@ public class OrderListDao {
 	}
 	
 	public ArrayList<OrderListVo> list(int startrow,int endrow,String mid1){
-		String sql="select * from(select aa.odnum,aa.prosize,aa.dcount,aa.pname,aa.totalsales,aa.dstate,aa.mid,aa.delocation,aa.odate,rownum rnum from(select * from  prodetail d , product p, orderdetail o,orders od where d.pnum = p.pnum and d.pdnum=o.pdnum and o.onum=od.onum and mid=? order by odate desc)aa) where rnum>=? and rnum<=?";
+		String sql="select * from(select aa.odnum,aa.prosize,aa.dcount,aa.pname,aa.dprice,aa.dstate,aa.mid,aa.delocation,aa.odate,rownum rnum from(select * from  prodetail d , product p, orderdetail o,orders od where d.pnum = p.pnum and d.pdnum=o.pdnum and o.onum=od.onum and mid=? order by odate desc)aa) where rnum>=? and rnum<=?";
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -175,10 +175,10 @@ public class OrderListDao {
 				String pname=rs.getString("pname");
 				int dstate=rs.getInt("dstate");
 				String mid=rs.getString("mid");
-				int totalsales=rs.getInt("totalsales");
+				int dprice=rs.getInt("dprice");
 				String delocation=rs.getString("delocation");
 				Date odate=rs.getDate("odate");
-				OrderListVo vo = new OrderListVo(odnum, prosize, dcount, pname, dstate, mid, totalsales, delocation, odate);
+				OrderListVo vo = new OrderListVo(odnum, prosize, dcount, pname, dstate, mid, dprice, delocation, odate);
 				
 				list.add(vo);
 
@@ -193,7 +193,7 @@ public class OrderListDao {
 		
 	}
 	public ArrayList<OrderListVo> decideDay(Date date1,Date date2,String mid1){
-		String sql="select aa.odnum,aa.prosize,aa.dcount,aa.pname,aa.totalsales,aa.dstate,aa.mid,aa.delocation,aa.odate,rownum rnum from(select * from  prodetail d , product p, orderdetail o,orders od where d.pnum = p.pnum and d.pdnum=o.pdnum and o.onum=od.onum and mid=? and TO_CHAR(odate, 'YYYY-MM-DD') >= ? and TO_CHAR(odate, 'YYYY-MM-DD')  <= ? order by odate desc)aa";
+		String sql="select aa.odnum,aa.prosize,aa.dcount,aa.pname,aa.dprice,aa.dstate,aa.mid,aa.delocation,aa.odate,rownum rnum from(select * from  prodetail d , product p, orderdetail o,orders od where d.pnum = p.pnum and d.pdnum=o.pdnum and o.onum=od.onum and mid=? and TO_CHAR(odate, 'YYYY-MM-DD') >= ? and TO_CHAR(odate, 'YYYY-MM-DD')  <= ? order by odate desc)aa";
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -215,10 +215,10 @@ public class OrderListDao {
 				String pname=rs.getString("pname");
 				int dstate=rs.getInt("dstate");
 				String mid=rs.getString("mid");
-				int totalsales=rs.getInt("totalsales");
+				int dprice=rs.getInt("dprice");
 				String delocation=rs.getString("delocation");
 				Date odate=rs.getDate("odate");
-				OrderListVo vo = new OrderListVo(odnum, prosize, dcount, pname, dstate, mid, totalsales, delocation, odate);
+				OrderListVo vo = new OrderListVo(odnum, prosize, dcount, pname, dstate, mid, dprice, delocation, odate);
 				
 				list.add(vo);
 			}
