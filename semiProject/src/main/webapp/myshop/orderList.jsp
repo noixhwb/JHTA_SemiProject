@@ -111,7 +111,7 @@
 			  	<td>${vo.delocation }</td>
 			  	<td>${vo.dcount }</td>
 			  	<td>${vo.prosize }</td>
-			  	<td>${vo.totalsales }</td>
+			  	<td>${vo.dprice }</td>
 			  	<td>${vo.odate }</td>
 			  	<td>
 			  	<c:choose>
@@ -163,7 +163,7 @@
 			  	<td>${vo2.delocation }</td>
 			  	<td>${vo2.dcount }</td>
 			  	<td>${vo2.prosize }</td>
-			  	<td>${vo2.totalsales }</td>
+			  	<td>${vo2.dprice }</td>
 			  	<td>${vo2.odate }</td>
 			  	<td>
 			  	<c:choose>

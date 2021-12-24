@@ -28,7 +28,7 @@ public class AdminSalesController extends HttpServlet{
 		int endRow=startRow+9;
 		AdminOrderDao dao = new AdminOrderDao();
 		ArrayList<OrderListVo> list=dao.list(startRow, endRow);
-		int pageCount=(int)Math.ceil(dao.getCount()/10.0);
+		int pageCount=(int)Math.ceil(dao.getsalesCount()/10.0);
 		int startPage=(pageNum-1)/10*10+1;
 		int endPage=startPage+9;
 		if(endPage>pageCount) {
