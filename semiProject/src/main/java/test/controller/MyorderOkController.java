@@ -29,7 +29,7 @@ public class MyorderOkController extends HttpServlet{
 		
 		MyoDao dao=new MyoDao();
 		MyoVo vo=new MyoVo(0, mId, totalSales, delocation, null);
-		int n = dao.insertOrders(vo);
+		dao.insertOrders(vo);
 		
 		//주문상세테이블 추가
 		String[] mpdnum = req.getParameterValues("pdnum");
@@ -48,7 +48,7 @@ public class MyorderOkController extends HttpServlet{
 			int dcount = Integer.parseInt(mdcount[i]);
 			int dprice = Integer.parseInt(mdprice[i]);
 			MyordVo myordvo=new MyordVo(0, oNum, pdnum, dcount, dprice, 1);
-			n = myorddao.insertOrderdetail(myordvo);
+			myorddao.insertOrderdetail(myordvo);
 			totalPrice += dcount*dprice;
 			
 		}
@@ -64,7 +64,9 @@ public class MyorderOkController extends HttpServlet{
 		CartdelDao cddao=new CartdelDao();
 		cddao.delete(cCartNum);
 				
+		req.setAttribute("result", "success");
 		req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);		
+		/*
 		if (n>0) {
 			req.setAttribute("result", "success");
 			req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);
@@ -72,5 +74,6 @@ public class MyorderOkController extends HttpServlet{
 			req.setAttribute("result", "fail");
 			req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);
 		}
+		*/
 	}
 }
