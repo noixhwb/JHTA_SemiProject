@@ -172,21 +172,22 @@ td {
 									<c:forEach var="vo" items="${list }">
 										<tr>
 											<td class="check">
-											<input type="checkbox" name="product" value="${vo.cCartNum }">
+											<input type="checkbox" name="product" value="${vo.cCartNum }" onchange="calcTotalPrice()">
 											</td>
 											<td class="img">
 											<img src="<%=request.getContextPath()%>/imagesPro/${vo.piFileName }"style="width: 150px; height: 150px;">&nbsp;&nbsp;
 											</td>
-											<td class="p_name">${vo.pName }&nbsp;&nbsp;</td>
-											<td class="price">${vo.pPrice }&nbsp;&nbsp;</td>
-											<td class="price"><input type="number"  min="0" value="${vo.ccount }" name="cartCnt"></td>
+											<td class="p_name">${vo.pName }</td>
+											<td class="price">${vo.pPrice }</td>
+											<td class="count"><input type="number"  min="1" value="${vo.ccount }" name="cartCnt" onchange="calcTotalPrice()"></td>
 											<td class="bt"><a href="<%=request.getContextPath()%>/delete?cCartNum=${vo.cCartNum}">삭제</a></td>
 											
 										</tr>
 									</c:forEach>
 								</tbody>
 						</table>
-						<caption style="text-align: center; color: red;">상품금액+배송비 = ${totPrice }</caption>
+						<h5 style="color: red;">70000원 이상 배송비무료</h5>
+						<h4 style="color: gray;">상품금액+배송비 = <span id="total">0원</span></h4>
 					</form>
 				</c:when>
 				<c:otherwise>
@@ -215,13 +216,17 @@ td {
 	<script type="text/javascript">
 		function checkAll() {
 			if (document.getElementById("all").checked == true) {
-				for (var i = 0; i < 10; i++)
+				for(var i=0 ; i<document.getElementsByName("product").length ; i++) {
 					document.getElementsByName("product")[i].checked = true;
+				}
+				
 			}
 			if (document.getElementById("all").checked == false) {
-				for (var i = 0; i < 10; i++)
+				for(var i=0 ; i<document.getElementsByName("product").length ; i++) {
 					document.getElementsByName("product")[i].checked = false;
+				}
 			}
+			calcTotalPrice();
 		}
 		
 		function allbasket() {
@@ -231,6 +236,26 @@ td {
 		
 		function selectbasket() {
 			$("#orderFrm").submit();
+		}
+		
+		function calcTotalPrice() {
+			var totPrice = 0;
+			let chk=document.getElementsByName("product");
+			var chk_leng = chk.length;
+
+			for(var i=0;i<chk_leng;i++){
+				if(chk[i].checked == true){
+					var check_price = chk[i].parentNode.parentNode.querySelector('.price').innerHTML;
+					var check_count = chk[i].parentNode.parentNode.querySelector('.count').firstChild.value;
+					totPrice += parseInt(check_count)*parseInt(check_price);
+				}
+			}
+			
+			if(totPrice <70000){
+				totPrice += 2500;
+			}
+			
+			document.getElementById("total").innerHTML = totPrice+"원";
 		}
 		
 	</script>

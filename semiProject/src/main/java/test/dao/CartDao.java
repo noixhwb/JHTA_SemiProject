@@ -96,6 +96,7 @@ public class CartDao {
 						order.put("pPrice", pPrice);
 						order.put("piFilename", piFilename);
 						order.put("pdNum", pdNum);
+						order.put("cCartNum", cCartNum[i]);
 						list.add(order);
 					}
 				}
@@ -106,6 +107,23 @@ public class CartDao {
 				return null;
 			} finally {
 				JdbcUtil.close(con, pstmt, rs);
+			}
+		}
+		public void insertCart(String pdNum,String mid, int num) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			try {
+				con=JdbcUtil.getCon();
+				String sql="insert into cart values (seq_cart.nextval,?,?,?)";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, pdNum);
+				pstmt.setString(2, mid);
+				pstmt.setInt(3, num);
+				pstmt.executeUpdate();
+			}catch(SQLException s) {
+				s.printStackTrace();
+			}finally {
+				JdbcUtil.close(con,pstmt,null);
 			}
 		}
 }

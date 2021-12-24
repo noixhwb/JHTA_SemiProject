@@ -38,6 +38,7 @@
 			<input type="hidden" name="cnt" value="${vo.cnt }">
 			<input type="hidden" name="pdnum" value="${vo.pdNum }">			
 			<input type="hidden" name="price" value="${vo.price }">
+			<input type="hidden" name="cCartNum" value="${vo.cCartNum }">
 			<tr>
 				<td scope="row"><img src="<%=request.getContextPath()%>/imagesPro/${vo.piFilename}"style="width: 120px; height: 120px;"></td>
 				<td scope="row">${ vo.pName }</td>

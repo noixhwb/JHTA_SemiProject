@@ -22,6 +22,7 @@ public class MyorderOkController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//주문테이블
+		int totalPrice = 0;
 		String mId = (String)req.getSession().getAttribute("mid");
 		int totalSales = Integer.parseInt(req.getParameter("totPrice"));
 		String delocation = req.getParameter("whereto");
@@ -48,13 +49,9 @@ public class MyorderOkController extends HttpServlet{
 			int dprice = Integer.parseInt(mdprice[i]);
 			MyordVo myordvo=new MyordVo(0, oNum, pdnum, dcount, dprice, 1);
 			n = myorddao.insertOrderdetail(myordvo);
-		}
-		
-		//MyordVo ovo=new MyordVo(0, 0, pdnum, dcount, dprice, 1);
+			totalPrice += dcount*dprice;
 			
-		//int n = dao.insert(vo, ovo);
-		//System.out.println("@@@"+vo);
-		//System.out.println("###"+ovo);
+		}
 		
 		//주문,주문상세 조인한 주문내역 보여주기
 		MyorderDao myorderdao=new MyorderDao();
@@ -63,11 +60,11 @@ public class MyorderOkController extends HttpServlet{
 		req.setAttribute("oNum", oNum);
 				
 		//장바구니 내역 삭제
-		//String cCartNum = (String)req.getSession().getAttribute("cCartNum");
-		//CartdelDao cddao=new CartdelDao();
-		//int cdn = cddao.delete(mid);
+		String[] cCartNum = req.getParameterValues("cCartNum");
+		CartdelDao cddao=new CartdelDao();
+		cddao.delete(cCartNum);
 				
-		//req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);		
+		req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);		
 		if (n>0) {
 			req.setAttribute("result", "success");
 			req.getRequestDispatcher("/Home?spage=/ORDER/MyOrderOk.jsp").forward(req, resp);
