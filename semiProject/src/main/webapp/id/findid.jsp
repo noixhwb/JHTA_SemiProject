@@ -13,47 +13,60 @@
 		padding: 0px;
 	}
 #mypage_category{
-		margin-left: 30px;
+		margin-left: 21px;
 		margin-bottom: 70px;
 	}
-#wrap #box1{
-		 
-		 text-align: center;
-		 display: inline-block; 
-		 padding-bottom: 20px;
-		 margin-left: 31%;
+	
+	
+	#t1{
+	width:600px; height: 50px;
 	}
 	
-	.btn1 {
-			
-			background-color: black;
-			padding: 15px 120px;
-			margin: 2px;
-			border: none;
-			color: white;
-			text-align: right;
-			font-size: 16px;
-			display: inline-block;
-			cursor: pointer;
-			margin-left: 35%;
-		}
-		
-	
-	#tb1{
-	 width:200px; height: 100px;
-	 font-size: 13px;
-	}
-	#tb2{
-	width:250px; height: 100px;
-	text-align: left;
-	}
-	#box2{
-	border: 1px solid black; border-collapse: collapse;
-	width:530px; height: 100px;
-	text-align: center;
-	margin-left: 35%;
+	#t2{
+	height: 50px;
+	color: black;
 	}
 	
+	#t3{
+	height: 50px;
+	}
+	
+	#mphone{
+	width: 80%; height: 30px;
+	}
+	#t4{
+	width:180px;  height: 50px;
+	}
+	
+	
+	#btn10{
+	width: 100%; height: 100%;
+	cursor: pointer;
+	background-color: black;
+	color: white;
+	border: 1px solid black;
+	}
+	#btn11{
+	width: 400px; height: 70%;
+	cursor: pointer;
+	background-color: black;
+	color: white;
+	border: 1px solid black;
+	}
+	
+	#box1{
+	width :600px; height: 270px;
+	border: 1px solid;
+	margin-left: 31%;
+	
+	padding-top: 50px;
+	padding-left: 40px;
+	padding-right: 40px;
+	
+	background-color: #A6B8C4;
+	color:white;
+	border-radius: 8px;
+	}
 	
 </style>
 <script type="text/javascript">
@@ -73,7 +86,7 @@
 			let div=document.getElementById("result");
 			if(find=='success'){
 				let mid=xml.getElementsByTagName("mid")[0].firstChild.nodeValue;
-				div.innerHTML="검색된 아이디:" + mid;
+				div.innerHTML="검색된 아이디 : " + mid;
 			}else{
 				div.innerHTML="해당되는 아이디가 없습니다.";
 			}
@@ -91,17 +104,25 @@
 		<br>
 	<h3>아이디찾기</h3>
 	</div>
-	<div id="box2"><div id="result"></div></div>
 	<div id="box1">
 	<table >
 		<tr>
-			<th id="tb1">휴대폰번호입력</th>
-			<th id="tb2"><input type="text" id="mphone"></th>
-			
+			<th colspan="3" id="t1" ><div id="result"></div></th>
+		</tr>
+		<tr>
+			<th id="t2" >휴대폰번호입력</th>
+			<td colspan="2"  id="t22" ><input type="text" id="mphone"></td>
+		</tr>
+		<tr>
+			<th id="t3" colspan="3"><input type="submit" value="찾기" id="btn11"  maxlength="11" onclick="findId()"></th>
+		</tr>
+		<tr>
+<th id="t4"><a  href="<%=request.getContextPath()%>/Home?spage=/member/join.jsp"><button type="button" id="btn10">회원가입</button></a> </th>
+<th id="t4"><a  href="<%=request.getContextPath()%>/Home?spage=/loginForm.jsp"><button type="button" id="btn10">로그인</button></a> </th>
+<th id="t4"><a  href="<%=request.getContextPath()%>/findpwdform"><button type="button" id="btn10">비밀번호찾기</button> </a></th>		
 		</tr>
 	</table>
-	<input type="submit" value="찾기" maxlength="11" class="btn1" onclick="findId()">
-	</div>
+	</div>	
 </div>
 </body>
 </html>
