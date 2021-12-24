@@ -194,7 +194,7 @@
 				<tr>
 					<td>
 					<!-- 구매하기 파라미터 넘기는 form -->
-						<form method="post" id="buyform" action="${cp}/toMyOrder?pNum=${ vo.pNum }">
+						<form method="post" id="buyform" name="buyform" action="${cp}/toMyOrder?pNum=${ vo.pNum }">
 			                 <!-- pdNum -->
 			                  <input type="hidden" value="" id="pdNum" name="pdNum"> 
 							 <!-- 구매수량 -->
@@ -205,17 +205,12 @@
 						</form>
 					</td>
 					<td>
-						<!-- 장바구니 파라미터 넘기는 form -->
-						<form method="post" action="">
-						 <!-- 메인이미지 -->
+						<form method="post" action="${cp }/cartinsert" id="addcart">
 							<input type="hidden" value="${img}" name="mainimg">
-								 <!-- 제품명 -->
 							 <input type="hidden" value="${vo.pName }" id="name" name="pName"> 
-							 	 <!-- 구매수량 -->
 							 <input type="hidden" value="0" id="num" name="num"> 
-							 	 <!-- 총구매가격 -->
 							 <input type="hidden" value="0" id="pricetotal" name="pricetotal"> 
-							 <input type="submit" value="장바구니" class="cartbut">
+							 <input type="button" value="장바구니" class="cartbut" onclick="addcart()">
 						</form>
 					</td>
 				</tr>
@@ -311,6 +306,7 @@
  -->
 
 <script type="text/javascript">
+	var flg = false;
 	//이미지 변경 
 	function changeimg(e) {
 		let mainimg = document.getElementById("img_m");
@@ -322,7 +318,7 @@
 	function changeprice(n) {
 		//가격가져오기
 		let price = document.getElementById("price").value;
-
+		
 		if (n > 1) {
 			price * n;
 			return (price * n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -335,6 +331,15 @@
 	}
 	//선택시 div생성
 	function addproduct() {
+		var sel = document.getElementById("select_size").value;
+		
+		if(sel =="noselect"){
+			return false;
+		}
+		if(flg){
+			return false;
+		}
+		
 		let div = document.getElementById("adddiv");
 		//select value값 가져오기
 		var select = document.getElementById("select_size");
@@ -343,51 +348,50 @@
 		
 		var pdNum = document.getElementById("pdNum");
 		pdNum.value=select.value;
-		//value값에 따라 조건 주기
-		if (select_size == "noselect") {
-			console.log("값을 선택하세요~");
-		} else {
-			//div추가(사이즈 정보,가격정보,)
-			let size_div = document.createElement("div");
-			let num_div = document.createElement("div");
-			let Price_div = document.createElement("div");
-			Price_div.setAttribute("id", "Price_div");
-			//이름가져오기
-			let name = document.getElementById("name").value;
-			//이름
+		//div추가(사이즈 정보,가격정보,)
+		let size_div = document.createElement("div");
+		let num_div = document.createElement("div");
+		let Price_div = document.createElement("div");
+		Price_div.setAttribute("id", "Price_div");
+		//이름가져오기
+		let name = document.getElementById("name").value;
+		//이름
 
-			//input(수량선택)
-			let select_num = document.createElement("input");
-			num_div.setAttribute("id", "num_div");
-			select_num.setAttribute("type", "number");
-			select_num.setAttribute("id", "select_num");
-			select_num.setAttribute("name", "select_num");
-			select_num.setAttribute("min", "0");
-			select_num.setAttribute("value", "0");
-			//사이즈
-			size_div.innerHTML = name;
-			size_div.innerHTML += "<br>size : " + select_size;
-			//가격
-			select_num.setAttribute("id", "select_num");
-			select_num.setAttribute("onchange", "addprice()");
-			Price_div.innerHTML = changeprice(1);
+		//input(수량선택)
+		let select_num = document.createElement("input");
+		num_div.setAttribute("id", "num_div");
+		select_num.setAttribute("type", "number");
+		select_num.setAttribute("id", "select_num");
+		select_num.setAttribute("name", "select_num");
+		select_num.setAttribute("min", "1");
+		select_num.setAttribute("value", "1");
+		//사이즈
+		size_div.innerHTML = name;
+		size_div.innerHTML += "<br>size : " + select_size;
+		//가격
+		select_num.setAttribute("id", "select_num");
+		select_num.setAttribute("onchange", "addprice()");
+		Price_div.innerHTML = changeprice(1);
 
-			let line = document.createElement("hr");
-			line.setAttribute("id", "line");
+		let line = document.createElement("hr");
+		line.setAttribute("id", "line");
 
-			div.appendChild(size_div);
-			div.appendChild(num_div);
-			num_div.appendChild(select_num);
-			div.appendChild(Price_div);
+		div.appendChild(size_div);
+		div.appendChild(num_div);
+		num_div.appendChild(select_num);
+		div.appendChild(Price_div);
 
-			div.appendChild(line);
+		div.appendChild(line);
+		flg = true;
 
-		}
-
+		
+		addprice();
 	}
 	function totalprice() {
 		let Price_div = document.getElementById("Price_div").innerText;
 		let total = document.getElementById("total");
+		console.log(Price_div);
+		console.log(total);
 		total.innerText = Price_div;
 	}
 	function addprice() {
@@ -396,7 +400,6 @@
 		let Price_div = document.getElementById("Price_div");
 		let pricetotal = document.getElementById("pricetotal");
 		let addnum = document.getElementById("num");
-		console.log(pricetotal.value);
 		addnum.value = num;
 		Price_div.innerHTML = changeprice(num);
 		pricetotal.value = price * num;
@@ -424,5 +427,30 @@
 			let div = document.getElementById("buyinfo");
 			div.innerHTML = xml;
 		}
+	}
+	function addcart(){
+
+		
+		var theForm = document.buyform;
+		theForm.action = "${cp}/cartinsert";
+		document.getElementById("buyform").submit();
+		
+		if(xhr.readyState==4 && xhr.status==200){
+			alert("장바구니담기성공");
+			let xml=xhr.responseXML;
+			//let exist=xml.getElementsByTagName("exist")[0].textContent;
+			
+			if(confirm("쇼핑을 계속하시겠습니까?")){
+				let span=document.getElementById("계속");
+			}else{
+				span.innerHTML="장바구니이동";
+			}
+			/*			let span=document.getElementById("계속");
+ 			if(exist=='true'){
+				span.innerHTML="쇼핑계속하기";
+			}else{
+				span.innerHTML="장바구니이동";
+			}*/
+ 		}
 	}
 </script>

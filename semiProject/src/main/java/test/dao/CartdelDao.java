@@ -7,19 +7,20 @@ import java.sql.SQLException;
 import db.JdbcUtil;
 
 public class CartdelDao {
-	public int delete(String mId) {
+	public void delete(String[] cCartNum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		String sql = "DELETE cart WHERE mid=?";
+		String sql = "DELETE cart WHERE cCartNum=?";
 		
 		try {
 			con = JdbcUtil.getCon();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mId);
-			return pstmt.executeUpdate();
+			for(int i=0;i<cCartNum.length;i++) {
+				pstmt.setString(1, cCartNum[i]);
+				pstmt.executeUpdate();
+			}
 		} catch (SQLException se) {
 			se.printStackTrace();
-			return -1;
 		} finally {
 			JdbcUtil.close(con, pstmt, null);
 		}

@@ -31,5 +31,24 @@ public class MyordDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+
+	public void updateTotalPrice(int oNum, int totalPrice) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql = "update orders set totalSales = ? where oNum = ?";
+		
+		try {
+			con = JdbcUtil.getCon();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, totalPrice);
+			pstmt.setInt(2, oNum);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 	
 }
