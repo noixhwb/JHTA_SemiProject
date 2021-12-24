@@ -8,27 +8,29 @@
 	<title>주문확인</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<style>
-		* { margin: auto; text-align: center; }
+		<%--* { margin: auto; text-align: center; }--%>
 		<%--#submitbtn { text-align: center; }--%>
 	</style>
 </head>
 <body>
-	<form action="${ pageContext.request.contextPath }/Home">
+	<form action="${ pageContext.request.contextPath }/Home" style="margin: auto; text-align: center;">
 	<div class="container">
 	<c:choose>
 		<c:when test="${ requestScope.result == 'success' }">
 			<div class="row">
 				<div class="col-6 offset-3">
-			<div class="card border-danger mb-3" style="margin-top: 10%;">
-				<!-- <div class="card-header">Header</div> -->
+			<div class="card border-success bg-light mb-3" style="margin-top: 10%;">
+				<div class="card-header" style="text-align: left;">
+					<small class="text-muted">주문완료확인 </small> <br> 
+				</div>
 				<div class="card-body text-danger">
 					<img src="images/checked.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
 					<h1 class="card-title"><strong>주문이 완료되었습니다</strong></h1>
-					<p class="card-text">
-					주문번호 : ${ oNum } <br>
-					주문상세번호 : ${ odNum } <br>
-				</p>		
 				</div>
+				<div class="card-footer">
+      				<strong>주문번호 : ${ oNum }</strong> <br>
+					주문상세번호 : ${ odNum } 
+    			</div>
 			</div>
 				</div>
 			</div>
@@ -38,10 +40,15 @@
 			<div class="row">
 				<div class="col-6 offset-3">
 			<div class="card text-white bg-danger mb-3" style="margin-top: 10%;">
+				<div class="card-header" style="text-align: left;">
+					<small class="text-muted">주문불가확인 </small> <br> 
+				</div>
 				<div class="card-body">
-					<img src="images/sad.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
+					<img src="images/sad-face.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
 					<h1 class="card-title"><strong>주문을 완료하지 못했습니다</strong></h1>
-					<p class="card-text">오류를 확인해주세요!</p>
+				</div>
+				<div class="card-footer">
+					오류를 확인해주세요!
 				</div>
 			</div>
 				</div>
@@ -49,7 +56,7 @@
 		</c:otherwise>
 	</c:choose>
 	</div>
-	<div id="submitbtn" style="margin-bottom: 200px">
+	<div id="submitbtn" style="margin-bottom: 200px;">
 		<input type="submit" value="홈으로 가기">
 	</div>
 	</form>

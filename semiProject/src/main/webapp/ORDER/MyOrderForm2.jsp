@@ -16,6 +16,7 @@
 	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 	<form action="${ cp }/myorderOk2">
 	<div class="container" >
+	<h1 class="display-6"><strong>주문 / 배송</strong></h1>
 	<div class="card border-dark mb-3">
 	
 		<h5 class="card-header">주문하실 상품</h5>
@@ -80,18 +81,18 @@
 			<tr>
 				<th>배송메세지</th>
 				<td>
-					<form name="form" method="post">
+					<form name="form">
 					<select name="formselect_msg2" size="1" onchange="changeText(this.form)">
 						<option>선택해주세요</option>
-						<option value="직접입력">요청사항을 직접 입력합니다</option>
+						<option value="">요청사항을 직접 입력합니다</option>
       					<option value="부재시 문 앞에 놔주세요">부재시 문 앞에 놔주세요</option>
       					<option value="부재시 경비실에 놔주세요">부재시 경비실에 놔주세요</option>
       					<option value="배송 전 연락 바랍니다">배송 전 연락 바랍니다</option>
-					</select>
-					<input type="text" name="text_msg_back" value=""> <br>
+					</select> <br>
+					<input type="text" name="text_msg_back" value="" style="width: 400px;">
 					</form>
 					
-					
+					<%--
 					<input type="text" name="bsmsg" list="bmsg" style="width: 500px;">
     				<datalist id="bmsg">
       					<option value="">직접입력</option>
@@ -108,6 +109,7 @@
 						<option value="no">배송 전 연락 바랍니다</option>
 					</select> <br>
 					<div id="divvv"></div>
+					 --%>
 				</td>
 			</tr>
 		</tbody>
@@ -153,23 +155,12 @@ $(document).ready(function(){
 	function changeText(form)
 	{
 	    form.text_msg_back.value = form.formselect_msg2.value;
-	    if(""==form.formselect_msg2.value){
+	    
+	    if("" == form.formselect_msg2.value){
 	        form.text_msg_back.focus();
 	    }
 	}
 	window.onload = initialize;
 	
-	function addMsg() {
-		var sel = document.getElementById("msg").value;
-		
-		if (sel == "no") {
-			return false;
-		}
-		if (sel == 1) {
-			
-		}
-		let div = document.getElementById("divvv");
-		divvv.
-	}
 </script>
 </html>
