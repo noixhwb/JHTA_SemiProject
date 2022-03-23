@@ -36,7 +36,7 @@
 
 | 👍 회원가입 페이지 | 🌟 Best Seller 페이지 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/72147069/159754103-8ac393c7-fe3d-4a7b-8569-1cdcecd39b4e.png" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/159754932-f52b1431-18ba-4dc5-a7e9-2e0992f14442.png" width=100%> |
+| <img src="https://user-images.githubusercontent.com/72147069/159754103-8ac393c7-fe3d-4a7b-8569-1cdcecd39b4e.png" width=500px> | <img src="https://user-images.githubusercontent.com/72147069/159754932-f52b1431-18ba-4dc5-a7e9-2e0992f14442.png" width=500px> |
 
 | 🙌 상세 페이지 | 👩‍💻 상세 페이지-결제정보,리뷰 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
