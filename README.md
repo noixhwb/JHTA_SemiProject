@@ -30,38 +30,45 @@
 <br>
 
 ## 👉 제작 목적
-- 소통을 원하는 학생들에게 자유로운 커뮤니티활동을 제공해준다.
-- MYCAMPUS 학생들이 자체적으로 동아리를 모집하고 관리하는 교내 동아리 신청관리 서비스를 간편하게 제공한다.
-- 인증절차를 통한 안전한 중고거래를 지원한다.
-- 채용공고를 한눈에 확인하고 원하는 공고는 스크랩을 하여 취업활동을 지원한다.
-- 익명의 강의평가를 제공하고 시간표구성 및 저장, 학점계산기를 통해 편리한 학사관리를 가능하게 한다.
+- 의류 관련 쇼핑몰을 구현하여 쇼핑몰의 기본적인 페이지들을 구현함
+
 <br>
 <br>
 
 ## 🚀 Demo
+![image](https://user-images.githubusercontent.com/72147069/159754103-8ac393c7-fe3d-4a7b-8569-1cdcecd39b4e.png)
+![image](https://user-images.githubusercontent.com/72147069/159754449-5b127ad3-cfa0-4fb1-8b36-b2e3317dc62e.png)
+![image](https://user-images.githubusercontent.com/72147069/159754932-f52b1431-18ba-4dc5-a7e9-2e0992f14442.png)
+![녹화_2022_03_24_02_04_18_454](https://user-images.githubusercontent.com/72147069/159755686-90167980-78a8-4d7a-9e31-85ea6d7f6784.gif)
+![image](https://user-images.githubusercontent.com/72147069/159755908-b0d6980b-df28-4f41-bb6c-5fbce9d91619.png)
+![녹화_2022_03_24_02_08_23_978](https://user-images.githubusercontent.com/72147069/159756411-50b347ca-1061-411f-9ab0-fdb7a41e225f.gif)
+![image](https://user-images.githubusercontent.com/72147069/159757002-d69a2561-4acd-4676-8a59-50461960c439.png)
+![녹화_2022_03_24_02_13_08_807](https://user-images.githubusercontent.com/72147069/159757189-243fa195-fc98-4041-8f3b-e2c1b7bc698a.gif)
+![image](https://user-images.githubusercontent.com/72147069/159757401-f76360dd-b93e-438a-b422-0563185df307.png)
 
-| 👍 회원 기능 | 🌟 커뮤니티 기능 |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/72147069/156172268-809b250a-f768-4634-92b9-989a83952e33.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156172238-629f62b0-ac3a-419c-8be0-a048bd0f935b.PNG" width=100%> |
 
-| 🙌 동아리 기능 | 👩‍💻 거래장터 기능 |
+| 👍 회원가입 페이지 | 🌟 Best Seller 페이지 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/72147069/156174757-6abf1223-a04a-44ee-8c0f-e271ba955853.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156174819-1ee7ccce-cf17-4281-8226-a6a5b97d43ce.PNG" width=100%> |
+| <img src="https://user-images.githubusercontent.com/72147069/159754103-8ac393c7-fe3d-4a7b-8569-1cdcecd39b4e.png" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/159754932-f52b1431-18ba-4dc5-a7e9-2e0992f14442.png" width=100%> |
 
-| 👯 취업정보 기능 | 📅 시간표 기능 |
+| 🙌 상세 페이지 | 👩‍💻 상세 페이지-결제정보,리뷰 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/72147069/156175131-2669f1fc-73a6-4e2e-a916-277654e5186d.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156180292-c61fb608-a99f-46b1-91f4-1159d2f21a60.PNG" width=100%> |
+| <img src="https://user-images.githubusercontent.com/72147069/159755686-90167980-78a8-4d7a-9e31-85ea6d7f6784.gif" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/159755908-b0d6980b-df28-4f41-bb6c-5fbce9d91619.png" width=100%> |
 
-| 🍓 게시요청 기능 | 🔎 관리자 기능 |
+| 👯 장바구니 페이지 | 📅 결제 페이지 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/72147069/156175150-a6843376-c72c-449b-9d90-b71150ffc636.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156175236-915984a9-19e6-4113-b089-f18a36956795.PNG" width=100%> |
+| <img src="https://user-images.githubusercontent.com/72147069/159757401-f76360dd-b93e-438a-b422-0563185df307.png" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/159756411-50b347ca-1061-411f-9ab0-fdb7a41e225f.gif" width=100%> |
+
+| 🍓 마이페이지-결제내역 | 🔎 마이페이지-리뷰내역 |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/72147069/159757002-d69a2561-4acd-4676-8a59-50461960c439.png" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/159757189-243fa195-fc98-4041-8f3b-e2c1b7bc698a.gif" width=100%> |
 </br>
 </br>
 
 ---
 
 ## 🌈 Members
-최은정, 주대웅, 박상언, 김태우 하지은
+
 | [김태우] | [박상언] | [주대웅]() | [최은정]() | [하지은](https://github.com/noixhwb) | 
 
 <!--
