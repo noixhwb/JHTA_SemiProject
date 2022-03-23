@@ -44,11 +44,11 @@
 
 | 👯 장바구니 페이지 | 📅 결제 페이지 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/72147069/159757401-f76360dd-b93e-438a-b422-0563185df307.png" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/159756411-50b347ca-1061-411f-9ab0-fdb7a41e225f.gif" width=100%> |
+| <img src="https://user-images.githubusercontent.com/72147069/159757401-f76360dd-b93e-438a-b422-0563185df307.png" width=500px> | <img src="https://user-images.githubusercontent.com/72147069/159756411-50b347ca-1061-411f-9ab0-fdb7a41e225f.gif" width=500px> |
 
 | 🍓 마이페이지-결제내역 | 🔎 마이페이지-리뷰내역 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/72147069/159757002-d69a2561-4acd-4676-8a59-50461960c439.png" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/159757189-243fa195-fc98-4041-8f3b-e2c1b7bc698a.gif" width=100%> |
+| <img src="https://user-images.githubusercontent.com/72147069/159757002-d69a2561-4acd-4676-8a59-50461960c439.png" width=500px> | <img src="https://user-images.githubusercontent.com/72147069/159757189-243fa195-fc98-4041-8f3b-e2c1b7bc698a.gif" width=500px> |
 </br>
 </br>
 
