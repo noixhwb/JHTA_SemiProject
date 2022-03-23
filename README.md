@@ -36,16 +36,6 @@
 <br>
 
 ## 🚀 Demo
-![image](https://user-images.githubusercontent.com/72147069/159754103-8ac393c7-fe3d-4a7b-8569-1cdcecd39b4e.png)
-![image](https://user-images.githubusercontent.com/72147069/159754449-5b127ad3-cfa0-4fb1-8b36-b2e3317dc62e.png)
-![image](https://user-images.githubusercontent.com/72147069/159754932-f52b1431-18ba-4dc5-a7e9-2e0992f14442.png)
-![녹화_2022_03_24_02_04_18_454](https://user-images.githubusercontent.com/72147069/159755686-90167980-78a8-4d7a-9e31-85ea6d7f6784.gif)
-![image](https://user-images.githubusercontent.com/72147069/159755908-b0d6980b-df28-4f41-bb6c-5fbce9d91619.png)
-![녹화_2022_03_24_02_08_23_978](https://user-images.githubusercontent.com/72147069/159756411-50b347ca-1061-411f-9ab0-fdb7a41e225f.gif)
-![image](https://user-images.githubusercontent.com/72147069/159757002-d69a2561-4acd-4676-8a59-50461960c439.png)
-![녹화_2022_03_24_02_13_08_807](https://user-images.githubusercontent.com/72147069/159757189-243fa195-fc98-4041-8f3b-e2c1b7bc698a.gif)
-![image](https://user-images.githubusercontent.com/72147069/159757401-f76360dd-b93e-438a-b422-0563185df307.png)
-
 
 | 👍 회원가입 페이지 | 🌟 Best Seller 페이지 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
